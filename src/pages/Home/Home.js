@@ -75,13 +75,13 @@ const Home = ({ classes }) => {
             </div>
 
             <Typography className={classes.infoText} variant="h5" color='primary'>
-              <IconButton color="foreground" aria-label="Instagram" href="https://www.instagram.com/wvhshots/?hl=en">
+              <IconButton aria-label="Instagram" href="https://www.instagram.com/wvhshots/?hl=en">
                 <InstagramIcon fontSize='large' color='primary' />
               </IconButton>
-              <IconButton color="foreground" aria-label="LinkedIn" href="https://www.linkedin.com/in/">
+              <IconButton aria-label="LinkedIn" href="https://www.linkedin.com/in/">
                 <LinkedInIcon fontSize='large' color='primary' />
               </IconButton>
-              <IconButton onClick="copyToClipboard('#p1');return false" color="foreground" aria-label="Email">
+              <IconButton aria-label="Email">
                 <EmailIcon fontSize='large' color='primary' />
               </IconButton>
             </Typography>

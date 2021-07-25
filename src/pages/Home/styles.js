@@ -55,7 +55,7 @@ const styles = (theme) => ({
   },
   infoWrapper: {
     position: 'absolute',
-    height: '50vh',
+    height: '358px',
     width: '100vw',
     backgroundColor: theme.palette.background.primary,
     display: 'flex',
@@ -72,13 +72,13 @@ const styles = (theme) => ({
     top: 0,
     bottom: 0,
     textAlign: 'center',
-    marginTop: '10px'
+    marginTop: '10px',
   },
   profileImg: {
     position: 'relative',
     borderRadius: '50%',
-    width: '25vw',
-    height: '25vw',
+    width: '200px',
+    height: '200px',
     objectFit: 'cover',
     left: 0,
     right: 0,
