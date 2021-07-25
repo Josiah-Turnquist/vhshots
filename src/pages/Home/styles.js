@@ -55,7 +55,7 @@ const styles = (theme) => ({
   },
   infoWrapper: {
     position: 'absolute',
-    height: '358px',
+    height: '370px',
     width: '100vw',
     backgroundColor: theme.palette.background.primary,
     display: 'flex',

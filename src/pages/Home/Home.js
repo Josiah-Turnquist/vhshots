@@ -14,6 +14,8 @@ import styles from './styles';
 import hero from '../../assets/profileshot2.jpg'
 import landscape from '../../assets/carshot.jpg'
 import grad from '../../assets/gradpose.jpg'
+import couples from '../../assets/couples.jpg'
+import profile from '../../assets/profileshot3.jpg'
 import photographer from '../../assets/photographer.jpg'
 
 // Transitions
@@ -57,7 +59,20 @@ const Home = ({ classes }) => {
                GRADS
             </Typography>
             <div className={classes.overlayShadow} />
+          </div>
 
+          <div className={classes.firstShowcaseWrapper} style={{backgroundImage: 'url(' + couples + ')', backgroundPositionY: '25%', backgroundSize: 'cover', borderTopLeftRadius: '26px', borderTopRightRadius: '26px'}}>
+            <Typography className={classes.firstShowcaseText} variant="h3" color='primary'>
+               COUPLES
+            </Typography>
+            <div className={classes.overlayShadow} />
+          </div>
+
+          <div className={classes.secondShowcaseWrapper} style={{backgroundImage: 'url(' + profile + ')', backgroundPositionY: '25%', backgroundSize: 'cover', borderTopLeftRadius: '26px', borderTopRightRadius: '26px'}}>
+            <Typography className={classes.secondShowcaseText} variant="h3" color='primary'>
+               PROFILE
+            </Typography>
+            <div className={classes.overlayShadow} />
           </div>
 
           <div className={classes.infoWrapper} style={{zIndex: 1000}}>
