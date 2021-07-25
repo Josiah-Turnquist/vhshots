@@ -34,7 +34,7 @@ const styles = (theme) => ({
     zIndex: 200,
     width: '100vw',
     height: '100vh',
-    background: 'linear-gradient(0deg, rgba(0,0,0,0.9) 1%, rgba(255,255,255,0) 100%)',
+    background: 'linear-gradient(0deg, rgba(0,0,0,0.9) 1%, #00000000 100%)',
   },
   secondShowcaseWrapper: {
     position: 'relative',
