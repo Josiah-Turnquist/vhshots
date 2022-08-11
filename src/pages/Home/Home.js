@@ -1,6 +1,9 @@
 // React
 import React, { useState, useEffect } from 'react';
 
+// AWS
+import { Storage } from "@aws-amplify/storage"
+
 // Material UI
 import { withStyles } from '@material-ui/core/styles';
 
@@ -58,6 +61,10 @@ const Home = ({ classes }) => {
   const [loading, setLoading] = React.useState(1);
   function handleClick () {
     setLoading(!loading);
+    Storage.put("test.txt", "Hello").then(() => {
+      console.log('Uploaded successfully?');
+    })
+
   }
 
   // Device Type

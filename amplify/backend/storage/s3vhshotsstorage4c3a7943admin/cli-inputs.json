@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3vhshotsstorage4c3a7943admin",
+  "bucketName": "vhshots-storage-4c3a7943-admin",
+  "policyUUID": "1227bc8c",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ",
+    "CREATE_AND_UPDATE",
+    "DELETE"
+  ]
+}
