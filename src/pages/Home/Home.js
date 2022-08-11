@@ -52,7 +52,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { headline } from './data';
 
 const Home = ({ classes }) => {
-  const [offline, setOffline] = React.useState(1);
+  const [offline, setOffline] = React.useState(0);
   const [loading, setLoading] = React.useState(1);
   function handleClick () {
     setLoading(!loading);
