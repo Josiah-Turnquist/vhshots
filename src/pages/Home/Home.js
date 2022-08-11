@@ -52,6 +52,8 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { headline } from './data';
 
 const Home = ({ classes }) => {
+  console.info('This is the dev branch!');
+  
   const [offline, setOffline] = React.useState(1);
   const [loading, setLoading] = React.useState(1);
   function handleClick () {
