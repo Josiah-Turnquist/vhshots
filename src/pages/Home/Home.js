@@ -12,7 +12,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../../theme';
 
 // Components
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
 
@@ -22,7 +22,7 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AutoAwesomeMosaicRoundedIcon from '@mui/icons-material/AutoAwesomeMosaicRounded';
 
 // Buttons
-import LoadingButton from '@mui/lab/LoadingButton';
+// import LoadingButton from '@mui/lab/LoadingButton';
 import Button from '@mui/material/Button';
 
 // Styles
@@ -53,7 +53,7 @@ import { headline } from './data';
 
 const Home = ({ classes }) => {
   console.info('This is the dev branch!');
-  
+
   const [offline, setOffline] = React.useState(1);
   const [loading, setLoading] = React.useState(1);
   function handleClick () {
