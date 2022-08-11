@@ -70,10 +70,11 @@ const theme = createMuiTheme({
         type: 'dark',
         primary: {
             main: '#DFDFDF',
+            dark: 'rgb(60, 60, 180)',
             contrastText: '#BFBFBF',
         },
         secondary: {
-            main: 'rgba(44, 44, 44, 1)',
+            main: 'rgba(24, 24, 24, 1)',
             contrastText: 'rgb(212, 212, 212)',
         },
         text: {

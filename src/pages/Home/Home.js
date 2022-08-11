@@ -1,11 +1,29 @@
 // React
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Material UI
 import { withStyles } from '@material-ui/core/styles';
 
 // Components
 import NavigationBar from '../../components/NavigationBar';
+
+// Theme
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from '../../theme';
+
+// Components
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import { alpha } from '@mui/material/styles';
+
+// Icons
+import CircularProgress from '@mui/material/CircularProgress';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import AutoAwesomeMosaicRoundedIcon from '@mui/icons-material/AutoAwesomeMosaicRounded';
+
+// Buttons
+import LoadingButton from '@mui/lab/LoadingButton';
+import Button from '@mui/material/Button';
 
 // Styles
 import styles from './styles';
@@ -17,6 +35,8 @@ import grad from '../../assets/gradpose.jpg'
 import couples from '../../assets/couples.jpg'
 import profile from '../../assets/profileshot3.jpg'
 import photographer from '../../assets/photographer.jpg'
+import maintenance1 from '../../assets/maintenance_dark.JPG'
+import maintenance2 from '../../assets/maintenance_light.JPG'
 
 // Transitions
 import { Fade } from '@material-ui/core';
@@ -32,6 +52,101 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { headline } from './data';
 
 const Home = ({ classes }) => {
+  const [offline, setOffline] = React.useState(1);
+  const [loading, setLoading] = React.useState(1);
+  function handleClick () {
+    setLoading(!loading);
+  }
+
+  // Device Type
+  const [width, setWidth] = useState(window.innerWidth);
+
+  function handleWindowSizeChange() {
+      setWidth(window.innerWidth);
+      console.log(width);
+  }
+
+  useEffect(() => {
+      window.addEventListener('resize', handleWindowSizeChange);
+      return () => {
+          window.removeEventListener('resize', handleWindowSizeChange);
+      }
+  }, []);
+
+  const isMobile = width <= 768;
+  if (offline) {
+    return (
+      <div className="App">
+        <ThemeProvider theme={theme}>
+          <header className="App-header"
+          style={{ backgroundImage: isMobile ? `url(${maintenance2})` : `url(${maintenance1})`, height: '100vh', width: '100vw', backgroundSize: 'cover', backgroundBlendMode: 'overlay', backgroundPosition: 'center' }}>
+            
+            <Box // Gray Box
+              sx={{
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                alignItems: 'center',
+                bgcolor: theme.palette.secondary.main,
+                overflow: 'hidden',
+                borderRadius: '12px',
+                boxShadow: 1,
+                fontWeight: 'bold',
+                mb: 50,
+                opacity: '95%',
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: { xs: 'center', md: 'flex-start' },
+                  m: 3,
+                  minWidth: { md: 350 },
+                }}
+              >
+                <Box // DOWN FOR MAINTENANCE BOX
+                  sx={{
+                    mt: 0,
+                    mb: 1.5,
+                    p: 1.0,
+                    backgroundColor: alpha(theme.palette.primary.dark, 0.2),
+                    borderRadius: '5px',
+                    color: 'primary.main',
+                    fontWeight: 'medium',
+                    display: 'flex',
+                    fontSize: 12,
+                    alignItems: 'center',
+                    '& svg': {
+                      fontSize: 21,
+                      mr: 0.5,
+                    },
+                  }}
+                >
+                  <ErrorOutlineIcon />
+                  DOWN FOR MAINTENANCE
+                </Box>
+                <Box component="span" sx={{ fontSize: 16, color: 'silver', mt: 1 }}>
+                  Check out our gallery in the meantime
+                </Box>
+                {/* <Box component="span" sx={{ color: 'primary.main', fontSize: 22 }}>
+                  $280,000 — $310,000
+                </Box> */}
+                <Button 
+                  variant="contained" 
+                  sx={{mt: 4}} 
+                  endIcon={loading ? <AutoAwesomeMosaicRoundedIcon /> : <CircularProgress size="20px" color="inherit" />}
+                  onClick={handleClick}
+                  loading={loading}
+                  >
+                  Photo Gallery
+                </Button>
+              </Box>
+            </Box>
+          </header>
+        </ThemeProvider>
+      </div>
+    ); 
+  } else {
     return (
         <div className={classes.root}>
           <div className={classes.heroWrapper}>
@@ -105,6 +220,7 @@ const Home = ({ classes }) => {
 
         </div>
     );
+  }
 };
 
 export default withStyles(styles)(Home);
