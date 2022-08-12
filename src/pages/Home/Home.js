@@ -54,6 +54,14 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 // Data
 import { headline } from './data';
 
+// AWS
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import { Amplify } from 'aws-amplify';
+import awsExports from '../../aws-exports';
+Amplify.configure(awsExports);
+
+
 const Home = ({ classes }) => {
   console.info('This is the dev branch!');
 
@@ -89,7 +97,7 @@ const Home = ({ classes }) => {
         <ThemeProvider theme={theme}>
           <header className="App-header"
           style={{ backgroundImage: isMobile ? `url(${maintenance2})` : `url(${maintenance1})`, height: '100vh', width: '100vw', backgroundSize: 'cover', backgroundBlendMode: 'overlay', backgroundPosition: 'center' }}>
-            
+
             <Box // Gray Box
               sx={{
                 display: 'flex',
@@ -232,4 +240,4 @@ const Home = ({ classes }) => {
   }
 };
 
-export default withStyles(styles)(Home);
+export default withAuthenticator(withStyles(styles)(Home));
