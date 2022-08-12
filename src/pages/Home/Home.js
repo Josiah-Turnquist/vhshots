@@ -20,9 +20,13 @@ import { alpha } from '@mui/material/styles';
 import CircularProgress from '@mui/material/CircularProgress';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AutoAwesomeMosaicRoundedIcon from '@mui/icons-material/AutoAwesomeMosaicRounded';
+import EmailIcon from '@material-ui/icons/Email';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 // Buttons
 import LoadingButton from '@mui/lab/LoadingButton';
+import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 
 // Styles
@@ -41,12 +45,6 @@ import maintenance2 from '../../assets/maintenance_light.JPG'
 // Transitions
 import { Fade } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-
-// Contact Me
-import IconButton from '@material-ui/core/IconButton';
-import EmailIcon from '@material-ui/icons/Email';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 // Data
 import { headline } from './data';
@@ -160,7 +158,7 @@ const Home = ({ classes }) => {
             </Fade>
           </div>
 
-          <NavigationBar />
+          <NavigationBar isMobile={isMobile}/>
 
           <div className={classes.firstShowcaseWrapper} style={{backgroundImage: 'url(' + landscape + ')', backgroundPosition: 'center', backgroundSize: 'cover', borderTopLeftRadius: '26px', borderTopRightRadius: '26px'}}>
             <Typography className={classes.firstShowcaseText} variant="h3" color='primary'>

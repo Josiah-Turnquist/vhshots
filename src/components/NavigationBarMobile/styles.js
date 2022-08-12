@@ -65,11 +65,10 @@ const styles = (theme) => ({
     logo: {
       zIndex: 100,
       position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '80px',
-      height: '80px',
-      color: 'white'
+      top: -40,
+      left: -40,
+      width: '150px',
+      height: '150px',
     },
   });
 
