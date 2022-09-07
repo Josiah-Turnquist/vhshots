@@ -96,19 +96,17 @@ const Home = ({ classes }) => {
       <div className="App">
         <ThemeProvider theme={theme}>
           <header className="App-header"
-          style={{ backgroundImage: isMobile ? `url(${maintenance2})` : `url(${maintenance1})`, height: '100vh', width: '100vw', backgroundSize: 'cover', backgroundBlendMode: 'overlay', backgroundPosition: 'center' }}>
+          style={{ backgroundImage: isMobile ? `url(${maintenance2})` : `url(${maintenance1})`, height: '100vh', width: '100vw', backgroundSize: 'cover', backgroundBlendMode: 'overlay', backgroundPosition: '50% 10%' }}>
 
             <Box // Gray Box
               sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
-                alignItems: 'center',
+                position: 'fixed',
                 bgcolor: theme.palette.secondary.main,
                 overflow: 'hidden',
                 borderRadius: '12px',
                 boxShadow: 1,
                 fontWeight: 'bold',
-                mb: 50,
+                mb: '35vh',
                 opacity: '95%',
               }}
             >
@@ -118,7 +116,8 @@ const Home = ({ classes }) => {
                   flexDirection: 'column',
                   alignItems: { xs: 'center', md: 'flex-start' },
                   m: 3,
-                  minWidth: { md: 350 },
+                  top: '100px',
+                  minWidth: 350,
                 }}
               >
                 <Box // DOWN FOR MAINTENANCE BOX
@@ -145,9 +144,6 @@ const Home = ({ classes }) => {
                 <Box component="span" sx={{ fontSize: 16, color: 'silver', mt: 1 }}>
                   Check out our gallery in the meantime
                 </Box>
-                {/* <Box component="span" sx={{ color: 'primary.main', fontSize: 22 }}>
-                  $280,000 — $310,000
-                </Box> */}
                 <Button 
                   variant="contained" 
                   sx={{mt: 4}} 
