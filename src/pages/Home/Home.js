@@ -1,32 +1,21 @@
-// React
+// React & MUI
 import React, { useState, useEffect } from 'react';
-
-// AWS
-import { Storage } from "@aws-amplify/storage"
-
-// Material UI
 import { withStyles } from '@material-ui/core/styles';
 
 // Components
 import NavigationBar from '../../components/NavigationBar';
+import GalleryDialogue from '../../components/GalleryDialogue';
 
 // Theme
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../../theme';
 
-// Components
-// import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
 
 // Icons
-import CircularProgress from '@mui/material/CircularProgress';
+// import CircularProgress from '@mui/material/CircularProgress';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import AutoAwesomeMosaicRoundedIcon from '@mui/icons-material/AutoAwesomeMosaicRounded';
-
-// Buttons
-// import LoadingButton from '@mui/lab/LoadingButton';
-import Button from '@mui/material/Button';
 
 // Styles
 import styles from './styles';
@@ -54,7 +43,11 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 // Data
 import { headline } from './data';
 
+// Styled Divs with MUI
+import { styled } from '@mui/material/styles';
+
 // AWS
+import { Storage } from "@aws-amplify/storage"
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { Amplify } from 'aws-amplify';
@@ -62,10 +55,13 @@ import awsExports from '../../aws-exports';
 Amplify.configure(awsExports);
 
 
+
 const Home = ({ classes }) => {
   console.info('This is the dev branch!');
 
-  const [offline, setOffline] = React.useState(1);
+  const Div = styled('div')``; // If you want to style a div
+
+  const [offline, setOffline] = React.useState(0);
   const [loading, setLoading] = React.useState(1);
   function handleClick () {
     setLoading(!loading);
@@ -74,6 +70,16 @@ const Home = ({ classes }) => {
     })
 
   }
+  var galleryData = [];
+  Storage.list('') // for listing ALL files without prefix, pass '' instead
+    .then(result => {
+      result.forEach(item => {
+        if (item.key != '') {
+          galleryData.push({img: `https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`, title: 'asd'})
+        }
+      })
+    })
+    .catch(err => console.log(err));
 
   // Device Type
   const [width, setWidth] = useState(window.innerWidth);
@@ -108,16 +114,16 @@ const Home = ({ classes }) => {
                 fontWeight: 'bold',
                 mb: '35vh',
                 opacity: '95%',
+                width: {xs: '85%', sm: '50%', md: '400px'},
               }}
             >
               <Box
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: { xs: 'center', md: 'flex-start' },
+                  alignItems: { xs: 'center' },
                   m: 3,
                   top: '100px',
-                  minWidth: 350,
                 }}
               >
                 <Box // DOWN FOR MAINTENANCE BOX
@@ -144,7 +150,7 @@ const Home = ({ classes }) => {
                 <Box component="span" sx={{ fontSize: 16, color: 'silver', mt: 1 }}>
                   Check out our gallery in the meantime
                 </Box>
-                <Button 
+                {/* <Button 
                   variant="contained" 
                   sx={{mt: 4}} 
                   endIcon={loading ? <AutoAwesomeMosaicRoundedIcon /> : <CircularProgress size="20px" color="inherit" />}
@@ -152,7 +158,8 @@ const Home = ({ classes }) => {
                   loading={loading}
                   >
                   Photo Gallery
-                </Button>
+                </Button> */}
+                <GalleryDialogue galleryData={galleryData}/>
               </Box>
             </Box>
           </header>
@@ -178,6 +185,7 @@ const Home = ({ classes }) => {
           <div className={classes.firstShowcaseWrapper} style={{backgroundImage: 'url(' + landscape + ')', backgroundPosition: 'center', backgroundSize: 'cover', borderTopLeftRadius: '26px', borderTopRightRadius: '26px'}}>
             <Typography className={classes.firstShowcaseText} variant="h3" color='primary'>
               LANDSCAPES
+
             </Typography>
             <div className={classes.overlayShadow} />
           </div>

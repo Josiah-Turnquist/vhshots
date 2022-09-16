@@ -1,10 +1,5 @@
 import './App.css';
 
-// Theme
-import { ThemeProvider } from '@material-ui/core/styles';
-import theme from './theme';
-
-
 // Pages
 import Home from './pages/Home';
 
@@ -12,9 +7,9 @@ import Home from './pages/Home';
 function App({ signOut, user }) {
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}> */}
         <Home />
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </div>
   );
 }

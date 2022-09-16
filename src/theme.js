@@ -1,8 +1,8 @@
 // Import library
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 // Create a theme instance.
-const theme = createMuiTheme({
+let theme = createTheme({
     typography: {
         fontFamily: 'Roboto',
         fontSize: 14,
@@ -66,8 +66,10 @@ const theme = createMuiTheme({
             textTransform: 'unset',
         },
     },
+
+
     palette: {
-        type: 'dark',
+        mode: 'dark',
         primary: {
             main: '#DFDFDF',
             dark: 'rgb(60, 60, 180)',
@@ -82,12 +84,34 @@ const theme = createMuiTheme({
         },
         background: {
           primary: 'rgb(04, 08, 16)', //'#040416', '#181c24',
+          default: '#15161A',
+          paper: '#15161A',
           secondary: 'rgb(24, 28, 36)', //'rgb(40, 44, 52)','rgb(24, 28, 36)'
         },
         alert: {
             red: 'rgba(226, 58, 45, 1)',
         },
+
     },
+
+
+    components: {
+        MuiButtonBase: {
+            defaultProps: {
+              // The props to apply
+              disableRipple: true, // No more ripple, on the whole application 💣!
+            },
+          },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    color: 'red'
+                },
+            },
+        },
+    },
+
+    
     overrides: {
         MuiAvatar: {
             root: {
@@ -111,5 +135,7 @@ const theme = createMuiTheme({
     },
 });
 
+// Make responsive
+theme = responsiveFontSizes(theme);
 
 export default theme;
