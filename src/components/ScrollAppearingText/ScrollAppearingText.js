@@ -1,12 +1,9 @@
 // React
 import React, { useState, useEffect, useRef } from 'react';
 
-// Material UI
-import { withStyles } from '@material-ui/core/styles';
-
 // Transitions
-import { Fade } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import { Fade } from '@mui/material';
+import { Typography } from '@mui/material';
 
 // Styles
 import styles from './styles';
@@ -47,4 +44,4 @@ const ScrollAppearingText = ({ classes, text, color, variant, wait }) => {
     );
 };
 
-export default withStyles(styles)(ScrollAppearingText);
+export default (styles)(ScrollAppearingText);

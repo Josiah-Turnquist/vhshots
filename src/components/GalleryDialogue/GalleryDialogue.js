@@ -23,7 +23,6 @@ import AutoAwesomeMosaicRoundedIcon from '@mui/icons-material/AutoAwesomeMosaicR
 import { Storage } from "@aws-amplify/storage"
 
 // Styles
-import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -107,4 +106,4 @@ function GalleryDialogue({ galleryData }) {
 }
 
 
-export default withStyles(styles)(GalleryDialogue);
+export default (styles)(GalleryDialogue);

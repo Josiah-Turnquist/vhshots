@@ -14,7 +14,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 // Styles
-import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -42,4 +41,4 @@ function GalleryDialogue({ item }) {
 }
 
 
-export default withStyles(styles)(GalleryDialogue);
+export default (styles)(GalleryDialogue);

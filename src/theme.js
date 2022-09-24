@@ -1,6 +1,7 @@
 // Import library
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
+const white = '#DFDFDF';
 // Create a theme instance.
 let theme = createTheme({
     typography: {
@@ -14,19 +15,19 @@ let theme = createTheme({
           fontFamily: 'Roboto',
           fontSize: '8vmin',
           margin: '10px',
-          color: '#AFAFAF',
+          color: white,
         },
         h3: {
           fontFamily: 'Roboto',
           fontSize: '6vmin',
           margin: '10px',
-          color: '#AFAFAF',
+          color: white,
         },
         h4: {
             fontFamily: 'Helvetica',
             fontStyle: 'italic',
             fontSize: 18,
-            color: '#AFAFAF',
+            color: white,
         },
         h5: {
             fontFamily: 'Roboto',
@@ -61,9 +62,10 @@ let theme = createTheme({
             textTransform: 'uppercase',
         },
         button: {
-            fontFamily: 'Ego',
-            fontSize: 14,
-            textTransform: 'unset',
+            fontFamily: 'Helvetica',
+            fontSize: 16,
+            fontWeight: 500,
+            margin: '4px',
         },
     },
 
@@ -99,7 +101,7 @@ let theme = createTheme({
         MuiButtonBase: {
             defaultProps: {
               // The props to apply
-              disableRipple: true, // No more ripple, on the whole application 💣!
+              disableRipple: false, // No more ripple, on the whole application 💣!
             },
           },
         MuiPaper: {

@@ -1,5 +1,5 @@
 
-export const headline = 'Van Holten Photography Under Maintenance';
+export const headline = 'Van Holten Photography';
 export const photographerEmail = 'vhshots@gmail.com';
 
 

@@ -21,18 +21,12 @@ import ListIcon from '@mui/icons-material/List';
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 import Menu from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import InfoIcon from '@mui/icons-material/Info';
-import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
 
 // Logo
 import { ReactComponent as Logo } from '../../assets/VHLogo.svg';
 
 // If we decide to make this more interactive then it should probably be a ReactComponent.
-const NavigationBar = ({ isMobile, classes }) => {
+const NavigationBar = ({ classes }) => {
   const theme = useTheme();
   const handleHomeButtonClick = ({}) => {
       // Complete this later.
@@ -46,26 +40,14 @@ const NavigationBar = ({ isMobile, classes }) => {
       // Complete this later.
   };
 
-  if (isMobile) {
-    return (
-      <div className={classes.navContainer} key="nav">
-          <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '10ms'}}>
-            <Logo className={classes.logo} />
-          </Fade>
-  
-          <div className={classes.navButtonsContainer} key="nav-buttons">
-            <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '180ms'}}>
-            </Fade>
-          </div>
-  
-          <hr className={classes.line} />
-      </div>
-    );  
-  }
-  else {
-  }
   return (
     <div className={classes.navContainer} key="nav">
+        {/*<img
+            key="nav-logo"
+            className={classes.logo}
+            src="../../assets/vhlogo.svg"
+            alt={config.name}
+        />*/}
         <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '10ms'}}>
           <Logo className={classes.logo} />
         </Fade>
@@ -91,5 +73,5 @@ const NavigationBar = ({ isMobile, classes }) => {
     </div>
   );
 }
-  
+
 export default withStyles(styles)(NavigationBar);
