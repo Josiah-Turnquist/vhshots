@@ -63,7 +63,7 @@ let theme = createTheme({
         },
         button: {
             fontFamily: 'Helvetica',
-            fontSize: 16,
+            fontSize: '16px',
             fontWeight: 500,
             margin: '4px',
         },
@@ -86,7 +86,8 @@ let theme = createTheme({
         },
         background: {
           primary: 'rgb(04, 08, 16)', //'#040416', '#181c24',
-          default: '#15161A',
+          default: '#1f1f25',//'#15161A',
+          pressed: '#0101f23',
           paper: '#15161A',
           secondary: 'rgb(24, 28, 36)', //'rgb(40, 44, 52)','rgb(24, 28, 36)'
         },

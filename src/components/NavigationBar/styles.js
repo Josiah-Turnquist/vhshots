@@ -1,6 +1,11 @@
 const styles = (theme) => ({
-    root: {    },
+    root: {},
     navContainer: {
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'flex-end',
     },
     line: {     // Create the line for the navigation bar
         width: '100%',
@@ -11,6 +16,17 @@ const styles = (theme) => ({
         left: 0,
         margin: 0,
     },
+    logo: {
+        zIndex: 1000,
+        width: '70px',
+        height: '70px',
+        marginTop: '10px',
+        backgroundColor: theme.palette.background.background,
+        "&:hover": {
+            backgroundColor: theme.palette.background.pressed,
+            cursor: 'pointer',
+        }
+      },
     navButtonsContainer: {   // Container to format all the toolbar buttons in a right-aligned row
         position: 'absolute',
         zIndex: 999,
@@ -19,46 +35,24 @@ const styles = (theme) => ({
         height: '40px',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'flex-end',
     },
     navHomeButton: {    // Home at the upper-right corner. Required for correct coloring.
-        flexDirection: 'row',
         borderColor: '#BFBFBF',
         width: '120px',
         height: '40px',
+        top: 1,
         color: '#BFBFBF',
-        fontSize: 'large',
-        fontFamily: 'Roboto',
         fontWeight: '400',
     },
     navButton: {    // Regular buttons at the upper-right corner (explore, artists, create)
         width: '120px',
         height: '40px',
-        flexDirection: 'row',
-        fontSize: 'large',
-        fontFamily: 'Roboto',
-        fontWeight: '400'
     },
-    // navIcon: {      // Icons at the upper-right corner (search, notifications, profile)
-    //     position: 'relative',
-    //     width: '40px',
-    //     height: '40px',
-    //     marginLeft: '5px',
-    //     marginRight: '5px',
-    // },
     iconButtons: {      // Icons at the upper-right corner (search, notifications, profile)
         width: '45px',
         height: '45px',
-        top: 1,
+        top: 3,
     },
-    logo: {
-        zIndex: 100,
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '80px',
-        height: '80px',
-      },
   });
 
 export default styles;

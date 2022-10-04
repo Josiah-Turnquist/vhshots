@@ -85,14 +85,14 @@ function GalleryDialogue({ galleryData }) {
           {galleryData.map((item) => (
             <ImageListItem key={item.img}>
               <GalleryImage item={item}/>
-                {/* <img
-                  style={{display: loading ? "none" : "block"}}
-                  src={`${item.img}?w=248&fit=crop&auto=format`}
-                  srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.title}
-                  loading="lazy"
-                  onLoad={imageLoaded}
-                /> */}
+              {/* <img
+                style={{display: loading ? "none" : "block"}}
+                src={`${item.img}?w=248&fit=crop&auto=format`}
+                srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.title}
+                loading="lazy"
+                onLoad={imageLoaded}
+              /> */}
             </ImageListItem>
           ))}
         </ImageList>

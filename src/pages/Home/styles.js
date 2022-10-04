@@ -1,24 +1,30 @@
+import zIndex from "@mui/material/styles/zIndex";
+
 const styles = (theme) => ({
   root: {
-
+    backgroundColor: theme.palette.background.default,
   },
-  heroWrapper: {
+  contentWrapper: {
     width: '100vw',
     height: '100vh',
+    zIndex: 1001,
+    display: 'flex',
+    alignContent: 'center',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
-  hero: {
-    width: '100vw',
-    height: '100vh',
+  photo: {
+    "&:hover": {
+      color: theme.palette.background.pressed,
+      outline: '15px solid rgba(22, 22, 22, 0.5)',
+    }
+  },
+  photos: {
+    width: '32%',
+    height: '90%',
     objectFit: 'cover',
-    position: 'fixed'
-  },
-  heroText: {
-    position: 'absolute',
-    top: '40vh',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    textAlign: 'center',
   },
 });
 

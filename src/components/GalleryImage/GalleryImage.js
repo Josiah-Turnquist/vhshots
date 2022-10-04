@@ -30,7 +30,7 @@ function GalleryDialogue({ item }) {
 
   return (
     <img
-        style={{display: loading ? "none" : "block"}}
+        // style={{display: loading ? "none" : "block"}}
         src={`${item.img}?w=248&fit=crop&auto=format`}
         srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
         alt={item.title}

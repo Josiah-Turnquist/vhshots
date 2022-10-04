@@ -11,6 +11,6 @@ import 'semantic-ui-css/semantic.min.css'
 
 ReactDOM.render(
     <ThemeProvider theme={customTheme}>
-        <App theme={customTheme}/>
+        <App theme={customTheme} />
     </ThemeProvider>, 
     document.getElementById('root'));

@@ -31,7 +31,10 @@ const NavigationBar = ({ classes }) => {
       <div className={classes.profileQuote} >
         <img src={photographer} alt="profile" className={classes.profileImg}></img>
         <Typography variant="h4" style={{marginLeft: '16px'}}>
-          <q>Usually a moment is just that -- a moment. I capture what's normally over in a second and make it last a lifetime.</q>
+          Photography has been an amazing opportunity for me to get more involved in my school, my community and my profession. 
+          I am a Bay Area native College Park Alumni with 8 years of photo and video experience. 
+          My prior experience ranges from event photography with organizations such as Meals On Wheels and The Fallen Heroes to wedding videography and senior portraits. 
+          I have 8 years of experience with the Adobe suite as well as experience with Final Cut pro.
         </Typography>
       </div>
 

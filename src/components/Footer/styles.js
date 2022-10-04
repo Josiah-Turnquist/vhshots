@@ -1,25 +1,25 @@
 const styles = (theme) => ({
-    root: {},
+    root: {
+
+    },
     navContainer: {
     },
     infoWrapper: {
-        position: 'absolute',
         height: '370px',
         width: '100vw',
         backgroundColor: theme.palette.background.primary,
         display: 'flex',
         flexWrap: 'nowrap',
-        alignContent: 'center',
         justifyContent: 'center',
+        flexDirection: 'column',
         alignItems: 'center',
-        flexDirection: 'column'
       },
       infoText: {
-        position: 'relative',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
+        // position: 'relative',
+        // left: 0,
+        // right: 0,
+        // top: 0,
+        // bottom: 0,
         textAlign: 'center',
         marginTop: '10px',
       },
