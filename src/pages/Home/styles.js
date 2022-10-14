@@ -14,6 +14,7 @@ const styles = (theme) => ({
     alignItems: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    marginBottom: '5px',
   },
   photo: {
     "&:hover": {
@@ -23,7 +24,7 @@ const styles = (theme) => ({
   },
   photos: {
     width: '32%',
-    height: '90%',
+    height: '100%',
     objectFit: 'cover',
   },
 });

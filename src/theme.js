@@ -63,9 +63,15 @@ let theme = createTheme({
         },
         button: {
             fontFamily: 'Helvetica',
+            fontSize: '2vmin',
+            fontWeight: 500,
+            // textTransform: 'uppercase',
+        },
+        submissionButton: {
+            fontFamily: 'Helvetica',
             fontSize: '16px',
             fontWeight: 500,
-            margin: '4px',
+            textTransform: 'uppercase',
         },
     },
 
@@ -82,18 +88,31 @@ let theme = createTheme({
             contrastText: 'rgb(212, 212, 212)',
         },
         text: {
-            primary: '#BFBFBF',
+            primary: '#FFFFFF',
+            secondary: '#BFBFBF',
+            placeholder: '#474747'
         },
         background: {
           primary: 'rgb(04, 08, 16)', //'#040416', '#181c24',
           default: '#1f1f25',//'#15161A',
           pressed: '#0101f23',
           paper: '#15161A',
+          input: '#0E0E0E',
           secondary: 'rgb(24, 28, 36)', //'rgb(40, 44, 52)','rgb(24, 28, 36)'
         },
         alert: {
             red: 'rgba(226, 58, 45, 1)',
         },
+        input: {
+            background: '#0E0E0E',
+            backgroundFocused: 'rgb(24, 28, 36)',
+            text: '#FFFFFF',
+            textPlaceholder: '#676767',
+            textSelection: '#517894',
+        },
+        button: {
+            background: '#E16B4C',
+        }
 
     },
 

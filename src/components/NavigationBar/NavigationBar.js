@@ -46,23 +46,27 @@ const NavigationBar = ({ isMobile, classes }) => {
       // Complete this later.
   };
 
-  // if (isMobile) {
-  //   return (
-  //     <div className={classes.navContainer} key="nav" >
-  //         <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '10ms'}}>
-  //           <Logo className={classes.logo}  />
-  //         </Fade>
-  
-  //         <div className={classes.navButtonsContainer} key="nav-buttons">
-  //           <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '180ms'}}>
-  //           </Fade>
-  //         </div>
-  
-  //         <hr className={classes.line} />
-  //     </div>
-  //   );  
-  // }
-  return (
+  const handleGalleryButtonClick = ({}) => {
+    // Complete this later.
+    console.error('Pushed gallery');
+  };
+
+  if (isMobile) {
+    return (
+      <div className={classes.navContainerMobile} key="nav">
+
+          <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '10ms'}}>
+            <Logo className={classes.logo} />
+          </Fade>
+
+          <Fade in={true} timeout={{ enter: 1500, exit: 1000 }} style={{ transitionDelay:  '0ms'}}>
+            <IconButton aria-label="profile" sx={{mt: '5px', mr: '5px'}} color="primary" onClick={handleProfileButtonClick}>
+              <MenuIcon className={ classes.icons } fontSize="large"/>
+            </IconButton>
+          </Fade>
+    </div>
+    );  
+  } else return (
     <div className={classes.navContainer} key="nav">
       <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '180ms'}}>
         <Button className={ classes.navButton } onClick={handleHomeButtonClick} sx={{ margin: '10px' }}> HOME </Button>
@@ -74,7 +78,7 @@ const NavigationBar = ({ isMobile, classes }) => {
         <Logo className={classes.logo}/>
       </Fade>
       <Fade in={true} timeout={{ enter: 2500, exit: 1000 }} style={{ transitionDelay:  '90ms'}}>
-        <Button className={ classes.navButton } onClick={handleProfileButtonClick} sx={{ margin: '10px' }}> GALLERY </Button>
+        <Button className={ classes.navButton } onClick={handleProfileButtonClick} sx={{ margin: '10px' }}> gallery </Button>
       </Fade>
       <Fade in={true} timeout={{ enter: 2500, exit: 1000 }} style={{ transitionDelay:  '90ms'}}>
         <Button className={ classes.navButton } onClick={handleProfileButtonClick} sx={{ margin: '10px' }}> LOGIN </Button>
