@@ -1,8 +1,9 @@
 // Import library
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
+const white = '#DFDFDF';
 // Create a theme instance.
-const theme = createMuiTheme({
+let theme = createTheme({
     typography: {
         fontFamily: 'Roboto',
         fontSize: 14,
@@ -14,19 +15,19 @@ const theme = createMuiTheme({
           fontFamily: 'Roboto',
           fontSize: '8vmin',
           margin: '10px',
-          color: '#AFAFAF',
+          color: white,
         },
         h3: {
           fontFamily: 'Roboto',
           fontSize: '6vmin',
           margin: '10px',
-          color: '#AFAFAF',
+          color: white,
         },
         h4: {
             fontFamily: 'Helvetica',
             fontStyle: 'italic',
             fontSize: 18,
-            color: '#AFAFAF',
+            color: white,
         },
         h5: {
             fontFamily: 'Roboto',
@@ -61,13 +62,22 @@ const theme = createMuiTheme({
             textTransform: 'uppercase',
         },
         button: {
-            fontFamily: 'Ego',
-            fontSize: 14,
-            textTransform: 'unset',
+            fontFamily: 'Helvetica',
+            fontSize: '2vmin',
+            fontWeight: 500,
+            // textTransform: 'uppercase',
+        },
+        submissionButton: {
+            fontFamily: 'Helvetica',
+            fontSize: '16px',
+            fontWeight: 500,
+            textTransform: 'uppercase',
         },
     },
+
+
     palette: {
-        type: 'dark',
+        mode: 'dark',
         primary: {
             main: '#DFDFDF',
             dark: 'rgb(60, 60, 180)',
@@ -78,16 +88,52 @@ const theme = createMuiTheme({
             contrastText: 'rgb(212, 212, 212)',
         },
         text: {
-            primary: '#BFBFBF',
+            primary: '#FFFFFF',
+            secondary: '#BFBFBF',
+            placeholder: '#474747'
         },
         background: {
           primary: 'rgb(04, 08, 16)', //'#040416', '#181c24',
+          default: '#1f1f25',//'#15161A',
+          pressed: '#0101f23',
+          paper: '#15161A',
+          input: '#0E0E0E',
           secondary: 'rgb(24, 28, 36)', //'rgb(40, 44, 52)','rgb(24, 28, 36)'
         },
         alert: {
             red: 'rgba(226, 58, 45, 1)',
         },
+        input: {
+            background: '#0E0E0E',
+            backgroundFocused: 'rgb(24, 28, 36)',
+            text: '#FFFFFF',
+            textPlaceholder: '#676767',
+            textSelection: '#517894',
+        },
+        button: {
+            background: '#E16B4C',
+        }
+
     },
+
+
+    components: {
+        MuiButtonBase: {
+            defaultProps: {
+              // The props to apply
+              disableRipple: false, // No more ripple, on the whole application 💣!
+            },
+          },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    color: 'red'
+                },
+            },
+        },
+    },
+
+    
     overrides: {
         MuiAvatar: {
             root: {
@@ -111,5 +157,7 @@ const theme = createMuiTheme({
     },
 });
 
+// Make responsive
+theme = responsiveFontSizes(theme);
 
 export default theme;
