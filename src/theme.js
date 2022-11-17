@@ -79,10 +79,11 @@ let theme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
-            main: '#DFDFDF',
+            main: '#EFEFEF',
             dark: 'rgb(60, 60, 180)',
             contrastText: '#BFBFBF',
         },
+
         secondary: {
             main: 'rgba(24, 24, 24, 1)',
             contrastText: 'rgb(212, 212, 212)',
@@ -111,6 +112,7 @@ let theme = createTheme({
             textSelection: '#517894',
         },
         button: {
+            // text: '#EFEFEF',
             background: '#E16B4C',
             onHover: '#d15B3C',
         }

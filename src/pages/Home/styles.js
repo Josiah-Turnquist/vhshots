@@ -16,10 +16,10 @@ const styles = (theme) => ({
     marginBottom: '5px',
   },
   photo: {
-    "&:hover": {
-      color: theme.palette.background.pressed,
-      outline: '15px solid rgba(22, 22, 22, 0.5)',
-    },
+    // "&:hover": {
+    //   color: theme.palette.background.pressed,
+    //   outline: '15px solid rgba(22, 22, 22, 0.5)',
+    // },
     objectFit: 'cover',
     height: '45vh',
     [theme.breakpoints.down('sm')]: {
