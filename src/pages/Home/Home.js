@@ -84,7 +84,7 @@ const Home = ({ classes }) => {
       galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/vhshots_hero.JPG', title: 'asd'})
       galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior2.JPG', title: 'asd'})
       galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior3.JPG', title: 'asd'})
-      galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior1.JPG', title: 'asd'})
+      galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior4.JPG', title: 'asd'})
       galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/vhshots_hero.JPG', title: 'asd'})
       galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/vhshots_hero.JPG', title: 'asd'})
       galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior2.JPG', title: 'asd'})
