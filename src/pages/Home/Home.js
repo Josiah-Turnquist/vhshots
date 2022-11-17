@@ -49,14 +49,7 @@ import { headline } from './data';
 import { styled } from '@mui/material/styles';
 
 // AWS
-import { Storage } from "@aws-amplify/storage"
-import { withAuthenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-import { Amplify } from 'aws-amplify';
-import awsExports from '../../aws-exports';
-Amplify.configure(awsExports);
-
-
+// import { Storage } from "@aws-amplify/storage"
 
 const Home = ({ classes }) => {
   const Div = styled('div')``; // If you want to style a div
@@ -73,23 +66,33 @@ const Home = ({ classes }) => {
 
   }
 
+  //https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior2.JPG
   var galleryData = [];
 
   useEffect( () => {
-  Storage.list('estate/') // for listing ALL files without prefix, pass '' instead
-    .then(response => {
+  // Storage.list('estate/') // for listing ALL files without prefix, pass '' instead
+  //   .then(response => {
       console.log('fetching images');
       // for (let i = 0; i < response.length; i++) {
       //   galleryData[i] = `https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${response[i].key}`;
       // }
-      response.forEach(item => {
-        if (item.key !== '') {
-          galleryData.push({img: `https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`, title: 'asd'})
-        }
-      })
+      // response.forEach(item => {
+      //   if (item.key !== '') {
+      //     galleryData.push({img: `https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`, title: 'asd'})
+      //   }
+      // })
+      galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/vhshots_hero.JPG', title: 'asd'})
+      galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior2.JPG', title: 'asd'})
+      galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior3.JPG', title: 'asd'})
+      galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior1.JPG', title: 'asd'})
+      galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/vhshots_hero.JPG', title: 'asd'})
+      galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/vhshots_hero.JPG', title: 'asd'})
+      galleryData.push({img: 'https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior2.JPG', title: 'asd'})
+
+      console.log();
       setImages(galleryData);
-    })
-    .catch(err => console.log(err));
+    // })
+    // .catch(err => console.log(err));
   }, [])
 
   // Device Type
@@ -115,12 +118,12 @@ const Home = ({ classes }) => {
 
         <Grid container justifyContent={{xs: "center", md: 'space-between'}} rows={1}>
           <img 
-          src={images[1]?.img}
+          src={images[0]?.img}
           alt='pictures'
           className={classes.photo}
           />
         <img 
-          src={images[5]?.img}
+          src={images[1]?.img}
           alt='pictures'
           className={classes.photo}
         />
@@ -143,4 +146,4 @@ const Home = ({ classes }) => {
 
 };
 
-export default withAuthenticator(withStyles(styles)(Home));
+export default withStyles(styles)(Home);

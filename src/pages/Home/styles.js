@@ -1,5 +1,3 @@
-import zIndex from "@mui/material/styles/zIndex";
-
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.default,

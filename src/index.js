@@ -13,4 +13,5 @@ ReactDOM.render(
     <ThemeProvider theme={customTheme}>
         <App theme={customTheme} />
     </ThemeProvider>, 
-    document.getElementById('root'));
+    document.getElementById('root')
+);
