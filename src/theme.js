@@ -112,6 +112,7 @@ let theme = createTheme({
         },
         button: {
             background: '#E16B4C',
+            onHover: '#d15B3C',
         }
 
     },

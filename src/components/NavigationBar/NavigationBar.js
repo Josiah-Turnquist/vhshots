@@ -69,39 +69,20 @@ const NavigationBar = ({ isMobile, classes }) => {
   } else return (
     <div className={classes.navContainer} key="nav">
       <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '180ms'}}>
-        <Button className={ classes.navButton } onClick={handleHomeButtonClick} sx={{ margin: '10px' }}> HOME </Button>
+        <Button className={ classes.navButton } onClick={handleHomeButtonClick} sx={{ width: '100px', margin: '10px' }}> HOME </Button>
       </Fade>
       <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '180ms'}}>
-        <Button className={ classes.navButton } onClick={handleHomeButtonClick} sx={{ margin: '10px' }}> INFO </Button>
+        <Button className={ classes.navButton } onClick={handleHomeButtonClick} sx={{ width: '100px', margin: '10px' }}> INFO </Button>
       </Fade>
       <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '10ms'}}>
         <Logo className={classes.logo}/>
       </Fade>
       <Fade in={true} timeout={{ enter: 2500, exit: 1000 }} style={{ transitionDelay:  '90ms'}}>
-        <Button className={ classes.navButton } onClick={handleProfileButtonClick} sx={{ margin: '10px' }}> gallery </Button>
+        <Button className={ classes.navButton } onClick={handleProfileButtonClick} sx={{ width: '100px', margin: '10px' }}> gallery </Button>
       </Fade>
       <Fade in={true} timeout={{ enter: 2500, exit: 1000 }} style={{ transitionDelay:  '90ms'}}>
-        <Button className={ classes.navButton } onClick={handleProfileButtonClick} sx={{ margin: '10px' }}> LOGIN </Button>
+        <Button className={ classes.navButton } onClick={handleProfileButtonClick} sx={{ width: '100px', margin: '10px' }}> LOGIN </Button>
       </Fade>
-
-        {/* <div className={classes.navButtonsContainer} key="nav-buttons">
-          <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '180ms'}}>
-            <Button className={ classes.navHomeButton } fontFamily={theme.typography.button} variant="outlined" onClick={handleHomeButtonClick} disableRipple='true'> HOME </Button>
-          </Fade>
-          <Fade in={true} timeout={{ enter: 2500, exit: 1000 }} style={{ transitionDelay:  '90ms'}}>
-            <Button className={ classes.navButton } onClick={handleProfileButtonClick}> PROFILE </Button>
-          </Fade>
-          <Fade in={true} timeout={{ enter: 2000, exit: 1000 }} style={{ transitionDelay:  '10ms'}}>
-            <Button className={ classes.navButton } onClick={handleServicesButtonClick}> SERVICES </Button>
-          </Fade>
-          <Fade in={true} timeout={{ enter: 1500, exit: 1000 }} style={{ transitionDelay:  '0ms'}}>
-            <IconButton aria-label="profile" className={ classes.iconButtons } color="primary" onClick={handleProfileButtonClick}>
-              <Menu className={ classes.icons } variant='outlined' fontSize="large"/>
-            </IconButton>
-          </Fade>
-        </div> */}
-
-        {/* <hr className={classes.line} /> */}
     </div>
   );
 }

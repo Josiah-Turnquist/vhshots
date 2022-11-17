@@ -36,12 +36,16 @@ const styles = (theme) => ({
       height: '50px',
       color: theme.palette.text.primary,
       background: theme.palette.button.background,
-      border: `2px solid ${theme.palette.button.background}`,
+      border: `0px solid ${theme.palette.button.background}`,
       outlineColor: theme.palette.button.background,
       outline: 'none',
       "&:focus": {
         background: theme.palette.button.background,
-        border: `2px solid ${theme.palette.button.background}`,
+        // border: `0px solid ${theme.palette.button.background}`,
+      },
+      "&:hover": {
+        background: theme.palette.button.onHover,
+        cursor: 'pointer',
       },
       "&::placeholder": {
         color: theme.palette.button.textPlaceholder,

@@ -11,7 +11,7 @@ const styles = (theme) => ({
         width: '100%',
         height: '100%',
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         alignItems: 'flex-end',
         marginBottom: '5px',
     },
@@ -33,7 +33,37 @@ const styles = (theme) => ({
         "&:hover": {
             backgroundColor: theme.palette.background.pressed,
             cursor: 'pointer',
-        }
+        },
+    navButton: {    // Regular buttons at the upper-right corner (explore, artists, create)
+        width: '120px',
+        height: '40px',
+    },
+    icons: {
+        margin: '15px',
+    },
+    // },
+    // navButtonContainer: {   // Container to format all the toolbar buttons in a right-aligned row
+    //     position: 'absolute',
+    //     zIndex: 999,
+    //     top: 20,
+    //     right: 25,
+    //     left: 25,
+    //     height: '40px',
+    //     display: 'flex',
+    //     flexDirection: 'row',
+    //     justifyContent: 'center',
+    // },
+    // navHomeButton: {    // Home at the upper-right corner. Required for correct coloring.
+    //     flexDirection: 'row',
+    //     borderColor: '#BFBFBF',
+    //     width: '120px',
+    //     height: '40px',
+    //     marginLeft: '5px',
+    //     backgroundColor: theme.palette.background.background,
+    //     "&:hover": {
+    //         backgroundColor: theme.palette.background.pressed,
+    //         cursor: 'pointer',
+    //     }
       },
     // navButtonsContainer: {   // Container to format all the toolbar buttons in a right-aligned row
     //     position: 'absolute',
@@ -52,13 +82,6 @@ const styles = (theme) => ({
     //     color: '#BFBFBF',
     //     fontWeight: '400',
     // },
-    navButton: {    // Regular buttons at the upper-right corner (explore, artists, create)
-        width: '120px',
-        height: '40px',
-    },
-    icons: {
-        margin: '15px',
-    },
   });
 
 export default styles;

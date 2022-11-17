@@ -18,6 +18,8 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import CircularProgress from '@mui/material/CircularProgress';
 import GalleryImage from '../../components/GalleryImage';
+import Grid from '@mui/material/Grid';
+
 
 // Icons
 // import CircularProgress from '@mui/material/CircularProgress';
@@ -110,42 +112,34 @@ const Home = ({ classes }) => {
       <NavigationBar isMobile={isMobile}/>
       {/* <button onClick={() => {console.log(images)}}>Test Me</button> */}
       <div className={classes.contentWrapper} >
-        {/* <row className={classes.rows}> */}
+
+        <Grid container justifyContent={{xs: "center", md: 'space-between'}} rows={1}>
           <img 
-            src={images[1]?.img}
-            alt='pictures'
-            className={classes.photos}
-            />
-          <img 
-            src={images[5]?.img}
-            alt='pictures'
-            className={classes.photos}
+          src={images[1]?.img}
+          alt='pictures'
+          className={classes.photo}
           />
-          <img 
-            src={images[2]?.img}
-            alt='pictures'
-            className={classes.photos}
-          />
-        {/* </row> */}
-        {/* <ImageList variant="masonry" gap={30}>
-          {images.map((item) => (
-            <ImageListItem key={item.img}>
-                <img
-                  className={classes.photo}
-                  // style={{display: loading ? "none" : "block"}}
-                  src={item.img}
-                  srcSet={item?.img}
-                  alt={'item.title'}
-                  loading="lazy"
-                  // onLoad={imageLoaded}
-                />
-            </ImageListItem>
-          ))}
-        </ImageList> */}
+        <img 
+          src={images[5]?.img}
+          alt='pictures'
+          className={classes.photo}
+        />
+        <img 
+          src={images[2]?.img}
+          alt='pictures'
+          className={classes.photo}
+        /> 
+        {width < 900 ? <img 
+          src={images[3]?.img}
+          alt='pictures'
+          className={classes.photo}
+        /> : <></>}
+        </Grid>
+
       </div>
       <Footer />
     </div>
-  );
+    );
 
 };
 
