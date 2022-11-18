@@ -90,7 +90,7 @@ const NavigationBar = ({ isMobile, classes }) => {
     );  
   } else return (
     <ScrollController>
-      <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{flexDirection: 'row', background: '#1f1f25C0'}}>
+      <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{flexDirection: 'row', background: '#1f1f25C0'}}> {/*linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(31,31,35,0.5) 5%, rgba(31,31,35,1) 95%);*/}
         <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '180ms'}}>
           <Button className={ classes.navButton } onClick={handleHomeButtonClick} sx={{ width: '100px', margin: '10px' }}> HOME </Button>
         </Fade>
