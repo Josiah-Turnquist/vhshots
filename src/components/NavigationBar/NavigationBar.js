@@ -6,12 +6,11 @@ import Button from '@mui/material/Button';
 import { withStyles } from '@mui/styles';
 import styles from './styles';
 
-import { useTheme } from '@mui/material/styles';
-
 // Animation
 import { Fade } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import theme from '../../theme';
 
 
 // Icons
@@ -28,11 +27,75 @@ import MenuIcon from '@mui/icons-material/Menu';
 // import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak';
 // import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 // import InfoIcon from '@mui/icons-material/Info';
-// import LoginIcon from '@mui/icons-material/Login';
-// import LogoutIcon from '@mui/icons-material/Logout';
 
 // Logo
 import { ReactComponent as Logo } from '../../assets/logo.svg';
+
+import { styled } from '@mui/material/styles';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+
+
+const StyledTabs = styled((props) => (
+  <Tabs
+    {...props}
+    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+  />
+))({
+  '& .MuiTabs-indicator': {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  '& .MuiTabs-indicatorSpan': {
+    maxWidth: 40,
+    width: '100%',
+    backgroundColor: theme.palette.primary.contrastText,
+  },
+});
+
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+  ({ theme }) => ({
+    textTransform: 'uppercase',
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(15),
+    color: 'rgba(255, 255, 255, 0.7)',
+    '&.Mui-selected': {
+      color: '#fff',
+    },
+    ":hover": {
+      color: 'white',
+    },
+    transition: 'color .4s ease',
+  }),
+);
+
+function CustomizedTabs() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center'}}>
+      <Box sx={{ bgcolor: 'transparent'}}>
+        <StyledTabs
+          value={value}
+          onChange={handleChange}
+          aria-label="Navigation Bar"
+        >
+          <StyledTab label="HOME" />
+          <StyledTab label="INFO" />
+            <Logo width={60} height={60} padding={0}/>
+          <StyledTab label="PRICING" />
+          <StyledTab label="PROFILE" />
+        </StyledTabs>
+      </Box>
+    </Box>
+  );
+}
 
 // If we decide to make this more interactive then it should probably be a ReactComponent.
 const NavigationBar = ({ isMobile, classes }) => {
@@ -72,40 +135,26 @@ const NavigationBar = ({ isMobile, classes }) => {
   if (isMobile) {
     return (
       <ScrollController>
-      <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{flexDirection: 'row', background: '#1f1f25C0'}}>
-      <div className={classes.navContainerMobile} key="nav">
+        <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{flexDirection: 'row', background: '#1f1f25C0', backdropFilter: 'blur(5px)'}}>
+          <div className={classes.navContainerMobile} key="nav">
 
-          <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '10ms'}}>
-            <Logo className={classes.logo} />
-          </Fade>
+              <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '10ms'}}>
+                <Logo className={classes.logo} />
+              </Fade>
 
-          <Fade in={true} timeout={{ enter: 1500, exit: 1000 }} style={{ transitionDelay:  '0ms'}}>
-            <IconButton aria-label="profile" sx={{mt: '5px', mr: '5px'}} color="primary" onClick={handleProfileButtonClick}>
-              <MenuIcon className={ classes.icons } fontSize="large"/>
-            </IconButton>
-          </Fade>
-    </div>
-    </AppBar>
+              <Fade in={true} timeout={{ enter: 1500, exit: 1000 }} style={{ transitionDelay:  '0ms'}}>
+                <IconButton aria-label="profile" sx={{mt: '5px', mr: '5px'}} color="primary" onClick={handleProfileButtonClick}>
+                  <MenuIcon className={ classes.icons } fontSize="large"/>
+                </IconButton>
+              </Fade>
+        </div>
+      </AppBar>
     </ScrollController>
     );  
   } else return (
     <ScrollController>
-      <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{flexDirection: 'row', background: '#1f1f25C0'}}> {/*linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(31,31,35,0.5) 5%, rgba(31,31,35,1) 95%);*/}
-        <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '180ms'}}>
-          <Button className={ classes.navButton } onClick={handleHomeButtonClick} sx={{ width: '100px', margin: '10px' }}> HOME </Button>
-        </Fade>
-        <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '180ms'}}>
-          <Button className={ classes.navButton } onClick={handleHomeButtonClick} sx={{ width: '100px', margin: '10px' }}> INFO </Button>
-        </Fade>
-        <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '10ms'}}>
-          <Logo className={classes.logo}/>
-        </Fade>
-        <Fade in={true} timeout={{ enter: 2500, exit: 1000 }} style={{ transitionDelay:  '90ms'}}>
-          <Button className={ classes.navButton } onClick={handleProfileButtonClick} sx={{ width: '100px', margin: '10px' }}> gallery </Button>
-        </Fade>
-        <Fade in={true} timeout={{ enter: 2500, exit: 1000 }} style={{ transitionDelay:  '90ms'}}>
-          <Button className={ classes.navButton } onClick={handleProfileButtonClick} sx={{ width: '100px', margin: '10px' }}> LOGIN </Button>
-        </Fade>
+      <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{flexDirection: 'row', background: theme.palette.background.overlay, backdropFilter: 'blur(5px)'}}>
+        <CustomizedTabs />
       </AppBar>
     </ScrollController>
   );

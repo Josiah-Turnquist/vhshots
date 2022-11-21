@@ -26,10 +26,12 @@ const styles = (theme) => ({
     [theme.breakpoints.down('md')]: {
       width: '45vw',
       margin: '2vw',
+      marginTop: '0px'
     },
     [theme.breakpoints.up('md')]: {
       width: '31.5vw',
       height: '91vh',
+      marginTop: '2px',
     },
   },
 });

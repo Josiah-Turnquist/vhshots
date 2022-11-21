@@ -29,7 +29,6 @@ const styles = (theme) => ({
         zIndex: 1000,
         width: '70px',
         height: '70px',
-        marginLeft: '5px',
         backgroundColor: theme.palette.background.background,
         "&:hover": {
             backgroundColor: theme.palette.background.pressed,
