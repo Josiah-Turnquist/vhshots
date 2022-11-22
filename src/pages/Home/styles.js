@@ -12,6 +12,9 @@ const styles = (theme) => ({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginBottom: '5px',
+    [theme.breakpoints.down('md')]: {
+      marginTop: '-15px'
+    },
   },
   photo: {
     // "&:hover": {
@@ -25,9 +28,7 @@ const styles = (theme) => ({
     },
     [theme.breakpoints.down('md')]: {
       width: '45vw',
-      margin: '2vw',
-      marginTop: '0px'
-    },
+      margin: '2vw',    },
     [theme.breakpoints.up('md')]: {
       width: '31.5vw',
       height: '91vh',
