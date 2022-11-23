@@ -54,7 +54,7 @@ const NavigationBar = ({ classes }) => {
         <IconButton aria-label="LinkedIn" href="https://www.linkedin.com/in/will-van-holten-94329a193">
           <LinkedInIcon fontSize='large' color='primary' />
         </IconButton>
-        <IconButton aria-label="Email">
+        <IconButton aria-label="Email" href="mailto:willvanholten@gmail.com">
           <EmailIcon fontSize='large' color='primary' />
         </IconButton>
       </Typography>
