@@ -2,48 +2,19 @@
 import React, { useState, useEffect } from 'react';
 
 // Components
-import NavigationBar from '../../components/NavigationBar';
 import Footer from '../../components/Footer';
-import GalleryDialogue from '../../components/GalleryDialogue';
 
-// Theme
-import { ThemeProvider } from "@mui/material/styles";
-import theme from '../../theme';
-
-import Box from '@mui/material/Box';
-import { alpha } from '@mui/material/styles';
-
-// Images
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import CircularProgress from '@mui/material/CircularProgress';
-import GalleryImage from '../../components/GalleryImage';
+// import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 
 
 // Icons
 // import CircularProgress from '@mui/material/CircularProgress';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+// import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 // Styles
 import { withStyles } from '@mui/styles';
 import styles from './styles';
-
-// Images
-import hero from '../../assets/profileshot2.jpg'
-// import landscape from '../../assets/carshot.jpg'
-// import grad from '../../assets/gradpose.jpg'
-// import couples from '../../assets/couples.jpg'
-// import profile from '../../assets/profileshot3.jpg'
-import maintenance1 from '../../assets/maintenance_dark.JPG'
-import maintenance2 from '../../assets/maintenance_light.JPG'
-
-// Transitions
-import { Fade } from '@mui/material';
-import { Typography } from '@mui/material';
-
-// Data
-import { headline } from './data';
 
 // Styled Divs with MUI
 import { styled } from '@mui/material/styles';
@@ -54,7 +25,6 @@ import { styled } from '@mui/material/styles';
 const Home = ({ classes }) => {
   const Div = styled('div')``; // If you want to style a div
 
-  const [offline, setOffline] = React.useState(0);
   const [loading, setLoading] = React.useState(1);
   const [images, setImages] = useState([]);
 
@@ -109,8 +79,6 @@ const Home = ({ classes }) => {
   const isMobile = width <= 600;
     return (
       <div className={classes.root}>
-      <NavigationBar isMobile={isMobile}/>
-      {/* <button onClick={() => {console.log(images)}}>Test Me</button> */}
       <div className={classes.contentWrapper} >
 
         <Grid container justifyContent={{xs: "center", md: 'space-between'}} rows={1}>

@@ -1,6 +1,8 @@
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.default,
+    marginTop: '-6px',
+    position: 'relative',
   },
   contentWrapper: {
     width: '100vw',
@@ -23,6 +25,12 @@ const styles = (theme) => ({
     // },
     objectFit: 'cover',
     height: '45vh',
+    transition: 'all 0.3s ease-out',
+    "&:hover": {
+      cursor: 'pointer',
+      opacity: 0.7,
+      transition: 'all 0.3s ease-in',
+    },
     [theme.breakpoints.down('sm')]: {
       minWidth: '94vw',
     },

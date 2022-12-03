@@ -11,7 +11,10 @@ import { Fade } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import theme from '../../theme';
-
+import Home from '../../pages/Home';
+import Gallery from '../../pages/Gallery/Gallery';
+import Info from '../../pages/Info/Info';
+import Profile from '../../pages/Profile/Profile';
 
 // Icons
 import IconButton from '@mui/material/IconButton';
@@ -27,15 +30,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 // import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak';
 // import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 // import InfoIcon from '@mui/icons-material/Info';
-
 // Logo
 import { ReactComponent as Logo } from '../../assets/logo.svg';
+import PropTypes from 'prop-types';
 
 import { styled } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
-
+import Box from '@mui/material/Box'
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -71,52 +73,8 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   }),
 );
 
-function CustomizedTabs() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  return (
-    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center'}}>
-      <Box sx={{ bgcolor: 'transparent'}}>
-        <StyledTabs
-          value={value}
-          onChange={handleChange}
-          aria-label="Navigation Bar"
-        >
-          <StyledTab label="HOME" />
-          <StyledTab label="INFO" />
-            <Logo width={60} height={60} padding={0}/>
-          <StyledTab label="PRICING" />
-          <StyledTab label="PROFILE" />
-        </StyledTabs>
-      </Box>
-    </Box>
-  );
-}
-
 // If we decide to make this more interactive then it should probably be a ReactComponent.
-const NavigationBar = ({ isMobile, classes }) => {
-  // const theme = useTheme();
-  const handleHomeButtonClick = ({}) => {
-      // Complete this later.
-  };
-
-  const handleProfileButtonClick = ({}) => {
-      // Complete this later.
-  };
-
-  const handleServicesButtonClick = ({}) => {
-      // Complete this later.
-  };
-
-  const handleGalleryButtonClick = ({}) => {
-    // Complete this later.
-    console.error('Pushed gallery');
-  };
-
+const NavigationBar = ({ isMobile, classes, changeRoute }) => {
   function ScrollController(props) {
     const { children, window } = props;
     // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -132,8 +90,21 @@ const NavigationBar = ({ isMobile, classes }) => {
     });
   }
 
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    if (newValue === 0) {
+      console.error('visiting home');
+    } else if (newValue === 1) {
+      console.error('visiting gallery');
+    } 
+  };
+
   if (isMobile) {
     return (
+      // Mobile View
+
       <ScrollController>
         <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{flexDirection: 'row', background: '#1f1f25C0', backdropFilter: 'blur(5px)'}}>
           <div className={classes.navContainerMobile} key="nav">
@@ -143,7 +114,7 @@ const NavigationBar = ({ isMobile, classes }) => {
               </Fade>
 
               <Fade in={true} timeout={{ enter: 1500, exit: 1000 }} style={{ transitionDelay:  '0ms'}}>
-                <IconButton aria-label="profile" sx={{mt: '5px', mr: '5px'}} color="primary" onClick={handleProfileButtonClick}>
+                <IconButton aria-label="profile" sx={{mt: '5px', mr: '5px'}} color="primary">
                   <MenuIcon className={ classes.icons } fontSize="large"/>
                 </IconButton>
               </Fade>
@@ -152,11 +123,32 @@ const NavigationBar = ({ isMobile, classes }) => {
     </ScrollController>
     );  
   } else return (
+    // Web View
+    <>
     <ScrollController>
       <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{flexDirection: 'row', background: theme.palette.background.overlay, backdropFilter: 'blur(5px)'}}>
-        <CustomizedTabs />
+        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center'}}>
+          <Box sx={{ bgcolor: 'transparent'}}>
+            <StyledTabs
+              value={value}
+              onChange={handleChange}
+              aria-label="Navigation Bar"
+            >
+              <StyledTab label="HOME" sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
+              <StyledTab label="GALLERY" sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
+                <Logo width={60} height={60} padding={0}/>
+              <StyledTab label="INFO" sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
+              <StyledTab label="PROFILE" sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
+            </StyledTabs>
+          </Box>
+        </Box>
       </AppBar>
     </ScrollController>
+    {value === 0 && <Home />}
+    {value === 1 && <Gallery />}
+    {value === 2 && <Info />}
+    {value === 3 && <Profile />}
+    </>
   );
 }
   

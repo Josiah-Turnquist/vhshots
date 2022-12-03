@@ -76,7 +76,7 @@ function GalleryDialogue({ galleryData }) {
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
-        fullWidth
+        // fullWidth
         maxWidth='md'
       >
         <DialogTitle>{"Van Holten Shots Gallery"}</DialogTitle>
