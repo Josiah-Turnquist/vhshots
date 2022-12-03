@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Material UI & Styles
 import Button from '@mui/material/Button';
@@ -74,7 +74,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 );
 
 // If we decide to make this more interactive then it should probably be a ReactComponent.
-const NavigationBar = ({ isMobile, classes, changeRoute }) => {
+const NavigationBar = ({ classes, changeRoute }) => {
   function ScrollController(props) {
     const { children, window } = props;
     // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -101,26 +101,47 @@ const NavigationBar = ({ isMobile, classes, changeRoute }) => {
     } 
   };
 
+  // Device Type
+  const [width, setWidth] = useState(window.innerWidth);
+
+  function handleWindowSizeChange() {
+      setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+      window.addEventListener('resize', handleWindowSizeChange);
+      return () => {
+          window.removeEventListener('resize', handleWindowSizeChange);
+      }
+  }, []);
+
+  const isMobile = width <= 600;
+
   if (isMobile) {
     return (
       // Mobile View
+      <>
+        <ScrollController>
+          <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{flexDirection: 'row', background: '#1f1f25C0', backdropFilter: 'blur(5px)'}}>
+            <div className={classes.navContainerMobile} key="nav">
 
-      <ScrollController>
-        <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{flexDirection: 'row', background: '#1f1f25C0', backdropFilter: 'blur(5px)'}}>
-          <div className={classes.navContainerMobile} key="nav">
+                <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '10ms'}}>
+                  <Logo className={classes.logo} />
+                </Fade>
 
-              <Fade in={true} timeout={{ enter: 3000, exit: 1000 }} style={{ transitionDelay:  '10ms'}}>
-                <Logo className={classes.logo} />
-              </Fade>
-
-              <Fade in={true} timeout={{ enter: 1500, exit: 1000 }} style={{ transitionDelay:  '0ms'}}>
-                <IconButton aria-label="profile" sx={{mt: '5px', mr: '5px'}} color="primary">
-                  <MenuIcon className={ classes.icons } fontSize="large"/>
-                </IconButton>
-              </Fade>
-        </div>
-      </AppBar>
-    </ScrollController>
+                <Fade in={true} timeout={{ enter: 1500, exit: 1000 }} style={{ transitionDelay:  '0ms'}}>
+                  <IconButton aria-label="profile" sx={{mt: '5px', mr: '5px'}} color="primary">
+                    <MenuIcon className={ classes.icons } fontSize="large"/>
+                  </IconButton>
+                </Fade>
+          </div>
+        </AppBar>
+      </ScrollController>
+        {value === 0 && <Home width/>}
+        {value === 1 && <Gallery />}
+        {value === 2 && <Info />}
+        {value === 3 && <Profile />}
+        </>
     );  
   } else return (
     // Web View
@@ -138,13 +159,13 @@ const NavigationBar = ({ isMobile, classes, changeRoute }) => {
               <StyledTab label="GALLERY" sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
                 <Logo width={60} height={60} padding={0}/>
               <StyledTab label="INFO" sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
-              <StyledTab label="PROFILE" sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
+              <StyledTab label="login" sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
             </StyledTabs>
           </Box>
         </Box>
       </AppBar>
     </ScrollController>
-    {value === 0 && <Home />}
+    {value === 0 && <Home width/>}
     {value === 1 && <Gallery />}
     {value === 2 && <Info />}
     {value === 3 && <Profile />}

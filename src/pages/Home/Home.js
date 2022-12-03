@@ -22,7 +22,7 @@ import { styled } from '@mui/material/styles';
 // AWS
 // import { Storage } from "@aws-amplify/storage"
 
-const Home = ({ classes }) => {
+const Home = ({ width, classes }) => {
   const Div = styled('div')``; // If you want to style a div
 
   const [loading, setLoading] = React.useState(1);
@@ -62,21 +62,6 @@ const Home = ({ classes }) => {
     // .catch(err => console.log(err));
   }, [])
 
-  // Device Type
-  const [width, setWidth] = useState(window.innerWidth);
-
-  function handleWindowSizeChange() {
-      setWidth(window.innerWidth);
-  }
-
-  useEffect(() => {
-      window.addEventListener('resize', handleWindowSizeChange);
-      return () => {
-          window.removeEventListener('resize', handleWindowSizeChange);
-      }
-  }, []);
-
-  const isMobile = width <= 600;
     return (
       <div className={classes.root}>
       <div className={classes.contentWrapper} >
