@@ -82,11 +82,11 @@ const Home = ({ width, classes }) => {
           alt='pictures'
           className={classes.photo}
         /> 
-        {width < 900 ? <img 
+        {width > 900 && <img 
           src={images[3]?.img}
           alt='pictures'
           className={classes.photo}
-        /> : <></>}
+        />}
         </Grid>
 
       </div>
