@@ -12,11 +12,7 @@ const styles = (theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    flexWrap: 'wrap',
     marginBottom: '5px',
-    [theme.breakpoints.down('md')]: {
-      marginTop: '-15px'
-    },
   },
   photo: {
     // "&:hover": {

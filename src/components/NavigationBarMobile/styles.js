@@ -1,16 +1,5 @@
 const styles = (theme) => ({
     root: {    },
-    navContainer: {
-    },
-    line: {     // Create the line for the navigation bar
-        width: '100%',
-        opacity: 0.2,
-        zIndex: 999,
-        position: 'absolute',
-        top: 79,
-        left: 0,
-        margin: 0,
-    },
     navButtonsContainer: {   // Container to format all the toolbar buttons in a right-aligned row
         position: 'absolute',
         zIndex: 999,
@@ -39,13 +28,6 @@ const styles = (theme) => ({
         fontFamily: 'Roboto',
         fontWeight: '400'
     },
-    // navIcon: {      // Icons at the upper-right corner (search, notifications, profile)
-    //     position: 'relative',
-    //     width: '40px',
-    //     height: '40px',
-    //     marginLeft: '5px',
-    //     marginRight: '5px',
-    // },
     iconButtons: {      // Icons at the upper-right corner (search, notifications, profile)
         width: '45px',
         height: '45px',

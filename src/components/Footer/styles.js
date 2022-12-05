@@ -25,7 +25,7 @@ const styles = (theme) => ({
       },
       "&::selection": {
         color: theme.palette.text.primary,
-        backgroundColor: theme.palette.button.textSelection,
+        backgroundColor: theme.palette.input.textSelection,
       }
     },
     submissionButton: {

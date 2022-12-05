@@ -12,3 +12,29 @@
 .App-link {
   color: #61dafb;
 }
+
+/* Scrollbar */
+body {
+  overflow: overlay;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  overflow: overlay;
+  position: absolute;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(125, 125, 125, 1);
+  border-radius: 12px;
+  transition: all 0.15s ease-in-out;
+  overflow: overlay;
+
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(157, 157, 154, 1);
+  overflow: overlay;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  overflow: overlay;
+}

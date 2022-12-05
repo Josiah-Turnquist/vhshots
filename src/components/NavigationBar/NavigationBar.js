@@ -73,32 +73,29 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   }),
 );
 
+
+function ScrollController(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 0 : 0,
+  });
+}
+
 // If we decide to make this more interactive then it should probably be a ReactComponent.
 const NavigationBar = ({ classes }) => {
-  function ScrollController(props) {
-    const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
-    const trigger = useScrollTrigger({
-      disableHysteresis: true,
-      threshold: 0,
-    });
-  
-    return React.cloneElement(children, {
-      elevation: trigger ? 0 : 0,
-    });
-  }
-
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    if (newValue === 0) {
-      console.error('visiting home');
-    } else if (newValue === 1) {
-      console.error('visiting gallery');
-    } 
+
   };
 
   // Device Type
@@ -137,7 +134,7 @@ const NavigationBar = ({ classes }) => {
           </div>
         </AppBar>
       </ScrollController>
-        {value === 0 && <Home width={width}/>}
+        {value === 0 && <Home />}
         {value === 1 && <Gallery />}
         {value === 2 && <Info />}
         {value === 3 && <Profile />}
