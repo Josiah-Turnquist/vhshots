@@ -36,7 +36,10 @@ const styles = (theme) => ({
     },
     [theme.breakpoints.down('md')]: {
       width: '45vw',
-      margin: '2vw',    },
+      height: '42.75vh', // delete this if don't want to stick to screen size
+      margin: '2vw', 
+      borderRadius: '2px',
+    },
     [theme.breakpoints.up('md')]: {
       width: '31.5vw',
       height: '91vh',

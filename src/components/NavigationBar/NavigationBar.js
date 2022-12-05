@@ -74,7 +74,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 );
 
 // If we decide to make this more interactive then it should probably be a ReactComponent.
-const NavigationBar = ({ classes, changeRoute }) => {
+const NavigationBar = ({ classes }) => {
   function ScrollController(props) {
     const { children, window } = props;
     // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -137,7 +137,7 @@ const NavigationBar = ({ classes, changeRoute }) => {
           </div>
         </AppBar>
       </ScrollController>
-        {value === 0 && <Home width/>}
+        {value === 0 && <Home width={width}/>}
         {value === 1 && <Gallery />}
         {value === 2 && <Info />}
         {value === 3 && <Profile />}

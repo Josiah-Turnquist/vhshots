@@ -22,7 +22,7 @@ import { styled } from '@mui/material/styles';
 // AWS
 // import { Storage } from "@aws-amplify/storage"
 
-const Home = ({ width, classes }) => {
+const Home = ({ classes }) => {
   const Div = styled('div')``; // If you want to style a div
 
   const [loading, setLoading] = React.useState(1);
@@ -62,37 +62,52 @@ const Home = ({ width, classes }) => {
     // .catch(err => console.log(err));
   }, [])
 
-    return (
-      <div className={classes.root}>
-      <div className={classes.contentWrapper} >
+  // Device Type
+  const [width, setWidth] = useState(window.innerWidth);
 
-        <Grid container justifyContent={{xs: "center", md: 'space-between'}} rows={1}>
-          <img 
-          src={images[0]?.img}
-          alt='pictures'
-          className={classes.photo}
-          />
+  function handleWindowSizeChange() {
+      setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+      window.addEventListener('resize', handleWindowSizeChange);
+      return () => {
+          window.removeEventListener('resize', handleWindowSizeChange);
+      }
+  }, []);
+  
+  const isMobile = width <= 600;
+  return (
+    <div className={classes.root}>
+    <div className={classes.contentWrapper} >
+
+      <Grid container justifyContent={{xs: "center", md: 'space-between'}} rows={1}>
         <img 
-          src={images[1]?.img}
-          alt='pictures'
-          className={classes.photo}
+        src={images[0]?.img}
+        alt='pictures'
+        className={classes.photo}
         />
-        <img 
-          src={images[2]?.img}
-          alt='pictures'
-          className={classes.photo}
-        /> 
-        {width > 900 && <img 
-          src={images[3]?.img}
-          alt='pictures'
-          className={classes.photo}
-        />}
-        </Grid>
+      <img 
+        src={images[1]?.img}
+        alt='pictures'
+        className={classes.photo}
+      />
+      <img 
+        src={images[2]?.img}
+        alt='pictures'
+        className={classes.photo}
+      />
+      {width < 900 && <img 
+        src={images[3]?.img}
+        alt='pictures'
+        className={classes.photo}
+      />}
+      </Grid>
 
-      </div>
-      <Footer />
     </div>
-    );
+    <Footer />
+  </div>
+  );
 
 };
 

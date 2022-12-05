@@ -110,7 +110,7 @@ let theme = createTheme({
             backgroundFocused: 'rgb(24, 28, 36)',
             text: '#FFFFFF',
             textPlaceholder: '#676767',
-            textSelection: '#517894',
+            textSelection: 'rgb(180 219 255 / 39%)', //#517894
         },
         button: {
             // text: '#EFEFEF',
