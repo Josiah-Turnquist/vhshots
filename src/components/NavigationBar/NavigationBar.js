@@ -165,7 +165,7 @@ const NavigationBar = ({ classes }) => {
         </Box>
       </AppBar>
     </ScrollController>
-    {value === 0 && <Home width/>}
+    {value === 0 && <Home />}
     {value === 1 && <Gallery />}
     {value === 2 && <Info />}
     {value === 3 && <Profile />}

@@ -22,7 +22,7 @@ import { styled } from '@mui/material/styles';
 
 class Gallery extends React.Component {
   render() {
-    return <div sx={{color: 'red', width: 100, height: 100}}>asd</div>;
+    return <div sx={{color: 'red', width: 100, height: 100}}> </div>;
   }
 }
 
