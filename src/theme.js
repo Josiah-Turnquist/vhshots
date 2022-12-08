@@ -12,22 +12,24 @@ let theme = createTheme({
             fontSize: '10vmin',
         },
         h2: {
-          fontFamily: 'Roboto',
-          fontSize: '8vmin',
-          margin: '10px',
-          color: white,
-        },
-        h3: {
-          fontFamily: 'Roboto',
-          fontSize: '6vmin',
-          margin: '10px',
-          color: white,
-        },
-        h4: {
-            fontFamily: 'Helvetica',
-            fontStyle: 'italic',
-            fontSize: 18,
+            fontFamily: 'Roboto',
+            fontSize: '8vmin',
+            margin: '10px',
             color: white,
+        },
+        h3: { // Submission Form Title
+            fontFamily: 'Roboto',
+            fontSize: '6vmin',
+            margin: '10px',
+            color: white,
+        },
+        h4: { // Gallery Highlight Titles
+            fontFamily: 'Helvetica',
+            fontWeight: 400,
+            textTransform: 'uppercase',
+            letterSpacing: '4px', 
+            lineHeight: '2.235',
+            fontSize: 'calc(1rem + 0.2vw)',
         },
         h5: {
             fontFamily: 'Roboto',
@@ -61,11 +63,12 @@ let theme = createTheme({
             color: 'rgba(226, 58, 45, 1)',
             textTransform: 'uppercase',
         },
-        button: {
+        button: { // Note, this doesn't change the nav bar for some reason
             fontFamily: 'Helvetica',
-            fontSize: '2vmin',
+            fontSize: 'calc(1rem + 0.2vw)',
             fontWeight: 500,
-            // textTransform: 'uppercase',
+            textTransform: 'uppercase',
+            letterSpacing: '2px', 
         },
         submissionButton: {
             fontFamily: 'Helvetica',

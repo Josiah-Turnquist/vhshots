@@ -49,6 +49,8 @@ const SliderWrapper = styled("div")`
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    display: flex;
+    place-items: end;
   }
 
   .slick-track {

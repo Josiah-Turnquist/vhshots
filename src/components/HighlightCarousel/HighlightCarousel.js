@@ -6,15 +6,16 @@ import "slick-carousel/slick/slick-theme.css";
 import SliderWrapper from "./_SlickSliderStyle";
 import { withStyles } from '@mui/styles';
 import styles from './styles';
+import { Typography } from '@mui/material';
 
 import img1 from '../../assets/carshot.jpg'
 import img2 from '../../assets/albumshot.jpg'
 import img3 from '../../assets/couples.jpg'
 
 
-function HighlightCarousel({ classes }) {
+function HighlightCarousel({ classes, title }) {
   const settings = {
-    dots: true,
+    dots: false,
     autoplay: true,
     autoplaySpeed: 5000,
     infinite: true,
@@ -22,8 +23,8 @@ function HighlightCarousel({ classes }) {
     slidesToScroll: 1,
     initialSlide: 0,
     speed: 500,
-    arrows: true,
-    adaptiveHeight: true,
+    arrows: false,
+    adaptiveHeight: false,
     appendDots: dots => <ul>{dots}</ul>,
     customPaging: i => (
       <div className="ft-slick__dots--custom">
@@ -33,10 +34,9 @@ function HighlightCarousel({ classes }) {
   };
 
   return (
+
     <div className={classes.root}>
       <div className={classes.wrapper}>
-        <h2>Carousel example</h2>
-
         <SliderWrapper className={classes.carousel}>
           <Slider {...settings}>
             <div >
@@ -62,6 +62,10 @@ function HighlightCarousel({ classes }) {
             </div>
           </Slider>
         </SliderWrapper>
+
+        <Typography variant="h4" sx={{fontSize: 'calc(1rem + 0.2vw)'}}>
+        {title}
+      </Typography>
       </div>
     </div>
   );

@@ -23,7 +23,10 @@ import { styled } from '@mui/material/styles';
 class Gallery extends React.Component {
   render() {
     return <>
-      <HighlightCarousel />
+      <HighlightCarousel title='Real Estate' />
+      <HighlightCarousel title='Portraits' />
+      <HighlightCarousel title='Vehicles' />
+      <HighlightCarousel title='Drone Photography' />
     </>
   }
 }
