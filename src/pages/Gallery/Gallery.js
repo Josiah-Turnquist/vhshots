@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 // Components
 import Footer from '../../components/Footer/Footer';
-import GalleryDialogue from '../../components/GalleryDialogue/GalleryDialogue';
+import HighlightCarousel from '../../components/HighlightCarousel/HighlightCarousel';
 
 // Theme
 import { ThemeProvider } from "@mui/material/styles";
@@ -22,7 +22,9 @@ import { styled } from '@mui/material/styles';
 
 class Gallery extends React.Component {
   render() {
-    return <div sx={{color: 'red', width: 100, height: 100}}> </div>;
+    return <>
+      <HighlightCarousel />
+    </>
   }
 }
 
