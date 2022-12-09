@@ -14,6 +14,9 @@
     "categories": {
       "auth": {
         "vhshots": {}
+      },
+      "storage": {
+        "s3vhshotsstorage4c3a7943admin": {}
       }
     }
   }

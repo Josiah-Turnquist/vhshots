@@ -36,7 +36,7 @@ const Home = ({ classes }) => {
 
   }
 
-  //https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior2.JPG
+  // https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/estate/exterior2.JPG
   var galleryData = [];
 
   useEffect( () => {
