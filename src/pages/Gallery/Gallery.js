@@ -40,11 +40,8 @@ class Gallery extends React.Component {
 
   componentDidMount() {
     console.log('mounting gallery');
-    Storage.list('estate/')
-      .then(response => this.setState({ 
-        loadingPage: false,
-        images: response 
-      }))
+    Storage.list('public/estate/')
+      .then(response => console.log(response));
   }
 
   handleClick() {
