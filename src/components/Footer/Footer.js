@@ -2,13 +2,12 @@
 import React from "react";
 
 // Material UI & Styles
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import { withStyles } from '@mui/styles';
 import styles from './styles';
-import { useTheme } from '@mui/material/styles';
 
 // Contact Me
-import photographer from '../../assets/photographer.jpg'
+// import photographer from '../../assets/photographer.jpg'
 
 import { Typography } from '@mui/material';
 import { IconButton } from '@mui/material';
@@ -19,9 +18,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 // If we decide to make this more interactive then it should probably be a ReactComponent.
 const NavigationBar = ({ classes }) => {
-  const theme = useTheme();
-
-  const handleContactMeButtonClick = ({}) => {
+  const handleContactMeButtonClick = () => {
     console.log('Tried to contact photographer.');
     // Complete this later.
 };

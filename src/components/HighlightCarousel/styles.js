@@ -6,21 +6,39 @@ const styles = (theme) => ({
       textAlign: 'center',
     },
     wrapper: {
-      width: '80vw',
+      
+      // [theme.breakpoints.down('md')]: {
+      //   width: '90vw',
+      //   margin: '5vw', 
+      // },
+      // [theme.breakpoints.up('md')]: {
+        width: '44vw',
+        margin: '3vw', 
+      // },
+      
+      // width: '80vw'
       marginTop: '10px',
-      marginBottom: '22px',
+      marginBottom: '5vh',
       justifyContent: 'center',
     },
     carousel: {
       textAlign: 'center',
       color: 'white',
-
       objectFit: 'cover',
     },
     images: {
       width: '100%',
       height: '100%',
       objectFit: 'cover',
+      outline: 'none',
+      borderRadius: '4px',
+      "&:focus": {
+        border: `2px solid red`,
+      },
+      "&:hover": {
+        background: theme.palette.button.onHover,
+        cursor: 'pointer',
+      },
     },
   });
 

@@ -1,8 +1,8 @@
 import React from "react";
 import Slider from "react-slick";
 // Import css files
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 import SliderWrapper from "./_SlickSliderStyle";
 import { withStyles } from '@mui/styles';
 import styles from './styles';
@@ -17,12 +17,12 @@ function HighlightCarousel({ classes, title }) {
   const settings = {
     dots: false,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 6000,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
-    speed: 500,
+    speed: 600,
     arrows: false,
     adaptiveHeight: false,
     appendDots: dots => <ul>{dots}</ul>,
@@ -63,7 +63,7 @@ function HighlightCarousel({ classes, title }) {
           </Slider>
         </SliderWrapper>
 
-        <Typography variant="h4" sx={{fontSize: 'calc(1rem + 0.2vw)'}}>
+        <Typography variant="h4" sx={{fontSize: 'calc(0.75rem + 0.6vw)'}}>
         {title}
       </Typography>
       </div>

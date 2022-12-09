@@ -50,7 +50,7 @@ const SliderWrapper = styled("div")`
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     display: flex;
-    place-items: end;
+    place-items: center;
   }
 
   .slick-track {
@@ -147,7 +147,7 @@ const SliderWrapper = styled("div")`
   .slick-prev:focus:before,
   .slick-next:hover:before,
   .slick-next:focus:before {
-    opacity: 1;
+    opacity: 0;
   }
   .slick-prev.slick-disabled:before,
   .slick-next.slick-disabled:before {
@@ -324,6 +324,9 @@ const SliderWrapper = styled("div")`
       border-radius: 4px;
     }
   }
+  .slick-slide div {
+    outline: none;
+   }
 `;
 
 export default SliderWrapper;

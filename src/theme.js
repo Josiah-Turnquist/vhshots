@@ -28,6 +28,7 @@ let theme = createTheme({
             fontWeight: 400,
             textTransform: 'uppercase',
             letterSpacing: '4px', 
+            marginTop: '-10px',
             lineHeight: '2.235',
             fontSize: 'calc(1rem + 0.2vw)',
         },

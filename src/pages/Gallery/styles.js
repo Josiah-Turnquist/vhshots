@@ -4,7 +4,11 @@ const styles = (theme) => ({
     marginTop: '-6px',
     position: 'relative',
   },
-  
+  wrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
 });
 
 export default styles;
