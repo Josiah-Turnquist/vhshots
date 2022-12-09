@@ -35,30 +35,30 @@ class Gallery extends React.Component {
       ],
     };
 
-    this.handleClick = this.handleClick.bind(this); // Otherwise React can't find this.
+    // this.handleClick = this.handleClick.bind(this); // Otherwise React can't find this.
   }
 
   componentDidMount() {
     console.log('mounting gallery');
-    Storage.list('estate/', {level: 'public'})
-      .then(response => this.setState({ 
-        loadingPage: false,
-        images: response 
-      }))
-  }
-
-  handleClick() {
-    // this.setState(prevState => ({
-    //   loadingPage: !prevState.loadingPage
-    // }));
-    // for listing ALL files without prefix, pass '' instead
     Storage.list('estate/')
       .then(response => this.setState({ 
         loadingPage: false,
         images: response 
       }))
-      console.log(this.state.images);
   }
+
+  // handleClick() {
+  //   // this.setState(prevState => ({
+  //   //   loadingPage: !prevState.loadingPage
+  //   // }));
+  //   // for listing ALL files without prefix, pass '' instead
+  //   Storage.list('estate/')
+  //     .then(response => this.setState({ 
+  //       loadingPage: false,
+  //       images: response 
+  //     }))
+  //     console.log(this.state.images);
+  // }
 
   render() {
     if (this.state.loadingPage) {
