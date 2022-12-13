@@ -16,9 +16,8 @@ const styles = (theme) => ({
         margin: '3vw', 
       // },
       
-      // width: '80vw'
-      marginTop: '10px',
-      marginBottom: '5vh',
+      marginTop: '6vh',
+      marginBottom: '2vh',
       justifyContent: 'center',
     },
     carousel: {
@@ -35,6 +34,7 @@ const styles = (theme) => ({
     images: {
       width: '100%',
       height: '100%',
+      minHeight: '20vh',
       objectFit: 'cover',
       outline: 'none',
       borderRadius: '4px',
