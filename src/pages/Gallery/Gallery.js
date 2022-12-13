@@ -30,8 +30,13 @@ class Gallery extends React.Component {
     super(props);
     this.state = {
       loadingPage: true,
-      images: [
-
+      carousel1: [
+      ],
+      carousel2: [
+      ],
+      carousel3: [
+      ],
+      carousel4: [
       ],
     };
 
@@ -40,11 +45,31 @@ class Gallery extends React.Component {
 
   componentDidMount() {
     console.log('mounting gallery');
-    Storage.list('estate/')
+
+    // Load Carousel 1
+    Storage.list('carousel1/', { pageSize : 'ALL' })
       .then(response => this.setState({ 
-        loadingPage: false,
-        images: response 
+        carousel1: response.results 
       }))
+
+    // Load Carousel 2
+    Storage.list('carousel2/', { pageSize : 'ALL' })
+    .then(response => this.setState({ 
+      carousel2: response.results 
+    }))
+
+    // Load Carousel 3
+    Storage.list('carousel3/', { pageSize : 'ALL' })
+    .then(response => this.setState({ 
+      carousel3: response.results 
+    }))
+
+    // Load Carousel 4
+    Storage.list('carousel4/', { pageSize : 'ALL' })
+    .then(response => this.setState({ 
+      loadingPage: false,
+      carousel4: response.results 
+    }))
   }
 
   // handleClick() {
@@ -73,10 +98,10 @@ class Gallery extends React.Component {
     else {
       return (
         <div className={this.props.classes.wrapper} >
-          <HighlightCarousel title='Real Estate' />
-          <HighlightCarousel title='Portraits' />
-          <HighlightCarousel title='Vehicles' />
-          <HighlightCarousel title='Drone Photography' />
+          <HighlightCarousel images={this.state.carousel1} title='Real Estate' />
+          <HighlightCarousel images={this.state.carousel2} title='Portraits' />
+          <HighlightCarousel images={this.state.carousel3} title='Vehicles' />
+          <HighlightCarousel images={this.state.carousel4} title='Drone Photography' />
         </div>
       );
     }

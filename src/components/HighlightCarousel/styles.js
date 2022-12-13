@@ -25,6 +25,12 @@ const styles = (theme) => ({
       textAlign: 'center',
       color: 'white',
       objectFit: 'cover',
+      transition: 'all 0.3s ease-out',
+      "&:hover": {
+        cursor: 'pointer',
+        opacity: 0.7,
+        transition: 'all 0.3s ease-in',
+      },
     },
     images: {
       width: '100%',
