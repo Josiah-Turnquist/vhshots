@@ -9,6 +9,7 @@ import NavigationBar from './components/NavigationBar/NavigationBar';
 
 Amplify.configure(awsExports);
 
+
 function App({ signOut, user }) {
   return (
     <div className="App">

@@ -13,10 +13,20 @@
     },
     "categories": {
       "auth": {
-        "vhshots": {}
+        "vhshots": {},
+        "userPoolGroups": {}
       },
       "storage": {
         "s3vhshotsstorage4c3a7943admin": {}
+      },
+      "function": {
+        "AdminQueries947dcd66": {
+          "deploymentBucketName": "amplify-vhshots-dev-02206-deployment",
+          "s3Key": "amplify-builds/AdminQueries947dcd66-376e5a31524338744a38-build.zip"
+        }
+      },
+      "api": {
+        "AdminQueries": {}
       }
     }
   }
