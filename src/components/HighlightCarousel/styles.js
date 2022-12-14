@@ -31,6 +31,10 @@ const styles = (theme) => ({
         transition: 'all 0.3s ease-in',
       },
     },
+    imageWrapper: {
+      width: '100%',
+      height: '44vw',
+    },
     images: {
       width: '100%',
       height: '100%',

@@ -17,7 +17,7 @@ function HighlightCarousel({ classes, reel, title }) {
   const settings = {
     dots: false,
     autoplay: true,
-    autoplaySpeed: 16000,
+    autoplaySpeed: 9000,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -40,7 +40,7 @@ function HighlightCarousel({ classes, reel, title }) {
         <SliderWrapper className={classes.carousel}>
           <Slider {...settings}>
               {reel.map((image) => {
-                return <div key={`${image.key}-div`}>
+                return <div className={classes.imageWrapper} key={`${image.key}-div`}>
                   <img 
                   className={classes.images}
                   src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${image.key}`}
