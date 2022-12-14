@@ -326,6 +326,8 @@ const SliderWrapper = styled("div")`
   }
   .slick-slide div {
     outline: none;
+    width: 100%;
+    padding: 1px;
    }
 `;
 

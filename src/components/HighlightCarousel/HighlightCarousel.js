@@ -13,18 +13,18 @@ import img2 from '../../assets/albumshot.jpg'
 import img3 from '../../assets/couples.jpg'
 
 
-function HighlightCarousel({ classes, title }) {
+function HighlightCarousel({ classes, reel, title }) {
   const settings = {
     dots: false,
     autoplay: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 16000,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
     speed: 600,
     arrows: false,
-    adaptiveHeight: false,
+    adaptiveHeight: true,
     appendDots: dots => <ul>{dots}</ul>,
     customPaging: i => (
       <div className="ft-slick__dots--custom">
@@ -39,7 +39,17 @@ function HighlightCarousel({ classes, title }) {
       <div className={classes.wrapper}>
         <SliderWrapper className={classes.carousel}>
           <Slider {...settings}>
-            <div >
+              {reel.map((image) => {
+                return <div key={`${image.key}-div`}>
+                  <img 
+                  className={classes.images}
+                  src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${image.key}`}
+                  alt={image.key}
+                  key={`${image.key}-image`}
+                  />
+                </div>
+              })}
+            {/* <div >
               <img
                 className={classes.images}
                 src={img1}
@@ -59,7 +69,7 @@ function HighlightCarousel({ classes, title }) {
                 src={img3}
                 alt='image1'
                />
-            </div>
+            </div> */}
           </Slider>
         </SliderWrapper>
 

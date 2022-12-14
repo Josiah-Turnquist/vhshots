@@ -38,13 +38,13 @@ const styles = (theme) => ({
       objectFit: 'cover',
       outline: 'none',
       borderRadius: '4px',
-      "&:focus": {
-        border: `2px solid red`,
-      },
-      "&:hover": {
-        background: theme.palette.button.onHover,
-        cursor: 'pointer',
-      },
+      // "&:focus": {
+      //   border: `2px solid red`,
+      // },
+      // "&:hover": {
+      //   background: theme.palette.button.onHover,
+      //   cursor: 'pointer',
+      // },
     },
   });
 

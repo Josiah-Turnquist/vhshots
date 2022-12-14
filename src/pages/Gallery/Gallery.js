@@ -98,10 +98,10 @@ class Gallery extends React.Component {
     else {
       return (
         <div className={this.props.classes.wrapper} >
-          <HighlightCarousel images={this.state.carousel1} title='Real Estate' />
-          <HighlightCarousel images={this.state.carousel2} title='Portraits' />
-          <HighlightCarousel images={this.state.carousel3} title='Vehicles' />
-          <HighlightCarousel images={this.state.carousel4} title='Drone Photography' />
+          <HighlightCarousel reel={this.state.carousel1} title='Real Estate' />
+          <HighlightCarousel reel={this.state.carousel2} title='Portraits' />
+          <HighlightCarousel reel={this.state.carousel3} title='Vehicles' />
+          <HighlightCarousel reel={this.state.carousel4} title='Drone Photography' />
         </div>
       );
     }
