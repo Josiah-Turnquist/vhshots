@@ -12,9 +12,9 @@ import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import theme from '../../theme';
 import Home from '../../pages/Home';
-import Gallery from '../../pages/Gallery/Gallery';
-import Info from '../../pages/Info/Info';
-import Profile from '../../pages/Profile/Profile';
+import Gallery from '../../pages/Gallery';
+import Info from '../../pages/Info';
+import Profile from '../../pages/Profile';
 
 // Icons
 import IconButton from '@mui/material/IconButton';
@@ -91,7 +91,13 @@ function ScrollController(props) {
 
 // If we decide to make this more interactive then it should probably be a ReactComponent.
 const NavigationBar = ({ classes }) => {
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(4);
+  const [user, setUser] = React.useState({
+    username: null,
+    attributes: {
+      email: null,
+    }
+  });
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -136,8 +142,8 @@ const NavigationBar = ({ classes }) => {
       </ScrollController>
         {value === 0 && <Home />}
         {value === 1 && <Gallery />}
-        {value === 2 && <Info />}
-        {value === 3 && <Profile />}
+        {value === 3 && <Info />}
+        {value === 4 && <Profile />}
         </>
     );  
   } else return (
@@ -156,7 +162,7 @@ const NavigationBar = ({ classes }) => {
               <StyledTab label="GALLERY" sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
                 <Logo width={60} height={60} padding={0}/>
               <StyledTab label="INFO" sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
-              <StyledTab label="login" sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
+              <StyledTab label={user.username != null ? 'Profile' : 'Login'} sx={{width: 'calc(121.5px + 0.1vw)', letterSpacing: '2px', fontSize: 'calc(1rem + 0.2vw)'}}/>
             </StyledTabs>
           </Box>
         </Box>
@@ -164,8 +170,8 @@ const NavigationBar = ({ classes }) => {
     </ScrollController>
     {value === 0 && <Home />}
     {value === 1 && <Gallery />}
-    {value === 2 && <Info />}
-    {value === 3 && <Profile />}
+    {value === 3 && <Info />}
+    {value === 4 && <Profile />}
     </>
   );
 }

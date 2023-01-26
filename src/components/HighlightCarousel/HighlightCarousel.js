@@ -13,7 +13,7 @@ import img2 from '../../assets/albumshot.jpg'
 import img3 from '../../assets/couples.jpg'
 
 
-function HighlightCarousel({ classes, reel, title }) {
+function HighlightCarousel({ classes, reel, title, onClick }) {
   const settings = {
     dots: false,
     autoplay: true,
@@ -36,7 +36,7 @@ function HighlightCarousel({ classes, reel, title }) {
   return (
 
     <div className={classes.root}>
-      <div className={classes.wrapper}>
+      <div className={classes.wrapper} onClick={onClick}>
         <SliderWrapper className={classes.carousel}>
           <Slider {...settings}>
               {reel.map((image) => {

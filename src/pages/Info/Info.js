@@ -22,7 +22,13 @@ import { styled } from '@mui/material/styles';
 
 class Info extends React.Component {
   render() {
-    return <div sx={{color: 'red', width: 100, height: 100}}> </div>;
+    return (
+      <div>
+        <p>
+          Hey everyone.
+        </p>
+      </div>
+    );
   }
 }
 

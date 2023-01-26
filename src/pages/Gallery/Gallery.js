@@ -30,6 +30,7 @@ class Gallery extends React.Component {
     super(props);
     this.state = {
       loadingPage: true,
+      gallery: '',
       carousel1: [
       ],
       carousel2: [
@@ -98,10 +99,26 @@ class Gallery extends React.Component {
     else {
       return (
         <div className={this.props.classes.wrapper} >
-          <HighlightCarousel reel={this.state.carousel1} title='Real Estate' />
-          <HighlightCarousel reel={this.state.carousel2} title='Portraits' />
-          <HighlightCarousel reel={this.state.carousel3} title='Vehicles' />
-          <HighlightCarousel reel={this.state.carousel4} title='Drone Photography' />
+          <HighlightCarousel reel={this.state.carousel1} title='Real Estate' onClick={() => {
+            this.setState({
+              gallery: 'estate',
+            })
+          }}/>
+          <HighlightCarousel reel={this.state.carousel2} title='Portraits' onClick={() => {
+            this.setState({
+              gallery: 'portraits',
+            })
+          }}/>
+          <HighlightCarousel reel={this.state.carousel3} title='Vehicles' onClick={() => {
+            this.setState({
+              gallery: 'vehicles',
+            })
+          }}/>
+          <HighlightCarousel reel={this.state.carousel4} title='Other' onClick={() => {
+            this.setState({
+              gallery: 'other',
+            })
+          }}/>
         </div>
       );
     }

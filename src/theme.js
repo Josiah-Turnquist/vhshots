@@ -105,6 +105,7 @@ let theme = createTheme({
           paper: '#15161A',
           input: '#0E0E0E',
           secondary: 'rgb(24, 28, 36)', //'rgb(40, 44, 52)','rgb(24, 28, 36)'
+          form: '#00000034',
         },
         alert: {
             red: 'rgba(226, 58, 45, 1)',
