@@ -36,6 +36,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { IMaskInput } from 'react-imask';
 import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
+import { shadows } from '@mui/system';
 
 import { Auth } from 'aws-amplify';
 import { Storage } from "@aws-amplify/storage"
@@ -59,10 +60,9 @@ const FormDiv = styled('div')({
   flexDirection: 'column',
   alignItems: 'center',
   backgroundColor: theme.palette.background.form, 
-  marginTop: '15vh', 
   paddingLeft: '50px', 
   paddingRight: '50px', 
-  paddingTop: '60px', 
+  paddingTop: '40px', 
   borderRadius: '8px',
 });
 
@@ -119,7 +119,9 @@ const LoginForm = ({ toggleLoading, handlePageChange }) => {
           handlePageChange('profile');
         });
     } catch (error) {
-        console.log('error signing in', error);
+        toggleLoading(); // stop loading!!
+        handlePageChange('login');
+        console.log('Error signing in: ', error);
     }
   }
 
@@ -129,11 +131,11 @@ const LoginForm = ({ toggleLoading, handlePageChange }) => {
 
   return (
     <FormDiv>
-        <Typography variant="h4" sx={{color: 'silver'}}>
+        <Typography variant="h4" sx={{ margin: '20px', marginTop: '40px', color: 'silver'}}>
         Van Holten Shots
         </Typography>
       {/* // Email */}
-      <FormControl sx={{ mt: 4, width: '250px' }} variant="outlined">
+      <FormControl sx={{ width: '250px' }} variant="outlined">
         <TextField
           id="outlined-required"
           name="email"
@@ -143,7 +145,7 @@ const LoginForm = ({ toggleLoading, handlePageChange }) => {
       </FormControl>
 
       {/* // Password */}
-      <FormControl sx={{ mt: 0, width: '250px' }} variant="outlined">
+      <FormControl sx={{ width: '250px' }} variant="outlined">
           <InputLabel htmlFor="password">Password</InputLabel>
 
           <OutlinedInput
@@ -184,7 +186,7 @@ const LoginForm = ({ toggleLoading, handlePageChange }) => {
         <Typography variant="h6" sx={{color: 'silver'}}>
         Don't have an account? <ButtonLink onClick={() => {changePageTo('register')}}>Register</ButtonLink>
         </Typography>
-        <Button type="submit" onClick={handleLogin} sx={{margin: 2}}>
+        <Button type="submit" onClick={handleLogin} sx={{ margin: '18px', marginTop: '14px', padding: '10px' }}>
             LOGIN
         </Button>
       </FormDiv>
@@ -255,11 +257,11 @@ const RegisterForm = ({ toggleLoading, handlePageChange }) => {
 
   return (
     <FormDiv>
-        <Typography variant="h4" sx={{color: 'silver'}}>
+        <Typography variant="h4" sx={{ margin: '20px', marginTop: '40px', color: 'silver'}}>
         Van Holten Shots
         </Typography>
       {/* // Email */}
-      <FormControl sx={{ mt: 4, width: '250px' }} variant="outlined">
+      <FormControl sx={{ width: '250px' }} variant="outlined">
         <TextField
           id="outlined-required"
           name="email"
@@ -269,7 +271,7 @@ const RegisterForm = ({ toggleLoading, handlePageChange }) => {
       </FormControl>
 
       {/* // Password */}
-      <FormControl sx={{ mt: 0, width: '250px' }} variant="outlined">
+      <FormControl sx={{ width: '250px' }} variant="outlined">
           <InputLabel htmlFor="password">Password</InputLabel>
 
           <OutlinedInput
@@ -294,7 +296,7 @@ const RegisterForm = ({ toggleLoading, handlePageChange }) => {
         </FormControl>
 
         {/* // Confirm Password */}
-        <FormControl sx={{ mt: 0, width: '250px' }} variant="outlined">
+        <FormControl sx={{ width: '250px' }} variant="outlined">
           <InputLabel htmlFor="confirm-password">Confirm Password</InputLabel>
 
           <OutlinedInput
@@ -359,7 +361,7 @@ const NonGuest = ({ toggleLoading, handlePageChange, username }) => {
         Hello, {username}
       </Typography>
 
-      <Button sx={{margin: '5%', color: 'white'}} variant="secondary" component="span" onClick={handleSignOut}> 
+      <Button sx={{margin: '5%', color: 'white'}} variant="outlined" component="span" onClick={handleSignOut}> 
         Sign Out
       </Button>
     </Div>
@@ -408,7 +410,7 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
         <Typography variant="h3">
           Welcome back, {username}.
         </Typography>
-        <Typography variant="h6" sx={{ color: 'silver', mb: '20%', textAlign: 'center'}}>
+        <Typography variant="h6" sx={{ color: 'silver', mb: '20%', paddingX: '5vw', textAlign: 'center'}}>
         This is your virtual playground. You'll find everything you need to manipulate your portfolio here.
         </Typography>
       <input
@@ -475,7 +477,7 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
         Print Results
       </Button> */}
 
-      <Button sx={{margin: '5%', color: 'white'}} variant="secondary" component="span" onClick={handleSignOut}> 
+      <Button sx={{margin: '5%', color: 'white'}} variant="outlined" component="span" onClick={handleSignOut}> 
         Sign Out
       </Button>
     </Div>

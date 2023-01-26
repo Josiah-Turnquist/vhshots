@@ -10,6 +10,8 @@ const styles = (theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     color: 'white',
+    width: '100vw',
+    height: '83vh',
   },
   wrapperRow: {
     display: 'flex',
