@@ -111,7 +111,6 @@ const LoginForm = ({ toggleLoading, handlePageChange }) => {
   async function handleLogin(event) {
     event.preventDefault();
     toggleLoading();
-    // console.log( 'Signing in...\nEmail:', values.email, '\nPassword: ', values.password); 
 
     try {
         const user = await Auth.signIn(values.email, values.password).then(() => {
@@ -227,31 +226,28 @@ const RegisterForm = ({ toggleLoading, handlePageChange }) => {
     handlePageChange(page);
   }
 
-  async function handleRegister(event) {
+  async function handleRegister(event) { 
+    // TODO: Make this toggle the "Register" button to load, not the entire screen. That way the input fields will save whatever the user typed when an error occurs.
     event.preventDefault();
     toggleLoading();
-    
-    // try {
-    //   const { user } = await Auth.currentUserInfo().then(() => {
-    //     console.log('Successfully registered account');
-    //     handlePageChange('profile');
-    //   });
-    // } catch (error) {
-    //   console.log('Error registering user:', error);
-    // }
 
     try {
       const { user } = await Auth.signUp({
-          username: values.email,
-          password: values.password,
-          confirmPassword: values.confirmpassword,
-          phoneNumber: values.phonenumber,
-          autoSignIn: { // optional - enables auto sign in after user is confirmed
-              enabled: true,
-          }
+        username: values.email,
+        password: values.password,
+        confirmPassword: values.confirmpassword,
+        phoneNumber: values.phonenumber,
+        autoSignIn: { // optional - enables auto sign in after user is confirmed
+          enabled: true,
+        }
+      }).then(() => {
+        console.log('Successfully created account!');
+        handlePageChange('register');
       });
     } catch (error) {
-        console.log('Error creating new user:', error);
+      toggleLoading(); // stop loading!!
+      handlePageChange('register');
+      console.log('Error creating user:', error);
     }
   }
 
