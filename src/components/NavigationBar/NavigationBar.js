@@ -91,7 +91,7 @@ function ScrollController(props) {
 
 // If we decide to make this more interactive then it should probably be a ReactComponent.
 const NavigationBar = ({ classes }) => {
-  const [value, setValue] = React.useState(4);
+  const [value, setValue] = React.useState(1);
   const [user, setUser] = React.useState({
     username: null,
     attributes: {

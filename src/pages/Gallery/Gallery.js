@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 // Components
 import Footer from '../../components/Footer/Footer';
 import HighlightCarousel from '../../components/HighlightCarousel/HighlightCarousel';
+import { Typography } from '@mui/material';
+import Button from '@mui/material/Button';
 
 // Loader
 import CircularProgress from '@mui/material/CircularProgress';
@@ -22,15 +24,64 @@ import styles from './styles';
 // Styled Divs with MUI
 import { styled } from '@mui/material/styles';
 
+// Lightbox
+import 'lightbox.js-react/dist/index.css'
+import {SlideshowLightbox, initLightboxJS} from 'lightbox.js-react'
+
 // Storage.list('estate/') // for listing ALL files without prefix, pass '' instead
 
+const Div = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
+const imgStyle = {
+  display: 'grid', 
+  gridTemplateColumns: 'repeat(8, 1fr)',
+  gridTemplateRows: 'repeat(8, 5vw)',
+  gridGap: '15px',
+}
+
+const GalleryView = ({ toggleLoading, handlePageChange, pageShown, images }) => {
+
+  useEffect(() => {
+    initLightboxJS("08E9-E32F-6E73-6368", "team");
+  });
+
+
+  return (
+    <Div>
+      <Typography variant="h3">
+        Real Estate Gallery
+      </Typography>
+
+      <SlideshowLightbox style={imgStyle}>
+        {/* <img className='w-full rounded' src='https://images.pexels.com/photos/580151/pexels-photo-580151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' />
+        <img className='w-full rounded' src='https://images.pexels.com/photos/13996896/pexels-photo-13996896.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' />  
+        <img className='w-full rounded' src='https://images.pexels.com/photos/13208323/pexels-photo-13208323.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' /> */}
+        {images.map((item) => (
+          <img 
+          style={{maxWidth: '25%', flex: '25%', padding: '0 4px', objectFit: 'contain' }} 
+          src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`} 
+          alt='' 
+          key={item.eTag}
+        />
+        ))}
+      </SlideshowLightbox> 
+
+      <Button sx={{margin: '5%', color: 'white'}} variant="outlined" component="span" onClick={() => {}}> 
+        Sign Out
+      </Button>
+    </Div>
+  );
+}
 
 class Gallery extends React.Component {
-  constructor (props) {
+  constructor (props, classes) {
     super(props);
     this.state = {
-      loadingPage: true,
-      gallery: '',
       carousel1: [
       ],
       carousel2: [
@@ -39,6 +90,17 @@ class Gallery extends React.Component {
       ],
       carousel4: [
       ],
+      gallery1: [
+      ],
+      gallery2: [
+      ],
+      gallery3: [
+      ],
+      gallery4: [
+      ],
+      classes: classes,
+      pageShown: '',
+      loadingPage: true,
     };
 
     // this.handleClick = this.handleClick.bind(this); // Otherwise React can't find this.
@@ -73,6 +135,60 @@ class Gallery extends React.Component {
     }))
   }
 
+
+  handlePageChange = (page) => {
+    this.setState({
+      loadingPage: true,
+    })
+    console.log('going to page: ', page);
+
+    // First gallery
+    if (page === 'gallery1') {
+      if (this.state.gallery1.length === 0) {
+        console.log('gallery1 was empty -- populating array.');
+
+        // Load Gallery 1
+        try {
+          Storage.list('estate/', { pageSize : 'ALL' })
+          .then(response => {this.setState({ 
+            loadingPage: false,
+            gallery1: response.results,
+            pageShown: page,
+          }); console.log(this.state.gallery1)})
+        } catch (error) {
+          console.log('error loading gallery:', error);
+        }
+      } else {
+        this.setState({
+          loadingPage: false,
+        })
+      }
+    }
+
+    // Second gallery
+    if (page === 'gallery2') {
+      if (this.state.gallery2.length === 0) {
+        console.log('gallery2 was empty -- populating array.');
+
+        // Load Gallery 2
+        try {
+          Storage.list('portraits/', { pageSize : 'ALL' })
+          .then(response => this.setState({ 
+            loadingPage: false,
+            gallery2: response.results,
+            pageShown: page,
+          }))
+        } catch (error) {
+          console.log('error loading gallery:', error);
+        }
+      } else {
+        this.setState({
+          loadingPage: false,
+        })
+      }
+    }
+  }
+
   // handleClick() {
   //   // this.setState(prevState => ({
   //   //   loadingPage: !prevState.loadingPage
@@ -96,27 +212,34 @@ class Gallery extends React.Component {
       </div>
       );
     }
+    else if (this.state.pageShown === 'gallery1') {
+      return (
+        <GalleryView toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery1}/>
+      );
+    }
     else {
       return (
         <div className={this.props.classes.wrapper} >
           <HighlightCarousel reel={this.state.carousel1} title='Real Estate' onClick={() => {
-            this.setState({
-              gallery: 'estate',
-            })
+            console.log('click start - gallery1');
+            
+            this.handlePageChange('gallery1');
           }}/>
           <HighlightCarousel reel={this.state.carousel2} title='Portraits' onClick={() => {
-            this.setState({
-              gallery: 'portraits',
-            })
+            console.log('click start - gallery2');
+
+            this.handlePageChange('gallery2');
           }}/>
           <HighlightCarousel reel={this.state.carousel3} title='Vehicles' onClick={() => {
             this.setState({
-              gallery: 'vehicles',
+              loadingPage: true,
+              pageShown: 'gallery3',
             })
           }}/>
           <HighlightCarousel reel={this.state.carousel4} title='Other' onClick={() => {
             this.setState({
-              gallery: 'other',
+              loadingPage: true,
+              pageShown: 'gallery4',
             })
           }}/>
         </div>

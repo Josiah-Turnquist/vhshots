@@ -14,7 +14,7 @@ import theme from '../../theme';
 // Loader & Icons
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import ImageIcon from '@mui/icons-material/Image';
+import PublishIcon from '@mui/icons-material/Publish';
 
 // Styles
 import { withStyles } from '@mui/styles';
@@ -385,6 +385,7 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
       try {
         await Storage.put(`${e.target.name}/${file.name}`, file, {
           contentType: "image/png", // contentType is optional
+          acl: "public-read",
           completeCallback: (event) => {
             console.log(`Successfully uploaded ${event.key}`);
           },
@@ -419,9 +420,9 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
             name="estate"
           />
         <label htmlFor="estate-upload" >
-          <Button sx={{width: '340px', color: 'black', m: '10px'}} variant="contained" component="span">
-            <ImageIcon />
-            &#160;&#160;Upload to Estate Gallery
+          <Button sx={{width: '240px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
+            <PublishIcon />
+            &#160;&#160;Estate Gallery
           </Button>
         </label> 
         <input
@@ -434,9 +435,9 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
             name="portraits"
           />
         <label htmlFor="portraits-upload">
-          <Button sx={{width: '340px', color: 'black', m: '10px'}} variant="contained" component="span">
-            <ImageIcon />
-            &#160;&#160;Upload to Portrait Gallery
+          <Button sx={{width: '240px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
+            <PublishIcon />
+            &#160;&#160;Portrait Gallery
           </Button>
         </label> 
         <input
@@ -449,9 +450,9 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
             name="vehicles"
           />
         <label htmlFor="vehicles-upload">
-          <Button sx={{width: '340px', color: 'black', m: '10px'}} variant="contained" component="span">
-            <ImageIcon />
-            &#160;&#160;Upload to Vehicle Gallery
+          <Button sx={{width: '240px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
+            <PublishIcon />
+            &#160;&#160;Vehicle Gallery
           </Button>
         </label> 
         <input
@@ -464,9 +465,9 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
             name="other"
           />
         <label htmlFor="other-upload">
-          <Button sx={{width: '340px', color: 'black', m: '10px'}} variant="contained" component="span">
-            <ImageIcon />
-            &#160;&#160;Upload to Other Gallery
+          <Button sx={{width: '240px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
+            <PublishIcon />
+            &#160;&#160;Other Gallery
           </Button>
         </label> 
       {/* <Button variant="raised" component="span" onClick={console.log('clicked')} sx={{margin: '12px'}} >

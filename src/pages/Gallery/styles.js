@@ -1,3 +1,5 @@
+import { red } from "@mui/material/colors";
+
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.default,
@@ -9,6 +11,9 @@ const styles = (theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
+  dog: {
+    color: 'red',
+  }
 });
 
 export default styles;
