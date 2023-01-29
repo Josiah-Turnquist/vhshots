@@ -56,20 +56,20 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, images }) => 
       <Typography variant="h3">
         Real Estate Gallery
       </Typography>
+      
+      {/* <div style={imgStyle}> */}
+        <SlideshowLightbox style={imgStyle}>
 
-      <SlideshowLightbox style={imgStyle}>
-        {/* <img className='w-full rounded' src='https://images.pexels.com/photos/580151/pexels-photo-580151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' />
-        <img className='w-full rounded' src='https://images.pexels.com/photos/13996896/pexels-photo-13996896.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' />  
-        <img className='w-full rounded' src='https://images.pexels.com/photos/13208323/pexels-photo-13208323.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' /> */}
-        {images.map((item) => (
-          <img 
-          style={{maxWidth: '25%', flex: '25%', padding: '0 4px', objectFit: 'contain' }} 
-          src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`} 
-          alt='' 
-          key={item.eTag}
-        />
-        ))}
-      </SlideshowLightbox> 
+          {images.map((item) => (
+            <img 
+            style={{maxWidth: '25%', flex: '25%', padding: '4px 4px' }} 
+            src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`} 
+            alt='' 
+            key={item.eTag}
+          />
+          ))}
+        </SlideshowLightbox> 
+      {/* </div> */}
 
       <Button sx={{margin: '5%', color: 'white'}} variant="outlined" component="span" onClick={() => {}}> 
         Sign Out
