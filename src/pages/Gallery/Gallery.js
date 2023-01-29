@@ -20,6 +20,7 @@ import { Storage } from "@aws-amplify/storage"
 // Styles
 import { withStyles } from '@mui/styles';
 import styles from './styles';
+import './GalleryView.css';
 
 // Styled Divs with MUI
 import { styled } from '@mui/material/styles';
@@ -58,11 +59,12 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, images }) => 
       </Typography>
       
       {/* <div style={imgStyle}> */}
-        <SlideshowLightbox style={imgStyle}>
+        <SlideshowLightbox className="GalleryViewer">
 
           {images.map((item) => (
             <img 
-            style={{maxWidth: '25%', flex: '25%', padding: '4px 4px' }} 
+            // style={{maxWidth: '25%', flex: '25%', padding: '4px 4px' }} 
+            className="images"
             src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`} 
             alt='' 
             key={item.eTag}

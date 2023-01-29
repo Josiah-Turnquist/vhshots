@@ -1,0 +1,19 @@
+
+.GalleryViewer {
+    line-height: 0;
+    /* -webkit-column-count: 3;
+    -webkit-column-gap:   5px;
+    -moz-column-count:    5;
+    -moz-column-gap:      5px; */
+    column-count:         3;
+    column-gap:           8px;  
+    align-content: stretch;
+    list-style: none;
+}
+
+.images {
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 0px;
+    margin-bottom: 8px;
+}
