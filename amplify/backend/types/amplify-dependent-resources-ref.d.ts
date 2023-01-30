@@ -1,40 +1,41 @@
 export type AmplifyDependentResourcesAttributes = {
-    "auth": {
-        "vhshots": {
-            "IdentityPoolId": "string",
-            "IdentityPoolName": "string",
-            "UserPoolId": "string",
-            "UserPoolArn": "string",
-            "UserPoolName": "string",
-            "AppClientIDWeb": "string",
-            "AppClientID": "string",
-            "CreatedSNSRole": "string"
-        },
-        "userPoolGroups": {
-            "GuestsGroupRole": "string",
-            "ClientsGroupRole": "string",
-            "AdministratorsGroupRole": "string"
-        }
-    },
-    "storage": {
-        "s3vhshotsstorage4c3a7943admin": {
-            "BucketName": "string",
-            "Region": "string"
-        }
-    },
-    "function": {
-        "AdminQueries947dcd66": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        }
-    },
-    "api": {
-        "AdminQueries": {
-            "RootUrl": "string",
-            "ApiName": "string",
-            "ApiId": "string"
-        }
+  "api": {
+    "AdminQueries": {
+      "ApiId": "string",
+      "ApiName": "string",
+      "RootUrl": "string"
     }
+  },
+  "auth": {
+    "userPoolGroups": {
+      "AdministratorsGroupRole": "string",
+      "ClientsGroupRole": "string",
+      "GuestsGroupRole": "string"
+    },
+    "vhshots": {
+      "AppClientID": "string",
+      "AppClientIDWeb": "string",
+      "CreatedSNSRole": "string",
+      "IdentityPoolId": "string",
+      "IdentityPoolName": "string",
+      "UserPoolArn": "string",
+      "UserPoolId": "string",
+      "UserPoolName": "string"
+    }
+  },
+  "function": {
+    "AdminQueries947dcd66": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    }
+  },
+  "storage": {
+    "s3vhshotsstorage4c3a7943admin": {
+      "BucketName": "string",
+      "Region": "string"
+    }
+  }
 }
