@@ -29,8 +29,6 @@ import { styled } from '@mui/material/styles';
 import 'lightbox.js-react/dist/index.css'
 import {SlideshowLightbox, initLightboxJS} from 'lightbox.js-react'
 
-// Storage.list('estate/') // for listing ALL files without prefix, pass '' instead
-
 const Div = styled('div')({
   display: 'flex',
   justifyContent: 'center',
@@ -55,7 +53,7 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, images }) => 
   return (
     <Div>
       <Typography variant="h3">
-        Real Estate Gallery
+        Gallery
       </Typography>
       
       {/* <div style={imgStyle}> */}
@@ -72,10 +70,6 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, images }) => 
           ))}
         </SlideshowLightbox> 
       {/* </div> */}
-
-      <Button sx={{margin: '5%', color: 'white'}} variant="outlined" component="span" onClick={() => {}}> 
-        Sign Out
-      </Button>
     </Div>
   );
 }
@@ -175,11 +169,57 @@ class Gallery extends React.Component {
         // Load Gallery 2
         try {
           Storage.list('portraits/', { pageSize : 'ALL' })
-          .then(response => this.setState({ 
+          .then(response => {this.setState({ 
             loadingPage: false,
             gallery2: response.results,
             pageShown: page,
-          }))
+          }); console.log(this.state.gallery2)})
+        } catch (error) {
+          console.log('error loading gallery:', error);
+        }
+      } else {
+        this.setState({
+          loadingPage: false,
+        })
+      }
+    }
+
+    // Third gallery
+    if (page === 'gallery3') {
+      if (this.state.gallery3.length === 0) {
+        console.log('gallery3 was empty -- populating array.');
+
+        // Load Gallery 3
+        try {
+          Storage.list('vehicles/', { pageSize : 'ALL' })
+          .then(response => {this.setState({ 
+            loadingPage: false,
+            gallery3: response.results,
+            pageShown: page,
+          }); console.log(this.state.gallery3)})
+        } catch (error) {
+          console.log('error loading gallery:', error);
+        }
+      } else {
+        this.setState({
+          loadingPage: false,
+        })
+      }
+    }
+
+    // Fourth gallery
+    if (page === 'gallery4') {
+      if (this.state.gallery4.length === 0) {
+        console.log('gallery4 was empty -- populating array.');
+
+        // Load Gallery 4
+        try {
+          Storage.list('other/', { pageSize : 'ALL' })
+          .then(response => {this.setState({ 
+            loadingPage: false,
+            gallery4: response.results,
+            pageShown: page,
+          }); console.log(this.state.gallery4)})
         } catch (error) {
           console.log('error loading gallery:', error);
         }
@@ -219,6 +259,21 @@ class Gallery extends React.Component {
         <GalleryView toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery1}/>
       );
     }
+    else if (this.state.pageShown === 'gallery2') {
+      return (
+        <GalleryView toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery2}/>
+      );
+    }
+    else if (this.state.pageShown === 'gallery3') {
+      return (
+        <GalleryView toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery3}/>
+      );
+    }
+    else if (this.state.pageShown === 'gallery4') {
+      return (
+        <GalleryView toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery4}/>
+      );
+    }
     else {
       return (
         <div className={this.props.classes.wrapper} >
@@ -233,16 +288,14 @@ class Gallery extends React.Component {
             this.handlePageChange('gallery2');
           }}/>
           <HighlightCarousel reel={this.state.carousel3} title='Vehicles' onClick={() => {
-            this.setState({
-              loadingPage: true,
-              pageShown: 'gallery3',
-            })
+            console.log('click start - gallery2');
+
+            this.handlePageChange('gallery3');
           }}/>
           <HighlightCarousel reel={this.state.carousel4} title='Other' onClick={() => {
-            this.setState({
-              loadingPage: true,
-              pageShown: 'gallery4',
-            })
+            console.log('click start - gallery2');
+
+            this.handlePageChange('gallery4');
           }}/>
         </div>
       );
