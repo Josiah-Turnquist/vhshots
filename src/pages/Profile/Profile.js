@@ -385,7 +385,7 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
       try {
         await Storage.put(`${e.target.name}/${file.name}`, file, {
           contentType: "image/png", // contentType is optional
-          // acl: "public-read",
+          acl: "public-read",
           completeCallback: (event) => {
             console.log(`Successfully uploaded ${event.key}`);
           },
