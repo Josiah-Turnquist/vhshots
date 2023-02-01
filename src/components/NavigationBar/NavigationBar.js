@@ -16,9 +16,26 @@ import Gallery from '../../pages/Gallery';
 import Info from '../../pages/Info';
 import Profile from '../../pages/Profile';
 
+// Nav Drawer
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+
 // Icons
 import IconButton from '@mui/material/IconButton';
-// import HomeIcon from '@mui/icons-material/Home';
+import HomeIcon from '@mui/icons-material/Home';
+import CollectionsIcon from '@mui/icons-material/Collections';
+import DataUsageIcon from '@mui/icons-material/DataUsage';
+import LoginIcon from '@mui/icons-material/Login';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 // import AppsIcon from '@mui/icons-material/Apps';
 // import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -37,7 +54,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box'
+import { DataUsage } from '@mui/icons-material';
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -107,6 +124,8 @@ const NavigationBar = ({ classes }) => {
   // Device Type
   const [width, setWidth] = useState(window.innerWidth);
 
+  const [drawer, setDrawer] = React.useState(false);
+
   function handleWindowSizeChange() {
       setWidth(window.innerWidth);
   }
@@ -119,6 +138,51 @@ const NavigationBar = ({ classes }) => {
   }, []);
 
   const isMobile = width <= 600;
+
+  const toggleDrawer = (open) => (event) => {
+    // console.log('click type: ', event.type);
+    console.log('click open: ', !drawer);
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setDrawer(!drawer);
+  };
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: 'auto' }}
+      role="presentation"
+      // onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <List>
+        {['Home'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton onClick={() => {setValue(0)}} sx={{ height: '50px', color: 'gray' }}>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary={text} sx={{color: 'white'}}/>
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['Gallery', 'Info', 'Login'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton onClick={() => {setValue(index === 0 ? index+1 : index + 2)}} sx={{ height: '50px', color: 'gray' }}>
+              <ListItemIcon>
+                {index === 0 ? <CollectionsIcon /> : index === 1 ? <DataUsageIcon /> : <PersonOutlineIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} sx={{color: 'white'}}/>
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
 
   if (isMobile) {
     return (
@@ -133,9 +197,17 @@ const NavigationBar = ({ classes }) => {
                 </Fade>
 
                 <Fade in={true} timeout={{ enter: 1500, exit: 1000 }} style={{ transitionDelay:  '0ms'}}>
-                  <IconButton aria-label="profile" sx={{mt: '5px', mr: '5px'}} color="primary">
-                    <MenuIcon className={ classes.icons } fontSize="large"/>
+                  <IconButton aria-label="profile" sx={{mt: '5px', mr: '5px'}} color="primary" onClick={toggleDrawer()}>
+                    <MenuIcon className={ classes.icons } fontSize="large" />
+                    <Drawer
+                      anchor={'top'}
+                      open={drawer}
+                      onClose={toggleDrawer(false)}
+                    >
+                      {list('top')}
+                    </Drawer>
                   </IconButton>
+
                 </Fade>
           </div>
         </AppBar>

@@ -6,14 +6,15 @@ import Footer from '../../components/Footer/Footer';
 import HighlightCarousel from '../../components/HighlightCarousel/HighlightCarousel';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
+import theme from '../../theme';
 
 // Loader
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import { IconButton } from '@mui/material';
+import WestIcon from '@mui/icons-material/West';
 
 // Icons
-// import CircularProgress from '@mui/material/CircularProgress';
-// import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { Storage } from "@aws-amplify/storage"
 
 
@@ -43,7 +44,7 @@ const imgStyle = {
   gridGap: '15px',
 }
 
-const GalleryView = ({ toggleLoading, handlePageChange, pageShown, images }) => {
+const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, images }) => {
 
   useEffect(() => {
     initLightboxJS("08E9-E32F-6E73-6368", "team");
@@ -52,8 +53,11 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, images }) => 
 
   return (
     <Div>
+      <IconButton aria-label="back button" size="large" style={{ backdropFilter: 'blur(5px)', backgroundColor: theme.palette.background.overlay, position: 'fixed', left: '11px', top: '85px'}} onClick={() => {handlePageChange('gallery')}}>
+        <WestIcon fontSize="inherit" style={{color: 'white', margin: '0px'}} />
+      </IconButton>
       <Typography variant="h3">
-        Gallery
+        {galleryName} Gallery
       </Typography>
       
       {/* <div style={imgStyle}> */}
@@ -138,6 +142,14 @@ class Gallery extends React.Component {
     })
     console.log('going to page: ', page);
 
+    // Null
+    if (page === 'gallery') {
+      this.setState({ 
+        loadingPage: false,
+        pageShown: page,
+      })
+    }
+
     // First gallery
     if (page === 'gallery1') {
       if (this.state.gallery1.length === 0) {
@@ -157,6 +169,7 @@ class Gallery extends React.Component {
       } else {
         this.setState({
           loadingPage: false,
+          pageShown: page,
         })
       }
     }
@@ -180,6 +193,7 @@ class Gallery extends React.Component {
       } else {
         this.setState({
           loadingPage: false,
+          pageShown: page,
         })
       }
     }
@@ -191,7 +205,7 @@ class Gallery extends React.Component {
 
         // Load Gallery 3
         try {
-          Storage.list('vehicles/', { pageSize : 'ALL' })
+          Storage.list('film/', { pageSize : 'ALL' })
           .then(response => {this.setState({ 
             loadingPage: false,
             gallery3: response.results,
@@ -203,6 +217,7 @@ class Gallery extends React.Component {
       } else {
         this.setState({
           loadingPage: false,
+          pageShown: page,
         })
       }
     }
@@ -226,6 +241,7 @@ class Gallery extends React.Component {
       } else {
         this.setState({
           loadingPage: false,
+          pageShown: page,
         })
       }
     }
@@ -256,22 +272,22 @@ class Gallery extends React.Component {
     }
     else if (this.state.pageShown === 'gallery1') {
       return (
-        <GalleryView toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery1}/>
+        <GalleryView galleryName='Real Estate' toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery1}/>
       );
     }
     else if (this.state.pageShown === 'gallery2') {
       return (
-        <GalleryView toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery2}/>
+        <GalleryView galleryName='Portrait' toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery2}/>
       );
     }
     else if (this.state.pageShown === 'gallery3') {
       return (
-        <GalleryView toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery3}/>
+        <GalleryView galleryName='Film' toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery3}/>
       );
     }
     else if (this.state.pageShown === 'gallery4') {
       return (
-        <GalleryView toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery4}/>
+        <GalleryView galleryName='Other' toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery4}/>
       );
     }
     else {
@@ -287,13 +303,13 @@ class Gallery extends React.Component {
 
             this.handlePageChange('gallery2');
           }}/>
-          <HighlightCarousel reel={this.state.carousel3} title='Vehicles' onClick={() => {
-            console.log('click start - gallery2');
+          <HighlightCarousel reel={this.state.carousel3} title='Film' onClick={() => {
+            console.log('click start - gallery3');
 
             this.handlePageChange('gallery3');
           }}/>
           <HighlightCarousel reel={this.state.carousel4} title='Other' onClick={() => {
-            console.log('click start - gallery2');
+            console.log('click start - gallery4');
 
             this.handlePageChange('gallery4');
           }}/>

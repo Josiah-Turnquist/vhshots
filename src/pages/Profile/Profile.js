@@ -443,16 +443,16 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
         <input
             accept="image/*"
             style={{ display: 'none' }}
-            id="vehicles-upload"
+            id="film-upload"
             multiple
             type="file"
             onChange={onChange}
-            name="vehicles"
+            name="film"
           />
-        <label htmlFor="vehicles-upload">
+        <label htmlFor="film-upload">
           <Button sx={{width: '240px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
             <PublishIcon />
-            &#160;&#160;Vehicle Gallery
+            &#160;&#160;Film Gallery
           </Button>
         </label> 
         <input
