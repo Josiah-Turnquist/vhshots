@@ -160,7 +160,7 @@ class Gallery extends React.Component {
           Storage.list('estate/', { pageSize : 'ALL' })
           .then(response => {this.setState({ 
             loadingPage: false,
-            gallery1: response.results,
+            gallery1: [...response.results].reverse(),
             pageShown: page,
           }); console.log(this.state.gallery1)})
         } catch (error) {
@@ -184,7 +184,7 @@ class Gallery extends React.Component {
           Storage.list('portraits/', { pageSize : 'ALL' })
           .then(response => {this.setState({ 
             loadingPage: false,
-            gallery2: response.results,
+            gallery2: [...response.results].reverse(),
             pageShown: page,
           }); console.log(this.state.gallery2)})
         } catch (error) {
@@ -208,7 +208,7 @@ class Gallery extends React.Component {
           Storage.list('film/', { pageSize : 'ALL' })
           .then(response => {this.setState({ 
             loadingPage: false,
-            gallery3: response.results,
+            gallery3: [...response.results].reverse(),
             pageShown: page,
           }); console.log(this.state.gallery3)})
         } catch (error) {
@@ -232,9 +232,10 @@ class Gallery extends React.Component {
           Storage.list('other/', { pageSize : 'ALL' })
           .then(response => {this.setState({ 
             loadingPage: false,
-            gallery4: response.results,
+            gallery4: [...response.results].reverse(),
             pageShown: page,
-          }); console.log(this.state.gallery4)})
+          }); 
+        })
         } catch (error) {
           console.log('error loading gallery:', error);
         }
