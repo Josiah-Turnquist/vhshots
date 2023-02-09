@@ -15,10 +15,33 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 
+// using Twilio SendGrid's v3 Node.js Library
+// https://github.com/sendgrid/sendgrid-nodejs
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+const msg = {
+  to: 'josiahturnq@gmail.com', // Change to your recipient
+  from: 'will@vhshots.com', // Change to your verified sender
+  subject: 'Sending with SendGrid is Fun',
+  text: 'and easy to do anywhere, even with Node.js',
+  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+}
+
 // If we decide to make this more interactive then it should probably be a ReactComponent.
 const NavigationBar = ({ classes }) => {
   const handleContactMeButtonClick = () => {
     console.log('Tried to contact photographer.');
+
+    sgMail
+    .send(msg)
+    .then(() => {
+      console.log('Email sent')
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+    
     // Complete this later.
 };
 
@@ -50,7 +73,7 @@ const NavigationBar = ({ classes }) => {
         <IconButton aria-label="LinkedIn" href="https://www.linkedin.com/in/will-van-holten-94329a193">
           <LinkedInIcon fontSize='large' color='primary' />
         </IconButton>
-        <IconButton aria-label="Email" href="mailto:willvanholten@gmail.com">
+        <IconButton aria-label="Email" href="mailto:will@vhshots.com">
           <EmailIcon fontSize='large' color='primary' />
         </IconButton>
       </Typography>

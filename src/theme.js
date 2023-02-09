@@ -115,7 +115,7 @@ let theme = createTheme({
             backgroundFocused: 'rgb(24, 28, 36)',
             text: '#FFFFFF',
             textPlaceholder: '#676767',
-            textSelection: 'rgb(80 119 225 / 49%)', //#517894
+            textSelection: 'rgb(80 119 255 / 75%)', //#517894
         },
         button: {
             // text: '#EFEFEF',

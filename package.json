@@ -11,6 +11,7 @@
     "@mui/material": "^5.10.5",
     "@mui/styles": "^5.10.6",
     "@mui/system": "^5.10.0",
+    "@sendgrid/mail": "^7.7.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
