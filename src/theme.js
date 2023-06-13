@@ -1,5 +1,6 @@
 // Import library
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { shadows } from "@mui/system";
 
 const white = '#DFDFDF';
 // Create a theme instance.
@@ -9,13 +10,25 @@ let theme = createTheme({
         fontSize: 14,
         h1: {
             fontFamily: 'Helvetica',
-            fontSize: '10vmin',
+            fontSize: '16px',
+            letterSpacing: '4px',
+            padding: '30px 0px 30px 0px',
+            color: 'rgba(192, 192, 192, 1)',
+            fontWeight: 300,
+            textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+            textTransform: 'uppercase',
+            textAlign: 'center',
         },
-        h2: {
-            fontFamily: 'Roboto',
-            fontSize: '8vmin',
-            margin: '10px',
-            color: white,
+        h2: { // Logo + Info Titles
+            fontFamily: 'Helvetica',
+            fontSize: '14px',
+            letterSpacing: '4px',
+            padding: '36px 0px 36px 0px',
+            fontWeight: 300,
+            color: 'rgba(192, 192, 192, 1)',
+            textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+            textTransform: 'uppercase',
+            textAlign: 'center',
         },
         h3: { // Submission Form Title
             fontFamily: 'Roboto',
@@ -23,7 +36,7 @@ let theme = createTheme({
             margin: '10px',
             color: white,
         },
-        h4: { // Gallery Highlight Titles
+        h4: { // Login Header
             fontFamily: 'Helvetica',
             fontWeight: 400,
             textTransform: 'uppercase',
@@ -42,17 +55,28 @@ let theme = createTheme({
             fontSize: 14,
             fontWeight: 400,
         },
-        body1: {
+        body1: { // Input Fields
             fontFamily: 'Helvetica',
             fontSize: 16,
-            color: '#fffff',
+            color: '#ffffff',
             fontWeight: 400,
             marginBottom: 16,
             marginTop: 16,
         },
         body2: {
+            fontFamily: 'Arial',
+            fontSize: 12,
+            lineHeight: '150%',
+            textAlign: 'center',
+            letterSpacing: '1.5px',
+            marginBottom: '12px', // Paragraph Spacing
+            color: '#ffffff',
+            fontWeight: 400,
+            padding: '0 15%',
+        },
+        body3: {
             fontFamily: 'Roboto',
-            fontSize: 14,
+            fontSize: 12,
             color: '#989898',
             fontWeight: 400,
             marginBottom: 16,

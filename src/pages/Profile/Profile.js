@@ -130,7 +130,7 @@ const LoginForm = ({ toggleLoading, handlePageChange }) => {
 
   return (
     <FormDiv>
-        <Typography variant="h4" sx={{ margin: '20px', marginTop: '40px', color: 'silver'}}>
+        <Typography variant="h4" style={{ margin: '10px 20px 40px', marginBottom: '40px', color: 'silver'}}>
         Van Holten Shots
         </Typography>
       {/* // Email */}
@@ -253,7 +253,7 @@ const RegisterForm = ({ toggleLoading, handlePageChange }) => {
 
   return (
     <FormDiv>
-        <Typography variant="h4" sx={{ margin: '20px', marginTop: '40px', color: 'silver'}}>
+        <Typography variant="h4" style={{ margin: '10px 20px 40px', marginBottom: '40px', color: 'silver'}}>
         Van Holten Shots
         </Typography>
       {/* // Email */}
