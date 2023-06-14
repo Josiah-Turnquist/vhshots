@@ -128,7 +128,7 @@ class Info extends React.Component {
               alt='SOME PRINCIPLE'
               key='banner1 image'
             />
-            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: '3%', height: '100%'}}>
+            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: '2%', height: '100%'}}>
               <Typography variant="h2" style={{textAlign: 'left', padding: '10px 30px'}}>
                 CREATIVITY
               </Typography>
@@ -149,7 +149,7 @@ class Info extends React.Component {
               <Typography variant="h2" style={{textAlign: 'right', padding: '10px 30px'}}>
                 PERSPECTIVE
               </Typography>
-              <Typography variant="body2" style={{textAlign: 'right', maxWidth: '600px', fontSize: '16px', padding: '10px 30px'}}>
+              <Typography variant="body2" style={{textAlign: 'right', maxWidth: '610px', fontSize: '16px', padding: '10px 30px'}}>
               With a keen eye for architectural details and a deep understanding of how angles can enhance the visual impact, I meticulously compose each shot to highlight the unique features and character of every home I photograph. By carefully selecting the perfect vantage points, I create captivating images that not only showcase the beauty of the property but also convey a sense of space, depth, and ambiance. 
               </Typography>
             </div>
