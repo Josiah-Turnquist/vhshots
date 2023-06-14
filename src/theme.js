@@ -32,7 +32,7 @@ let theme = createTheme({
         },
         h3: { // Submission Form Title
             fontFamily: 'Roboto',
-            fontSize: '6vmin',
+            fontSize: '4vh',
             margin: '10px',
             color: white,
         },
