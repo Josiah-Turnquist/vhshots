@@ -132,7 +132,7 @@ class Info extends React.Component {
               <Typography variant="h2" style={{textAlign: 'left', padding: '10px 30px'}}>
                 CREATIVITY
               </Typography>
-              <Typography variant="body2" style={{textAlign: 'left', maxWidth: '600px', fontSize: 'clamp(10px, 1.55vmin, 16px)', padding: '10px 30px'}}>
+              <Typography variant="body2" style={{textAlign: 'left', maxWidth: '600px', fontSize: 'clamp(10px, 1.55vw, 16px)', padding: '10px 30px'}}>
                 Through my lens, I strive to unveil the essence of each subject, infusing it with a unique artistic perspective that sparks imagination and evokes emotions. I believe that creativity is the key to unlocking truly memorable photographs, and I am dedicated to crafting visual masterpieces that leave a lasting impression on all who behold them.
               </Typography>
             </div>
@@ -149,7 +149,7 @@ class Info extends React.Component {
               <Typography variant="h2" style={{textAlign: 'right', padding: '10px 30px'}}>
                 PERSPECTIVE
               </Typography>
-              <Typography variant="body2" style={{textAlign: 'right', maxWidth: '610px', fontSize: 'clamp(10px, 1.55vmin, 16px)', padding: '10px 30px'}}>
+              <Typography variant="body2" style={{textAlign: 'right', maxWidth: '610px', fontSize: 'clamp(10px, 1.55vw, 16px)', padding: '10px 30px'}}>
               With a keen eye for architectural details and a deep understanding of how angles can enhance the visual impact, I meticulously compose each shot to highlight the unique features and character of every home I photograph. By carefully selecting the perfect vantage points, I create captivating images that not only showcase the beauty of the property but also convey a sense of space, depth, and ambiance. 
               </Typography>
             </div>
@@ -190,7 +190,7 @@ class Info extends React.Component {
               <Typography variant="h2" style={{textAlign: 'left', padding: '10px 30px 10px 30px'}}>
                 COMMITMENT
               </Typography>
-              <Typography variant="body2" style={{textAlign: 'left', maxWidth: '700px', fontSize: 'clamp(10px, 1.55vmin, 16px)', padding: '10px 30px'}}>
+              <Typography variant="body2" style={{textAlign: 'left', maxWidth: '700px', fontSize: 'clamp(10px, 1.55vw, 16px)', padding: '10px 30px'}}>
                 My unwavering commitment to my clients is a core of my business. I get it. Every moment is precious - and deserves to be captured with precision and artistry. From weddings and events to intimate portraits, I approach each assignment with dedication and empathy, ensuring that I understand and fulfill the vision of my clients. With a blend of technical expertise and a genuine passion for storytelling, I aim to create photographs that not only freeze moments in time but also evoke the emotions and preserve the essence of those cherished occasions for a lifetime.
               </Typography>
             </div>
