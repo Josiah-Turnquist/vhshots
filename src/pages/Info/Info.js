@@ -33,6 +33,8 @@ class Info extends React.Component {
   constructor (props, classes) {
     super(props);
     this.state = {
+      // width: 0,
+      height: 0,
       partnerships: [
       ],
       partnershipsLoaded: false,
@@ -46,6 +48,10 @@ class Info extends React.Component {
 
   componentDidMount() {
     console.log('mounting logos');
+
+    // Window size 
+    window.addEventListener("resize", this.resize.bind(this));
+    this.resize();
 
     // Load Partnerships
     Storage.list('partnerships/', { pageSize : 'ALL' })
@@ -68,11 +74,21 @@ class Info extends React.Component {
       }))
   }
 
+  resize() {
+    if (this.state.width !== window.innerWidth) {
+        this.setState({width: window.innerWidth});
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resize.bind(this));
+  }
+
 
   render() {
     return (
       <div>
-        <div style={{background: 'linear-gradient(180deg, #181818 10% 98%, rgb(32 32 37) 100% 73%)', textAlign: '-webkit-center', width: '100%', height: '80vh', maxHeight: '500px'}}>
+        {window.innerWidth > 650 && <div style={{background: 'linear-gradient(180deg, #181818 10% 98%, rgb(32 32 37) 100% 73%)', textAlign: '-webkit-center', width: '100%', height: '80vh', maxHeight: '500px'}}>
           <Typography variant="h1">
             About Will Van Holten
           </Typography>
@@ -92,14 +108,42 @@ class Info extends React.Component {
               </div>
             </div>
             <img 
-              style={{height: '100%', top: 0, right: 0, position: 'relative', filter: 'drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.25))'}} 
+              style={{height: '100%', position: 'relative', filter: 'drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.25))'}} 
               className="profile"
               src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/info/profile.jpg`} 
               alt='img of william' 
               key='profile image'
             />
           </div>
-        </div>
+        </div>}
+        {window.innerWidth <= 650 && <div style={{background: 'linear-gradient(180deg, #181818 10% 98%, rgb(32 32 37) 100% 73%)', textAlign: '-webkit-center', width: '100%', paddingBottom: '60px'}}>
+          <Typography variant="h1">
+            About Will Van Holten
+          </Typography>
+
+          <div style={{background: 'linear-gradient(325deg, rgba(41, 41, 41, 0.48), rgba(41, 41, 41, 0))', maxWidth: '800px', top: '0px', margin: '0px 55px 0px 55px', position: 'relative', display: 'flex', flexDirection: 'column'}}> {/*325 or 162 */ }
+            <div style={{width: '100%', margin: '0 0 5% 0', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+              <div style={{display: 'flex', justifyContent: 'flex-start', flexDirection: 'column'}}>
+                <Typography variant="h2" style={{maxWidth: '450px'}}>
+                  Biography
+                </Typography>
+                <Typography variant="body2" style={{maxWidth: '450px'}}>
+                I'm passionate photographer who finds joy in collaborating with creative minds to capture extraordinary moments. 
+                </Typography>
+                <Typography variant="body2" style={{maxWidth: '450px'}}>
+                By day, I channel my expertise into high-quality construction work, while my artistic pursuits in photography allow me to explore my creativity and connect with others on a profound level. 
+                </Typography>
+              </div>
+            </div>
+            <img 
+              style={{height: '100%', position: 'relative', filter: 'drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.25))', alignSelf: 'center'}} 
+              className="profile"
+              src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/info/profile.jpg`} 
+              alt='img of william' 
+              key='profile image'
+            />
+          </div>
+        </div>}
 
         <Typography variant="h2" margin={'50px 0 10px 0'}>
           Partnerships
