@@ -121,7 +121,7 @@ class Info extends React.Component {
             About Will Van Holten
           </Typography>
 
-          <div style={{background: 'linear-gradient(325deg, rgba(41, 41, 41, 0.48), rgba(41, 41, 41, 0))', maxWidth: '800px', top: '0px', margin: '0px 55px 0px 55px', position: 'relative', display: 'flex', flexDirection: 'column'}}> {/*325 or 162 */ }
+          <div style={{background: 'linear-gradient(325deg, rgba(41, 41, 41, 0.48), rgba(41, 41, 41, 0))', maxWidth: '325px', top: '0px', position: 'relative', display: 'flex', flexDirection: 'column'}}> {/*325 or 162 */ }
             <div style={{width: '100%', margin: '0 0 5% 0', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
               <div style={{display: 'flex', justifyContent: 'flex-start', flexDirection: 'column'}}>
                 <Typography variant="h2" style={{maxWidth: '450px'}}>
@@ -145,12 +145,12 @@ class Info extends React.Component {
           </div>
         </div>}
 
-        <Typography variant="h2" margin={'50px 0 10px 0'}>
+        <Typography variant="h2" margin={'50px 0 0 0'}>
           Partnerships
         </Typography>
         <div style={{display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
-          {this.state.partnershipsLoaded === true && <img src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${this.state.partnerships[2].key}`} alt='partnership1'/>}
-          {this.state.partnershipsLoaded === true && <img src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${this.state.partnerships[1].key}`} alt='partnership2'/>}
+          {this.state.partnershipsLoaded === true && <img style={{marginTop: '10px'}} src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${this.state.partnerships[2].key}`} alt='partnership1'/>}
+          {this.state.partnershipsLoaded === true && <img style={{marginTop: '10px'}} src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${this.state.partnerships[1].key}`} alt='partnership2'/>}
         </div>
 
         <Typography variant="h2" margin={'50px 0 10px 0'}>
