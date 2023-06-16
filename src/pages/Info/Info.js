@@ -136,7 +136,7 @@ class Info extends React.Component {
               </div>
             </div>
             <img 
-              style={{height: '100%', position: 'relative', filter: 'drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.25))', alignSelf: 'center'}} 
+              style={{position: 'relative', filter: 'drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.25))', width: '100%', maxWidth: '360px', alignSelf: 'center'}} 
               className="profile"
               src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/info/profile.jpg`} 
               alt='img of william' 
@@ -148,7 +148,7 @@ class Info extends React.Component {
         <Typography variant="h2" margin={'50px 0 10px 0'}>
           Partnerships
         </Typography>
-        <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+        <div style={{display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
           {this.state.partnershipsLoaded === true && <img src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${this.state.partnerships[2].key}`} alt='partnership1'/>}
           {this.state.partnershipsLoaded === true && <img src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${this.state.partnerships[1].key}`} alt='partnership2'/>}
         </div>
@@ -165,14 +165,14 @@ class Info extends React.Component {
             My Principles
           </Typography>
 
-          <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: '5px', height: '250px'}}> 
+          {window.innerWidth > 650 &&  <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: '5px', height: '250px', flexDirection: 'row'}}> 
             <img   
               style={{width: '350px', objectFit: 'cover', height: '250px', top: 0, right: 0, position: 'relative'}}
               src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/my-principles/banner1.jpg`}
               alt='SOME PRINCIPLE'
               key='banner1 image'
             />
-            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: '3%', height: '100%'}}>
+           <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: '3%', height: '100%'}}>
               <Typography variant="h2" style={{textAlign: 'left', padding: '10px 30px'}}>
                 CREATIVITY
               </Typography>
@@ -180,9 +180,26 @@ class Info extends React.Component {
                 Through my lens, I strive to unveil the essence of each subject, infusing it with a unique artistic perspective that sparks imagination and evokes emotions. I believe that creativity is the key to unlocking truly memorable photographs, and I am dedicated to crafting visual masterpieces that leave a lasting impression on all who behold them.
               </Typography>
             </div>
-          </div>
+          </div>}
 
-          <div style={{display: 'flex', flexDirection: 'row-reverse', justifyContent: 'flex-start', marginTop: '40px', alignItems: 'flex-start', height: '250px'}}> 
+          {window.innerWidth <= 650 &&  <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: '5px', height: '250px', flexDirection: 'column'}}> 
+            <img   
+              style={{width: '100%', objectFit: 'cover', height: '250px'}}
+              src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/my-principles/banner1.jpg`}
+              alt='SOME PRINCIPLE'
+              key='banner1 image'
+            />
+           <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: '3%', width: '100%', top: '-30px', position: 'relative', height: '100%'}}>
+              <Typography variant="h2" style={{textAlign: 'center', width: '100vw', padding: '10px 30px'}}>
+                CREATIVITY
+              </Typography>
+              {/* <Typography variant="body2" style={{textAlign: 'left', maxWidth: '600px', fontSize: 'clamp(10px, 1.55vw, 16px)', padding: '10px 30px'}}>
+                Through my lens, I strive to unveil the essence of each subject, infusing it with a unique artistic perspective that sparks imagination and evokes emotions. I believe that creativity is the key to unlocking truly memorable photographs, and I am dedicated to crafting visual masterpieces that leave a lasting impression on all who behold them.
+              </Typography> */}
+            </div>
+          </div>}
+
+          {window.innerWidth > 650 && <div style={{display: 'flex', flexDirection: 'row-reverse', justifyContent: 'flex-start', marginTop: '40px', alignItems: 'flex-start', height: '250px'}}> 
             <img   
               style={{width: '350px', objectFit: 'cover', height: '250px', top: 0, right: 0, position: 'relative'}}
               src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/my-principles/banner2.jpg`}
@@ -197,7 +214,24 @@ class Info extends React.Component {
               With a keen eye for architectural details and a deep understanding of how angles can enhance the visual impact, I meticulously compose each shot to highlight the unique features and character of every home I photograph. By carefully selecting the perfect vantage points, I create captivating images that not only showcase the beauty of the property but also convey a sense of space, depth, and ambiance. 
               </Typography>
             </div>
-          </div>
+          </div>}
+
+          {window.innerWidth <= 650 &&  <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: '40px', height: '250px', flexDirection: 'column'}}> 
+            <img   
+              style={{width: '100%', objectFit: 'cover', height: '250px'}}
+              src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/my-principles/banner2.jpg`}
+              alt='SOME PRINCIPLE'
+              key='banner2 image'
+            />
+           <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: '3%', width: '100%', top: '-30px', position: 'relative', height: '100%'}}>
+              <Typography variant="h2" style={{textAlign: 'center', width: '100vw', padding: '10px 30px'}}>
+                PERSPECTIVE
+              </Typography>
+              {/* <Typography variant="body2" style={{textAlign: 'left', maxWidth: '600px', fontSize: 'clamp(10px, 1.55vw, 16px)', padding: '10px 30px'}}>
+                Through my lens, I strive to unveil the essence of each subject, infusing it with a unique artistic perspective that sparks imagination and evokes emotions. I believe that creativity is the key to unlocking truly memorable photographs, and I am dedicated to crafting visual masterpieces that leave a lasting impression on all who behold them.
+              </Typography> */}
+            </div>
+          </div>}
 
           {/* <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}> 
             <img 
@@ -223,7 +257,7 @@ class Info extends React.Component {
 
 
 
-          <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: '40px', height: '250px'}}> 
+          {window.innerWidth > 650 && <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: '40px', height: '250px'}}> 
             <img   
               style={{width: '350px', objectFit: 'cover', height: '250px', top: 0, right: 0, position: 'relative'}}
               src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/my-principles/banner3.jpg`}
@@ -238,7 +272,24 @@ class Info extends React.Component {
                 My unwavering commitment to my clients is a core of my business. I get it. Every moment is precious - and deserves to be captured with precision and artistry. From weddings and events to intimate portraits, I approach each assignment with dedication and empathy, ensuring that I understand and fulfill the vision of my clients. With a blend of technical expertise and a genuine passion for storytelling, I aim to create photographs that not only freeze moments in time but also evoke the emotions and preserve the essence of those cherished occasions for a lifetime.
               </Typography>
             </div>
-          </div>
+          </div>}
+
+          {window.innerWidth <= 650 &&  <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: '40px', height: '250px', flexDirection: 'column'}}> 
+            <img   
+              style={{width: '100%', objectFit: 'cover', height: '250px'}}
+              src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/my-principles/banner3.jpg`}
+              alt='SOME PRINCIPLE'
+              key='banner3 image'
+            />
+           <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: '3%', width: '100%', top: '-30px', position: 'relative', height: '100%'}}>
+              <Typography variant="h2" style={{textAlign: 'center', width: '100vw', padding: '10px 30px'}}>
+                COMMITMENT
+              </Typography>
+              {/* <Typography variant="body2" style={{textAlign: 'left', maxWidth: '600px', fontSize: 'clamp(10px, 1.55vw, 16px)', padding: '10px 30px'}}>
+                Through my lens, I strive to unveil the essence of each subject, infusing it with a unique artistic perspective that sparks imagination and evokes emotions. I believe that creativity is the key to unlocking truly memorable photographs, and I am dedicated to crafting visual masterpieces that leave a lasting impression on all who behold them.
+              </Typography> */}
+            </div>
+          </div>}
         </div>
         <Footer />
       </div>
