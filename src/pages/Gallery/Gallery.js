@@ -14,7 +14,7 @@ import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
 import WestIcon from '@mui/icons-material/West';
 
-// Icons
+// aws
 import { Storage } from "@aws-amplify/storage"
 
 
@@ -76,6 +76,24 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
       {/* </div> */}
     </Div>
   );
+}
+
+/*
+ * This function will divide and sort an array, so instead of sorting vertically into columns, it can sort horizontally.
+ */
+function resort(arr) {
+  let sortedArray = []
+  const size = arr.length;
+  const cols = 3;
+  for (let a = 0; a < cols; a++) {
+    for (let i = 0; i < size; i += cols) {
+      if (arr[a + i] !== undefined) {
+        sortedArray.push(arr[a + i]);
+      }
+    }
+  }
+
+  return sortedArray;
 }
 
 class Gallery extends React.Component {
@@ -140,7 +158,6 @@ class Gallery extends React.Component {
     this.setState({
       loadingPage: true,
     })
-    console.log('going to page: ', page);
 
     // Null
     if (page === 'gallery') {
@@ -160,7 +177,7 @@ class Gallery extends React.Component {
           Storage.list('estate/', { pageSize : 'ALL' })
           .then(response => {this.setState({ 
             loadingPage: false,
-            gallery1: [...response.results].reverse(),
+            gallery1: resort([...response.results]),
             pageShown: page,
           }); console.log(this.state.gallery1)})
         } catch (error) {
@@ -184,7 +201,7 @@ class Gallery extends React.Component {
           Storage.list('portraits/', { pageSize : 'ALL' })
           .then(response => {this.setState({ 
             loadingPage: false,
-            gallery2: [...response.results].reverse(),
+            gallery2: resort([...response.results]),
             pageShown: page,
           }); console.log(this.state.gallery2)})
         } catch (error) {
@@ -206,11 +223,18 @@ class Gallery extends React.Component {
         // Load Gallery 3
         try {
           Storage.list('film/', { pageSize : 'ALL' })
-          .then(response => {this.setState({ 
-            loadingPage: false,
-            gallery3: [...response.results].reverse(),
-            pageShown: page,
-          }); console.log(this.state.gallery3)})
+          .then(response => {
+            var arr = [];
+            for (let a = 0; a < response.results.length / 3; a++) {
+              for (let b = 0; b < response.results.length; a+=3) {
+                arr.push(response.results[a+b]);
+              }
+            }
+            this.setState({ 
+              loadingPage: false,
+              gallery3: resort([...response.results]),
+              pageShown: page,
+            }); console.log(this.state.gallery3)})
         } catch (error) {
           console.log('error loading gallery:', error);
         }
@@ -232,7 +256,7 @@ class Gallery extends React.Component {
           Storage.list('other/', { pageSize : 'ALL' })
           .then(response => {this.setState({ 
             loadingPage: false,
-            gallery4: [...response.results].reverse(),
+            gallery4: resort([...response.results]),
             pageShown: page,
           }); 
         })
@@ -294,24 +318,16 @@ class Gallery extends React.Component {
     else {
       return (
         <div className={this.props.classes.wrapper} >
-          <HighlightCarousel reel={this.state.carousel1} title='Real Estate' onClick={() => {
-            console.log('click start - gallery1');
-            
+          <HighlightCarousel reel={this.state.carousel1} title='Real Estate' onClick={() => {            
             this.handlePageChange('gallery1');
           }}/>
           <HighlightCarousel reel={this.state.carousel2} title='Portraits' onClick={() => {
-            console.log('click start - gallery2');
-
             this.handlePageChange('gallery2');
           }}/>
           <HighlightCarousel reel={this.state.carousel3} title='Film' onClick={() => {
-            console.log('click start - gallery3');
-
             this.handlePageChange('gallery3');
           }}/>
           <HighlightCarousel reel={this.state.carousel4} title='Other' onClick={() => {
-            console.log('click start - gallery4');
-
             this.handlePageChange('gallery4');
           }}/>
         </div>
