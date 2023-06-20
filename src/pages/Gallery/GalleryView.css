@@ -9,11 +9,13 @@
     column-gap:           8px;  
     align-content: stretch;
     list-style: none;
+    margin: 10px;
 }
 
 .images {
     width: 100% !important;
     height: auto !important;
     margin-top: 0px;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
+    padding-bottom: 8px;
 }

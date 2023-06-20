@@ -11,9 +11,6 @@ const styles = (theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
-  dog: {
-    color: 'red',
-  }
 });
 
 export default styles;

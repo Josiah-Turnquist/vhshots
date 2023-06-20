@@ -12,10 +12,13 @@ const styles = (theme) => ({
       //   margin: '5vw', 
       // },
       // [theme.breakpoints.up('md')]: {
-        width: '44vw',
-        margin: '3vw', 
+      // width: '44vw',
+      // margin: '3vw', 
       // },
-      
+      width: '43vw',
+      margin: '3vw', 
+      maxWidth: '400px',
+      maxHeight: '400px',
       marginTop: '6vh',
       marginBottom: '2vh',
       justifyContent: 'center',
@@ -33,12 +36,13 @@ const styles = (theme) => ({
     },
     imageWrapper: {
       width: '100%',
-      height: '44vw',
+      height: '43vw',
+      maxWidth: '400px',
+      maxHeight: '400px',
     },
     images: {
       width: '100%',
       height: '100%',
-      minHeight: '20vh',
       objectFit: 'cover',
       outline: 'none',
       borderRadius: '4px',

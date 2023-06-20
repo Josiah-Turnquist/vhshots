@@ -138,62 +138,6 @@ const NavigationBar = ({ classes }) => {
       }
   }, []);
 
-  const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
-  function test(arr, size) {
-    let newArr = []
-    const colSize = 3;
-    console.log('original array');
-    console.log(arr);
-    console.log(size);
-    for (let a = 0; a < colSize; a++) {
-      for (let i = 0; i < size; i += colSize) {
-        if (arr[a + i] !== undefined) {
-          newArr.push(arr[a + i]);
-        }
-      }
-    }
-    // newArr.push(arr[size - 1]);
-
-    console.log('old array');
-    console.log(arr);
-    console.log(size);
-    console.log('new array');
-    console.log(newArr);
-    console.log(newArr.length);
-  }
-
-  // function test(arr, size) {
-  //   let newArr = []
-  //   const colSize = 3;
-  //   console.log('original array');
-  //   console.log(arr);
-  //   console.log(size);
-  //   let i = 0;
-  //   while (i !== size - 1) {
-  //     if (i > size) {
-  //       // i = 20
-  //       i -= size; // i = 5
-  //       i -= colSize; // i = 0
-  //       i += 1; // i = 1
-  //     }
-  //     if (i >= 0 && i < size) {
-  //       console.error(i);
-  //       newArr.push(arr[i]);
-  //     }
-  //     i += colSize;
-  //   }
-  //   newArr.push(arr[size - 1]);
-
-  //   console.log('old array');
-  //   console.log(arr);
-  //   console.log(size);
-  //   console.log('new array');
-  //   console.log(newArr);
-  //   console.log(newArr.length);
-  // }
-
-  test(nums, nums.length)
-
   const isMobile = width <= 600;
 
   const toggleDrawer = (open) => (event) => {

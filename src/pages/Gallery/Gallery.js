@@ -223,18 +223,12 @@ class Gallery extends React.Component {
         // Load Gallery 3
         try {
           Storage.list('film/', { pageSize : 'ALL' })
-          .then(response => {
-            var arr = [];
-            for (let a = 0; a < response.results.length / 3; a++) {
-              for (let b = 0; b < response.results.length; a+=3) {
-                arr.push(response.results[a+b]);
-              }
-            }
-            this.setState({ 
-              loadingPage: false,
-              gallery3: resort([...response.results]),
-              pageShown: page,
-            }); console.log(this.state.gallery3)})
+          .then(response => {this.setState({ 
+            loadingPage: false,
+            gallery3: resort([...response.results]),
+            pageShown: page,
+          }); 
+        })
         } catch (error) {
           console.log('error loading gallery:', error);
         }
