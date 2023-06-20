@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Footer from '../../components/Footer/Footer';
 import GalleryDialogue from '../../components/GalleryDialogue/GalleryDialogue';
+import LinearProgress from '@mui/material/LinearProgress';
 
 // Theme
 import { ThemeProvider } from "@mui/material/styles";
@@ -364,7 +365,57 @@ const NonGuest = ({ toggleLoading, handlePageChange, username }) => {
   );
 }
 
+function LinearProgressWithLabel(props) {
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Box sx={{ width: '100%', ml: 3, mr: 1 }}>
+        <LinearProgress variant="determinate" {...props} />
+      </Box>
+      <Box sx={{ minWidth: 35, mr: 1 }}>
+        <Typography variant="body2" color="text.secondary" sx={{mt: '10px'}}>{`${Math.round(
+          props.value,
+        )}%`}</Typography>
+      </Box>
+    </Box>
+  );
+}
+
+// enforces a prop of a specific type to be given
+LinearProgressWithLabel.propTypes = {
+  /**
+   * The value of the progress indicator for the determinate and buffer variants.
+   * Value between 0 and 100.
+   */
+  value: PropTypes.number.isRequired,
+};
+
+// Put up the developer and/or admin screen -- allows user to upload photos and edit pages
 const Developer = ({ toggleLoading, username, handlePageChange }) => {
+  // hook for progress
+  const [upload, setUpload] = React.useState([
+    {
+      name: 'estate',
+      loaded: 0,
+      shown: false,
+    },
+    {
+      name: 'portrait',
+      loaded: 0,
+      shown: false,
+    },
+    {
+      name: 'film',
+      loaded: 0,
+      shown: false,
+    },
+    {
+      name: 'other',
+      loaded: 0,
+      shown: false,
+    },
+  ]); // % it is uploaded
+
+
   async function handleSignOut(event) {
     try {
       await Auth.signOut().then(() => {
@@ -391,6 +442,10 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
           },
           progressCallback: (progress) => {
               console.log(`Uploaded: ${progress.loaded}/${progress.total}`);
+              let newArr = [...upload];
+              newArr[e.target.id].loaded = ((progress.loaded/progress.total)+f)/e.target.files.length;
+              newArr[3].shown = newArr[3].loaded >= 1 ? false : true;
+              setUpload(newArr);
           },
           errorCallback: (err) => {
               console.error('Unexpected error while uploading', err);
@@ -413,62 +468,74 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
       <input
             accept="image/*"
             style={{ display: 'none' }}
-            id="estate-upload"
+            id="0"
             multiple
             type="file"
             onChange={onChange}
             name="estate"
           />
-        <label htmlFor="estate-upload" >
-          <Button sx={{width: '240px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
+        <label htmlFor="0" >
+          <Button sx={{width: '260px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
             <PublishIcon />
             &#160;&#160;Estate Gallery
           </Button>
+          {upload[0].shown && <Box sx={{ width: '100%' }}>
+            <LinearProgressWithLabel value={upload[3].loaded*100} />
+          </Box>}
         </label> 
         <input
             accept="image/*"
             style={{ display: 'none' }}
-            id="portraits-upload"
+            id="1"
             multiple
             type="file"
             onChange={onChange}
             name="portraits"
           />
-        <label htmlFor="portraits-upload">
-          <Button sx={{width: '240px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
+        <label htmlFor="1">
+          <Button sx={{width: '260px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
             <PublishIcon />
             &#160;&#160;Portrait Gallery
           </Button>
+          {upload[1].shown && <Box sx={{ width: '100%' }}>
+            <LinearProgressWithLabel value={upload[3].loaded*100} />
+          </Box>}
         </label> 
         <input
             accept="image/*"
             style={{ display: 'none' }}
-            id="film-upload"
+            id="2"
             multiple
             type="file"
             onChange={onChange}
             name="film"
           />
-        <label htmlFor="film-upload">
-          <Button sx={{width: '240px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
+        <label htmlFor="2">
+          <Button sx={{width: '260px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
             <PublishIcon />
             &#160;&#160;Film Gallery
           </Button>
+          {upload[2].shown && <Box sx={{ width: '100%' }}>
+            <LinearProgressWithLabel value={upload[3].loaded*100} />
+          </Box>}
         </label> 
         <input
             accept="image/*"
             style={{ display: 'none' }}
-            id="other-upload"
+            id="3"
             multiple
             type="file"
             onChange={onChange}
             name="other"
           />
-        <label htmlFor="other-upload">
-          <Button sx={{width: '240px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
+        <label htmlFor="3">
+          <Button sx={{width: '260px', color: 'black', m: '10px', display: 'flex', justifyContent: 'flex-start'}} variant="contained" component="span">
             <PublishIcon />
             &#160;&#160;Other Gallery
           </Button>
+          {upload[3].shown && <Box sx={{ width: '100%' }}>
+            <LinearProgressWithLabel value={upload[3].loaded*100} />
+          </Box>}
         </label> 
       {/* <Button variant="raised" component="span" onClick={console.log('clicked')} sx={{margin: '12px'}} >
         Print Results
