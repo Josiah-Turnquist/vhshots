@@ -444,7 +444,7 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
               console.log(`Uploaded: ${progress.loaded}/${progress.total}`);
               let newArr = [...upload];
               newArr[e.target.id].loaded = ((progress.loaded/progress.total)+f)/e.target.files.length;
-              newArr[3].shown = newArr[3].loaded >= 1 ? false : true;
+              newArr[e.target.id].shown = newArr[e.target.id].loaded >= 1 ? false : true;
               setUpload(newArr);
           },
           errorCallback: (err) => {
@@ -463,7 +463,7 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
           Welcome back, {username}.
         </Typography>
         <Typography variant="h6" sx={{ color: 'silver', mb: '20%', paddingX: '5vw', textAlign: 'center'}}>
-        This is your virtual playground. You'll find everything you need to manipulate your portfolio here.
+        This is your portfolio dashboard and management front. You'll find everything you need to update and control your website here.
         </Typography>
       <input
             accept="image/*"
@@ -480,7 +480,7 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
             &#160;&#160;Estate Gallery
           </Button>
           {upload[0].shown && <Box sx={{ width: '100%' }}>
-            <LinearProgressWithLabel value={upload[3].loaded*100} />
+            <LinearProgressWithLabel value={upload[0].loaded*100} />
           </Box>}
         </label> 
         <input
@@ -498,7 +498,7 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
             &#160;&#160;Portrait Gallery
           </Button>
           {upload[1].shown && <Box sx={{ width: '100%' }}>
-            <LinearProgressWithLabel value={upload[3].loaded*100} />
+            <LinearProgressWithLabel value={upload[1].loaded*100} />
           </Box>}
         </label> 
         <input
@@ -516,7 +516,7 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
             &#160;&#160;Film Gallery
           </Button>
           {upload[2].shown && <Box sx={{ width: '100%' }}>
-            <LinearProgressWithLabel value={upload[3].loaded*100} />
+            <LinearProgressWithLabel value={upload[2].loaded*100} />
           </Box>}
         </label> 
         <input
@@ -620,13 +620,13 @@ class Profile extends React.Component {
       );
     }
     // otherwise it will be this.state.pageShown === profile
-    else if (this.state.user?.attributes?.email === 'Josiahturnq@gmail.com') return (
-      <div className={this.props.classes.wrapper}>
+    // else if (this.state.user?.attributes?.email === 'Josiahturnq@gmail.com') return (
+    //   <div className={this.props.classes.wrapper}>
 
-      <Developer toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} username='Jay' />
-      </div>
-    )
-    else if (this.state.user?.attributes?.email === 'Dubveeh22@gmail.com') return (
+    //   <Developer toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} username='Jay' />
+    //   </div>
+    // )
+    else if (this.state.user?.attributes?.email === 'will@vhshots.com') return (
       <div className={this.props.classes.wrapper}>
 
       <Developer toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} username='William' />
