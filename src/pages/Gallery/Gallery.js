@@ -93,6 +93,8 @@ function resort(arr) {
     }
   }
 
+  console.log(arr);
+  console.log(sortedArray);
   return sortedArray;
 }
 
@@ -175,7 +177,11 @@ class Gallery extends React.Component {
         // Load Gallery 1
         try {
           Storage.list('estate/', { pageSize : 'ALL' })
-          .then(response => {this.setState({ 
+          .then(response => {
+            response.results.sort(function(a,b){
+              return new Date(b.lastModified) - new Date(a.lastModified);
+            });
+            this.setState({ 
             loadingPage: false,
             gallery1: resort([...response.results]),
             pageShown: page,
@@ -199,7 +205,11 @@ class Gallery extends React.Component {
         // Load Gallery 2
         try {
           Storage.list('portraits/', { pageSize : 'ALL' })
-          .then(response => {this.setState({ 
+          .then(response => {
+            response.results.sort(function(a,b){
+              return new Date(b.lastModified) - new Date(a.lastModified);
+            });
+            this.setState({ 
             loadingPage: false,
             gallery2: resort([...response.results]),
             pageShown: page,
@@ -223,7 +233,11 @@ class Gallery extends React.Component {
         // Load Gallery 3
         try {
           Storage.list('film/', { pageSize : 'ALL' })
-          .then(response => {this.setState({ 
+          .then(response => {
+            response.results.sort(function(a,b){
+              return new Date(b.lastModified) - new Date(a.lastModified);
+            });
+            this.setState({ 
             loadingPage: false,
             gallery3: resort([...response.results]),
             pageShown: page,
@@ -248,7 +262,11 @@ class Gallery extends React.Component {
         // Load Gallery 4
         try {
           Storage.list('other/', { pageSize : 'ALL' })
-          .then(response => {this.setState({ 
+          .then(response => {
+            response.results.sort(function(a,b){
+              return new Date(b.lastModified) - new Date(a.lastModified);
+            });
+            this.setState({ 
             loadingPage: false,
             gallery4: resort([...response.results]),
             pageShown: page,
