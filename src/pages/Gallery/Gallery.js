@@ -312,16 +312,16 @@ class Gallery extends React.Component {
     else {
       return (
         <div className={this.props.classes.wrapper} >
-          <HighlightCarousel reel={this.state.carousel1} title='Real Estate' onClick={() => {            
+          <HighlightCarousel reel={this.state.carousel1} title='Real Estate' speed={8000} onClick={() => {            
             this.handlePageChange('gallery1');
           }}/>
-          <HighlightCarousel reel={this.state.carousel2} title='Portraits' onClick={() => {
+          <HighlightCarousel reel={this.state.carousel2} title='Portraits' speed={9000} onClick={() => {
             this.handlePageChange('gallery2');
           }}/>
-          <HighlightCarousel reel={this.state.carousel3} title='Film' onClick={() => {
+          <HighlightCarousel reel={this.state.carousel3} title='Film' speed={10000} onClick={() => {
             this.handlePageChange('gallery3');
           }}/>
-          <HighlightCarousel reel={this.state.carousel4} title='Other' onClick={() => {
+          <HighlightCarousel reel={this.state.carousel4} title='Other' speed={7000} onClick={() => {
             this.handlePageChange('gallery4');
           }}/>
         </div>
