@@ -37,18 +37,299 @@ const Div = styled('div')({
   alignItems: 'center',
 });
 
-const imgStyle = {
-  display: 'grid', 
-  gridTemplateColumns: 'repeat(8, 1fr)',
-  gridTemplateRows: 'repeat(8, 5vw)',
-  gridGap: '15px',
+// const imgStyle = {
+//   display: 'grid', 
+//   gridTemplateColumns: 'repeat(8, 1fr)',
+//   gridTemplateRows: 'repeat(8, 5vw)',
+//   gridGap: '15px',
+// }
+
+class AtomicImage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dimensions: {
+        // null
+      },
+      src: props.src,
+    };
+
+    this.onImgLoad = this.onImgLoad.bind(this);
+  }
+
+   onImgLoad({ target:img }) {
+       this.setState({
+        dimensions:{
+          height: img.offsetHeight,
+          width: img.offsetWidth,
+        }
+      }
+    );
+   }
+
+   render(){
+       const {src} = this.state;
+       const {width, height} = this.state.dimensions;
+
+       return (
+       <div>
+          {/* dimensions width: {width}, height: {height} */}
+          <img 
+            style={{width: '100%', padding: '5px' }} 
+            className="gallery"
+            src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${src}`} 
+            alt='' 
+            key={src}
+            onLoad={this.onImgLoad} 
+          />    
+          </div>
+        );
+   }
 }
+
+// function getImageHeight (src) {
+//   //                                            // 1200, 3600 portrait
+//   let h = 0;
+//   const gap = 11 * 4
+//   Image.getSize(src, (width, height) => { 
+//     let aspectRatio = width / height;           // 0.333333
+//     h = ((window.innerWidth - gap) / 3) / aspectRatio;
+//   })
+//   return h;                                     // 100
+// }
+
+// class MyMasonryItem extends React.Component {
+//   static getColumnSpanFromProps = ({ isFeatured }, getState) => {
+//     if (isFeatured) {
+//       return 2;
+//     }
+//     return 1;
+//   }
+//   static getHeightFromProps = (getState, props, columnSpan, columnGutter) => {
+//     return IMAGE_HEIGHT + TITLE_HEIGHT + FOOTER_HEIGHT;
+//   }
+
+//   render() {
+//     return <img 
+//       style={{ maxWidth: '30vw' }}
+//       src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`} 
+//       alt='' 
+//     />
+//   }
+// }
+
+// const PAGE_SIZE = 20;
+// class GalleryView2 extends React.Component {
+//   state = {
+//     items: null,
+//     hasMore: null,
+//     isLoading: true,
+//     hasNext: undefined,
+//     hasNextPage: true,
+//   }
+
+//   componentDidMount() {
+//     this.fetch()
+//   }
+
+//   loadNextPage = async () => { // load this into array that's kept in a higher component (navbar)
+//     if (this.state.hasNextPage) {
+//       let response = await Storage.list('estate/', {
+//         pageSize: PAGE_SIZE,
+//         nextToken: this.state.nextToken,
+//       });
+
+//       if (response.hasNextToken) {
+//        this.state.nextToken = response.nextToken;
+//       } else {
+//         this.state.nextToken = undefined;
+//         this.state.hasNextPage = false;
+//       }
+//       // render list items from response.results
+//     }
+//   };
+
+//   fetch () {
+//     // update isLoading flag appropriately
+//     const additionalData = this.loadNextPage()
+//     this.setState((prevState) => ({
+//       items: prevState.items.concat(additionalData.items),
+//       hasMore: additionalData.hasMore,
+//     }))
+//   }
+
+//   getState = () => this.state
+
+//   render () {
+//     if (!this.state.items) { return }
+//     const myArrayOfItems = [{ name: 'Hello' }, { name: 'World' }]
+
+//     return (
+//       <Div>
+//         <IconButton aria-label="back button" size="large" style={{ backdropFilter: 'blur(5px)', backgroundColor: theme.palette.background.overlay, position: 'fixed', left: '11px', top: '85px'}} onClick={() => {handlePageChange('gallery')}}>
+//           <WestIcon fontSize="inherit" style={{color: 'white', margin: '0px'}} />
+//         </IconButton>
+//         <Typography variant="h3">
+//           {galleryName} Gallery
+//         </Typography>
+
+//         <Masonry
+//           items={this.state.items}
+//           itemComponent={(props) => (<MyMasonryItem />)}
+//           alignCenter={true}
+//           containerClassName="masonry"
+//           layoutClassName="masonry-view"
+//           pageClassName="masonry-page"
+//           loadingElement={<span>Loading...</span>}
+//           columnWidth={columnWidth}
+//           numColumns={numColumns}
+//           columnGutter={columnGutter}
+//           hasMore={this.state.hasMore}
+//           isLoading={this.state.isFetching}
+//           onInfiniteLoad={this.fetch}
+//           getState={this.getState}
+//         />
+//       </Div>
+//     )
+//   }
+// }
+
+class GalleryViewInner extends React.Component {
+  constructor (props, classes) {
+    super(props);
+    this.state = {
+      currentIndex: 0,
+      hasMore: true,
+      // images: {images},
+      lengthA: 0,
+      column1: [
+
+      ],
+      lengthB: 0,
+      column2: [
+
+      ],
+      lengthC: 0,
+      column3: [
+
+      ]
+    };
+  }
+
+  componentDidMount() {
+    this.fetch();
+  }
+
+  fetch() {
+    if (this.state.hasMore === false) {
+      this.setState({ 
+        hasMore: false,
+      })
+      return; // end function
+    } else {
+      let a = 0;
+      let b = 0;
+      let c = 0;
+      for (let i = this.state.currentIndex; i < this.props.images.length; i++) {
+        if (a <= b && a <= c) {
+          this.setState((prevState) => ({
+            column1: prevState.column1.concat(this.props.images[i]),
+            hasMore: (i !== this.props.images.length),
+            lengthA: this.state.lengthA + 1,
+          }))
+          a += 1;
+          console.log(`column A is now ${a}`);
+        } else if ( b <= a && b <= c ) {
+          this.setState((prevState) => ({
+            column2: prevState.column2.concat(this.props.images[i]),
+            hasMore: (i !== this.props.images.length),
+            lengthB: this.state.lengthB + 1,
+          }))
+          b += 1;
+          console.log(`column B is now ${b}`);
+        } else {
+          this.setState((prevState) => ({
+            column3: prevState.column3.concat(this.props.images[i]),
+            hasMore: (i !== this.props.images.length),
+            lengthC: this.state.lengthC + 1,
+          }))
+          c += 1;
+          console.log(`column C is now ${c}`);
+        }
+      }
+    }
+
+  }
+  render() {
+    return (
+      <div style={{display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-evenly'}}>
+        <div style={{width: 'calc(33vw - 11px)'}}>
+          {this.state.column1.map((item) => (
+            <AtomicImage col={1} src={item.key} key={item.key}/>
+          ))}
+        </div>
+        <div style={{width: 'calc(33vw - 11px)'}}>
+          {this.state.column2.map((item) => (
+            <AtomicImage col={2} src={item.key} key={item.key}/>
+          ))}
+        </div>
+        <div style={{width: 'calc(33vw - 11px)'}}>
+          {this.state.column3.map((item) => (
+            <AtomicImage col={3} src={item.key} key={item.key}/>
+          ))}
+        </div>        
+      </div>
+    );
+  }
+}
+
+// const GalleryView1 = ({ toggleLoading, handlePageChange, pageShown, galleryName, images }) => {
+//   let a = 0;
+//   let b = 0;
+//   let c = 0;
+//   for (let i = 0; i < images.length; i++) {
+//     if ( a < b < c) {
+//       a += getImageHeight(`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${images[i].key}`);
+//       console.log(`column A is now ${a}`);
+//     } else if ( b < a < c) {
+//       b += getImageHeight(`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${images[i].key}`);
+//       console.log(`column B is now ${a}`);
+//     } else {
+//       c += getImageHeight(`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${images[i].key}`);
+//       console.log(`column C is now ${a}`);
+//     }
+//   }
+
+//   return (
+//     <Div>
+//       <IconButton aria-label="back button" size="large" style={{ backdropFilter: 'blur(5px)', backgroundColor: theme.palette.background.overlay, position: 'fixed', left: '11px', top: '85px'}} onClick={() => {handlePageChange('gallery')}}>
+//         <WestIcon fontSize="inherit" style={{color: 'white', margin: '0px'}} />
+//       </IconButton>
+//       <Typography variant="h3">
+//         {galleryName} Gallery
+//       </Typography>
+      
+//       <div class="gal" id="gal">
+//         {images.map((item) => (
+//           <div class="gal-item"> 
+//             <img 
+//               src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`} 
+//               alt='' 
+//               key={item.eTag}
+//             />
+//           </div>
+//       ))}
+//       </div>
+//     </Div>
+//   );
+  
+// }
 
 const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, images }) => {
 
-  useEffect(() => {
-    initLightboxJS("08E9-E32F-6E73-6368", "team");
-  });
+  // useEffect(() => {
+  //   initLightboxJS("08E9-E32F-6E73-6368", "team");
+  // });
 
 
   return (
@@ -60,20 +341,21 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
         {galleryName} Gallery
       </Typography>
       
-      {/* <div style={imgStyle}> */}
-        <SlideshowLightbox className="GalleryViewer">
+      <GalleryViewInner images={[...images]}/>
+      {/* <SlideshowLightbox className="GalleryViewer"> */}
 
-          {images.map((item) => (
+        {/* {images.map((item) => (
+          <div className='gallery'>
             <img 
-            // style={{maxWidth: '25%', flex: '25%', padding: '4px 4px' }} 
-            className="images"
-            src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`} 
-            alt='' 
-            key={item.eTag}
-          />
-          ))}
-        </SlideshowLightbox> 
-      {/* </div> */}
+              // style={{maxWidth: '25%', flex: '25%', padding: '4px 4px' }} 
+              className="gallery"
+              src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`} 
+              alt='' 
+              key={item.eTag}
+            />
+          </div>
+        ))} */}
+      {/* </SlideshowLightbox>  */}
     </Div>
   );
 }
@@ -183,7 +465,7 @@ class Gallery extends React.Component {
             });
             this.setState({ 
             loadingPage: false,
-            gallery1: resort([...response.results]),
+            gallery1: [...response.results],
             pageShown: page,
           }); console.log(this.state.gallery1)})
         } catch (error) {
@@ -211,7 +493,7 @@ class Gallery extends React.Component {
             });
             this.setState({ 
             loadingPage: false,
-            gallery2: resort([...response.results]),
+            gallery2: [...response.results],
             pageShown: page,
           }); console.log(this.state.gallery2)})
         } catch (error) {
@@ -239,7 +521,7 @@ class Gallery extends React.Component {
             });
             this.setState({ 
             loadingPage: false,
-            gallery3: resort([...response.results]),
+            gallery3: [...response.results],
             pageShown: page,
           }); 
         })
@@ -268,7 +550,7 @@ class Gallery extends React.Component {
             });
             this.setState({ 
             loadingPage: false,
-            gallery4: resort([...response.results]),
+            gallery4: [...response.results],
             pageShown: page,
           }); 
         })

@@ -415,7 +415,6 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
     },
   ]); // % it is uploaded
 
-
   async function handleSignOut(event) {
     try {
       await Auth.signOut().then(() => {
@@ -465,6 +464,10 @@ const Developer = ({ toggleLoading, username, handlePageChange }) => {
         <Typography variant="h6" sx={{ color: 'silver', mb: '20%', paddingX: '5vw', textAlign: 'center'}}>
         This is your portfolio dashboard and management front. You'll find everything you need to update and control your website here.
         </Typography>
+        {/* <img 
+          src={Storage.get('fishing2.jpg')}
+          alt='wasd'
+        /> */}
       <input
             accept="image/*"
             style={{ display: 'none' }}
