@@ -78,7 +78,7 @@ class AtomicImage extends React.Component {
        <div>
           {/* dimensions width: {width}, height: {height} */}
           <img 
-            style={{width: '100%', padding: '5px' }} 
+            style={{width: '100%', paddingBottom: '5px' }} 
             className="gallery"
             src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${src}`} 
             alt='' 
