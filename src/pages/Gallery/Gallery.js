@@ -52,6 +52,7 @@ class AtomicImage extends React.Component {
         // null
       },
       src: props.src,
+      handleImageLoad: props.handleImageLoad,
     };
 
     this.onImgLoad = this.onImgLoad.bind(this);
@@ -65,6 +66,8 @@ class AtomicImage extends React.Component {
         }
       }
     );
+    console.error('LOADED IN ATOMIC IMAGE');
+    this.props.handleImageLoad(img.offsetHeight, this.props.col);
    }
 
    render(){
@@ -200,7 +203,7 @@ class GalleryViewInner extends React.Component {
     this.state = {
       currentIndex: 0,
       hasMore: true,
-      // images: {images},
+      cap: this.props.images.length,
       lengthA: 0,
       column1: [
 
@@ -220,62 +223,153 @@ class GalleryViewInner extends React.Component {
     this.fetch();
   }
 
+  // addToColumn(size, column) {
+  //   const index = this.state.currentIndex;
+  //   if (column === 1) {}
+  //   this.setState((prevState) => ({
+  //     column1: prevState.column1.concat(this.props.images[index]),
+  //     hasMore: (index !== this.state.cap),
+  //   }))
+  // }
+
   fetch() {
-    if (this.state.hasMore === false) {
-      this.setState({ 
-        hasMore: false,
-      })
-      return; // end function
-    } else {
-      let a = 0;
-      let b = 0;
-      let c = 0;
-      for (let i = this.state.currentIndex; i < this.props.images.length; i++) {
-        if (a <= b && a <= c) {
-          this.setState((prevState) => ({
-            column1: prevState.column1.concat(this.props.images[i]),
-            hasMore: (i !== this.props.images.length),
-            lengthA: this.state.lengthA + 1,
-          }))
-          a += 1;
-          console.log(`column A is now ${a}`);
-        } else if ( b <= a && b <= c ) {
-          this.setState((prevState) => ({
-            column2: prevState.column2.concat(this.props.images[i]),
-            hasMore: (i !== this.props.images.length),
-            lengthB: this.state.lengthB + 1,
-          }))
-          b += 1;
-          console.log(`column B is now ${b}`);
-        } else {
-          this.setState((prevState) => ({
-            column3: prevState.column3.concat(this.props.images[i]),
-            hasMore: (i !== this.props.images.length),
-            lengthC: this.state.lengthC + 1,
-          }))
-          c += 1;
-          console.log(`column C is now ${c}`);
-        }
+    // if (this.state.hasMore === false) {
+    //   this.setState({ 
+    //     hasMore: false,
+    //   })
+    //   return; // end function
+    // } else {
+
+      // Start chain reaction ONLY if there is at least one image
+      if (this.state.cap > 0) {
+        this.fetchNext();
+        // this.setState((prevState) => ({
+        //   column1: prevState.column1.concat(this.props.images[0]),
+        //   hasMore: (this.state.currentIndex !== this.props.images.length),
+        // }))
       }
+
+
+      // let a = 0;
+      // let b = 0;
+      // let c = 0;
+      // for (let i = this.state.currentIndex; i < this.props.images.length; i++) {
+      //   if (a <= b && a <= c) {
+      //     this.setState((prevState) => ({
+      //       column1: prevState.column1.concat(this.props.images[i]),
+      //       hasMore: (i !== this.props.images.length),
+      //       lengthA: this.state.lengthA + 1,
+      //     }))
+      //     a += 1;
+      //     console.log(`column A is now ${a}`);
+      //   } else if ( b <= a && b <= c ) {
+      //     this.setState((prevState) => ({
+      //       column2: prevState.column2.concat(this.props.images[i]),
+      //       hasMore: (i !== this.props.images.length),
+      //       lengthB: this.state.lengthB + 1,
+      //     }))
+      //     b += 1;
+      //     console.log(`column B is now ${b}`);
+      //   } else {
+      //     this.setState((prevState) => ({
+      //       column3: prevState.column3.concat(this.props.images[i]),
+      //       hasMore: (i !== this.props.images.length),
+      //       lengthC: this.state.lengthC + 1,
+      //     }))
+      //     c += 1;
+      //     console.log(`column C is now ${c}`);
+      //   }
+      // }
+    // }
+
+  }
+  
+  fetchNext = () => {
+    console.log('fetching next');
+    console.log(`size col 1: ${this.state.lengthA}`);
+    console.log(`size col 2: ${this.state.lengthB}`);
+    console.log(`size col 3: ${this.state.lengthC}`);
+    if (this.state.hasMore) {
+      if (this.state.lengthA <= this.state.lengthB && this.state.lengthA <= this.state.lengthC) {
+        this.setState((prevState) => ({
+          column1: prevState.column1.concat(this.props.images[this.state.currentIndex]),
+        }))
+        console.log('added to col a');
+      } else if ( this.state.lengthB <= this.state.lengthA && this.state.lengthB <= this.state.lengthC ) {
+        this.setState((prevState) => ({
+          column2: prevState.column2.concat(this.props.images[this.state.currentIndex]),
+        }))
+        console.log('added to col b');
+      } else {
+        this.setState((prevState) => ({
+          column3: prevState.column3.concat(this.props.images[this.state.currentIndex]),
+        }))
+        console.log('added to col c');
+      }
+    }
+  }
+
+  handleImageLoad = (size, column) => {
+    console.error('LOADED WITHIN GALLERY');
+    console.error('current index');
+    console.error(this.state.currentIndex);
+    console.error('cap');
+    console.error(this.state.cap);
+    if (column === 1) {
+      this.setState({
+        lengthA: this.state.lengthA + size,
+        currentIndex: this.state.currentIndex + 1,
+        hasMore: (this.state.currentIndex !== this.props.cap - 2 ? true : false),
+      }, () => {
+        if (this.props.images[this.state.currentIndex] !== undefined) {
+          console.log(this.state.hasMore);
+          this.fetchNext();
+        }
+      })
+    } else if (column === 2) {
+      this.setState({
+        lengthB: this.state.lengthB + size,
+        currentIndex: this.state.currentIndex + 1,
+        hasMore: (this.state.currentIndex !== this.props.cap - 2 ? true : false),
+      }, () => {
+        if (this.props.images[this.state.currentIndex] !== undefined) {
+          console.log(this.state.hasMore);
+          this.fetchNext();
+        }
+      })    
+    } else if (column === 3) {
+      this.setState({
+        lengthC: this.state.lengthC + size,
+        currentIndex: this.state.currentIndex + 1,
+        hasMore: (this.state.currentIndex !== this.state.cap - 2 ? true : false),
+      }, () => {
+        if (this.props.images[this.state.currentIndex] !== undefined) {
+          console.log(this.state.hasMore);
+          this.fetchNext();
+        }
+      })
+    } else {
+      console.error('column does not exist');
     }
 
   }
+
   render() {
     return (
       <div style={{display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-evenly'}}>
         <div style={{width: 'calc(33vw - 11px)'}}>
           {this.state.column1.map((item) => (
-            <AtomicImage col={1} src={item.key} key={item.key}/>
+            <AtomicImage handleImageLoad={this.handleImageLoad} col={1} src={item.key} key={item.key}/>
           ))}
         </div>
         <div style={{width: 'calc(33vw - 11px)'}}>
           {this.state.column2.map((item) => (
-            <AtomicImage col={2} src={item.key} key={item.key}/>
+            <AtomicImage handleImageLoad={this.handleImageLoad} col={2} src={item.key} key={item.key}/>
           ))}
         </div>
         <div style={{width: 'calc(33vw - 11px)'}}>
           {this.state.column3.map((item) => (
-            <AtomicImage col={3} src={item.key} key={item.key}/>
+            <AtomicImage handleImageLoad={this.handleImageLoad} col={3} src={item.key} key={item.key}/>
           ))}
         </div>        
       </div>
