@@ -53,41 +53,42 @@ class AtomicImage extends React.Component {
       },
       src: props.src,
       handleImageLoad: props.handleImageLoad,
+      isLoaded: false,
     };
-
     this.onImgLoad = this.onImgLoad.bind(this);
   }
 
-   onImgLoad({ target:img }) {
+   onImgLoad({ target: img }) {
        this.setState({
         dimensions:{
           height: img.offsetHeight,
           width: img.offsetWidth,
-        }
+        },
+        isLoaded: true,
       }
     );
-    console.error('LOADED IN ATOMIC IMAGE');
     this.props.handleImageLoad(img.offsetHeight, this.props.col);
    }
 
    render(){
-       const {src} = this.state;
-       const {width, height} = this.state.dimensions;
+    const {src} = this.state;
+    const {isLoaded} = this.state;
 
-       return (
-       <div>
-          {/* dimensions width: {width}, height: {height} */}
-          <img 
-            style={{width: '100%', paddingBottom: '5px' }} 
-            className="gallery"
-            src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${src}`} 
-            alt='' 
-            key={src}
-            onLoad={this.onImgLoad} 
-          />    
-          </div>
-        );
-   }
+    return (
+      <img 
+        className="image"
+        style={{
+          width: '100%', paddingBottom: '5px',
+          backgroundColor: isLoaded ? 'transparent' : '#FFFFFF07',
+        }} 
+        src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${src}`} 
+        alt='' 
+        key={src}
+        loading='lazy'
+        onLoad={this.onImgLoad}
+      /> 
+    );
+  }
 }
 
 // function getImageHeight (src) {
@@ -680,7 +681,7 @@ class Gallery extends React.Component {
           <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '30vh'}}>
             <CircularProgress size='10vw'/>
           </Box>
-      </div>
+        </div>
       );
     }
     else if (this.state.pageShown === 'gallery1') {
