@@ -429,11 +429,11 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
 
   return (
     <Div>
-      <IconButton aria-label="back button" size="large" style={{ backdropFilter: 'blur(5px)', backgroundColor: theme.palette.background.overlay, position: 'fixed', left: '11px', top: '85px'}} onClick={() => {handlePageChange('gallery')}}>
+      <IconButton aria-label="back button" size="large" style={{ backdropFilter: 'blur(5px)', backgroundColor: theme.palette.background.overlay, position: 'fixed', left: '11px', top: '85px', zIndex: 10}} onClick={() => {handlePageChange('gallery')}}>
         <WestIcon fontSize="inherit" style={{color: 'white', margin: '0px'}} />
       </IconButton>
-      <Typography variant="h3">
-        {galleryName} Gallery
+      <Typography variant="h2" style={{ padding: '23px 0px 26px 0px' }}>
+        {galleryName}
       </Typography>
       
       <GalleryViewInner images={[...images]}/>

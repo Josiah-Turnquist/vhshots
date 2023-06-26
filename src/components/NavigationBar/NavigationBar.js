@@ -28,6 +28,9 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
+// Components
+import { Typography } from '@mui/material';
+
 // Icons
 import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
@@ -140,6 +143,25 @@ const NavigationBar = ({ classes }) => {
 
   const isMobile = width <= 600;
 
+  const getPageTitle = (value) => {
+    if (isMobile) {
+      if (value === 0) {
+        return 'Home';
+      } else if (value === 1) {
+        return 'Gallery';
+      }
+      else if (value === 2) {
+        return 'NULL PAGE';
+      }
+      else if (value === 3) {
+        return 'Info';
+      }
+      else if (value === 4) {
+        return 'Profile';
+      }
+    }
+  }
+
   const toggleDrawer = (open) => (event) => {
     // console.log('click type: ', event.type);
     console.log('click open: ', !drawer);
@@ -198,17 +220,22 @@ const NavigationBar = ({ classes }) => {
                 </Fade>
 
                 <Fade in={true} timeout={{ enter: 1500, exit: 1000 }} style={{ transitionDelay:  '0ms'}}>
-                  <IconButton aria-label="profile" sx={{mt: '5px', mr: '5px'}} color="primary" onClick={toggleDrawer()}>
-                    <MenuIcon className={ classes.icons } fontSize="large" />
-                    <Drawer
-                      anchor={'top'}
-                      open={drawer}
-                      onClose={toggleDrawer(false)}
-                    >
-                      {list('top')}
-                    </Drawer>
-                  </IconButton>
+                  <div style={{ display: 'flex', flexDirection: 'row', backgroundColor: '#2A2A2E', borderRadius: '32px', height: '58px', alignItems: 'center', padding: '0px 9px 0px 21px', margin: '3px 14px 0px 12px'}}>
+                    <Typography variant="h1" style={{ padding: 0, letterSpacing: '2px' }}>
+                      {getPageTitle(value)}
+                    </Typography>
 
+                    <IconButton aria-label="profile" color="primary" onClick={toggleDrawer()} style={{ padding: '0px 8px' }}>
+                      <MenuIcon className={ classes.icons } fontSize="large" />
+                      <Drawer
+                        anchor={'top'}
+                        open={drawer}
+                        onClose={toggleDrawer(false)}
+                      >
+                        {list('top')}
+                      </Drawer>
+                    </IconButton>
+                  </div>
                 </Fade>
           </div>
         </AppBar>

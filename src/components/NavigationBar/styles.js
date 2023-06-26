@@ -8,27 +8,26 @@ const styles = (theme) => ({
         alignItems: 'center',
         flexDirection: 'row'
     },
-    navContainer: {
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-        marginBottom: '5px',
-    },
-    line: {     // Create the line for the navigation bar
-        width: '100%',
-        opacity: 0.2,
-        zIndex: 999,
-        position: 'absolute',
-        top: 79,
-        left: 0,
-        margin: 0,
-    },
+    // navContainer: {
+    //     width: '100%',
+    //     height: '100%',
+    //     display: 'flex',
+    //     justifyContent: 'center',
+    //     alignItems: 'flex-end',
+    // },
+    // line: {     // Create the line for the navigation bar
+    //     width: '100%',
+    //     opacity: 0.2,
+    //     zIndex: 999,
+    //     position: 'absolute',
+    //     top: 79,
+    //     left: 0,
+    //     margin: 0,
+    // },
     logo: {
         zIndex: 1000,
-        width: '70px',
-        height: '70px',
+        width: '80px',
+        height: '80px',
         backgroundColor: theme.palette.background.background,
         "&:hover": {
             backgroundColor: theme.palette.background.pressed,
@@ -40,7 +39,7 @@ const styles = (theme) => ({
         height: '40px',
     },
     icons: {
-        margin: '15px',
+        margin: '0px',
     },
   });
 
