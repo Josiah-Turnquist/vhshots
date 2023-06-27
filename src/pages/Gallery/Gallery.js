@@ -245,6 +245,7 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
     
   }
 
+
   return (
     <Div>
       {!lightbox && <IconButton aria-label="back button" size="large" style={{ backdropFilter: 'blur(5px)', backgroundColor: theme.palette.background.overlay, position: 'fixed', left: '11px', top: '85px', zIndex: 10}} onClick={() => {handlePageChange('gallery')}}>
@@ -258,13 +259,13 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
 
       {lightbox && <div style={{ backgroundColor: theme.palette.background.overlayGallery, backdropFilter: 'blur(5px)', position: 'fixed', width: '100vw', height: '100vh', left: '0', top: '0' }}>
         
-        <IconButton aria-label="Download Image" onClick={onDownload} style={{ top: '70px', right: '75px', position: 'fixed' }}>
+        <IconButton aria-label="Download Image" onClick={onDownload} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '100px', position: 'fixed' }}>
           <DownloadIcon fontSize='large' color='primary' />
         </IconButton>
-        <IconButton aria-label="Exit Preview" onClick={onUnselect} style={{ top: '70px', right: '15px', position: 'fixed' }}>
+        <IconButton aria-label="Exit Preview" onClick={onUnselect} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '40px', position: 'fixed' }}>
           <CloseIcon fontSize='large' color='primary' />
         </IconButton>
-        <img src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${lightboxImage}`} style={{ objectFit: 'cover', position: 'fixed', width: '80vw', height: '80vh', left: '10vw', top: '14vh' }} alt={lightboxImage}/>
+        <img src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${lightboxImage}`} style={{ objectFit: 'cover', position: 'fixed', width: '80vw', height: (window.innerWidth >= 650 ? '80vh' : '75vh'), left: '10vw', top: '14vh' }} alt={lightboxImage}/>
       </div>}
       {/* <SlideshowLightbox className="GalleryViewer"> */}
 a
