@@ -29,6 +29,8 @@ import { styled } from '@mui/material/styles';
 // Lightbox
 import 'lightbox.js-react/dist/index.css'
 import {SlideshowLightbox, initLightboxJS} from 'lightbox.js-react'
+import DownloadIcon from '@mui/icons-material/Download';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Div = styled('div')({
   display: 'flex',
@@ -86,117 +88,11 @@ class AtomicImage extends React.Component {
         key={src}
         loading='lazy'
         onLoad={this.onImgLoad}
+        onClick={() => {this.props.onSelect(src)}}
       /> 
     );
   }
 }
-
-// function getImageHeight (src) {
-//   //                                            // 1200, 3600 portrait
-//   let h = 0;
-//   const gap = 11 * 4
-//   Image.getSize(src, (width, height) => { 
-//     let aspectRatio = width / height;           // 0.333333
-//     h = ((window.innerWidth - gap) / 3) / aspectRatio;
-//   })
-//   return h;                                     // 100
-// }
-
-// class MyMasonryItem extends React.Component {
-//   static getColumnSpanFromProps = ({ isFeatured }, getState) => {
-//     if (isFeatured) {
-//       return 2;
-//     }
-//     return 1;
-//   }
-//   static getHeightFromProps = (getState, props, columnSpan, columnGutter) => {
-//     return IMAGE_HEIGHT + TITLE_HEIGHT + FOOTER_HEIGHT;
-//   }
-
-//   render() {
-//     return <img 
-//       style={{ maxWidth: '30vw' }}
-//       src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`} 
-//       alt='' 
-//     />
-//   }
-// }
-
-// const PAGE_SIZE = 20;
-// class GalleryView2 extends React.Component {
-//   state = {
-//     items: null,
-//     hasMore: null,
-//     isLoading: true,
-//     hasNext: undefined,
-//     hasNextPage: true,
-//   }
-
-//   componentDidMount() {
-//     this.fetch()
-//   }
-
-//   loadNextPage = async () => { // load this into array that's kept in a higher component (navbar)
-//     if (this.state.hasNextPage) {
-//       let response = await Storage.list('estate/', {
-//         pageSize: PAGE_SIZE,
-//         nextToken: this.state.nextToken,
-//       });
-
-//       if (response.hasNextToken) {
-//        this.state.nextToken = response.nextToken;
-//       } else {
-//         this.state.nextToken = undefined;
-//         this.state.hasNextPage = false;
-//       }
-//       // render list items from response.results
-//     }
-//   };
-
-//   fetch () {
-//     // update isLoading flag appropriately
-//     const additionalData = this.loadNextPage()
-//     this.setState((prevState) => ({
-//       items: prevState.items.concat(additionalData.items),
-//       hasMore: additionalData.hasMore,
-//     }))
-//   }
-
-//   getState = () => this.state
-
-//   render () {
-//     if (!this.state.items) { return }
-//     const myArrayOfItems = [{ name: 'Hello' }, { name: 'World' }]
-
-//     return (
-//       <Div>
-//         <IconButton aria-label="back button" size="large" style={{ backdropFilter: 'blur(5px)', backgroundColor: theme.palette.background.overlay, position: 'fixed', left: '11px', top: '85px'}} onClick={() => {handlePageChange('gallery')}}>
-//           <WestIcon fontSize="inherit" style={{color: 'white', margin: '0px'}} />
-//         </IconButton>
-//         <Typography variant="h3">
-//           {galleryName} Gallery
-//         </Typography>
-
-//         <Masonry
-//           items={this.state.items}
-//           itemComponent={(props) => (<MyMasonryItem />)}
-//           alignCenter={true}
-//           containerClassName="masonry"
-//           layoutClassName="masonry-view"
-//           pageClassName="masonry-page"
-//           loadingElement={<span>Loading...</span>}
-//           columnWidth={columnWidth}
-//           numColumns={numColumns}
-//           columnGutter={columnGutter}
-//           hasMore={this.state.hasMore}
-//           isLoading={this.state.isFetching}
-//           onInfiniteLoad={this.fetch}
-//           getState={this.getState}
-//         />
-//       </Div>
-//     )
-//   }
-// }
 
 class GalleryViewInner extends React.Component {
   constructor (props, classes) {
@@ -221,101 +117,48 @@ class GalleryViewInner extends React.Component {
   }
 
   componentDidMount() {
-    this.fetch();
+    this.firstFetch();
   }
 
-  // addToColumn(size, column) {
-  //   const index = this.state.currentIndex;
-  //   if (column === 1) {}
-  //   this.setState((prevState) => ({
-  //     column1: prevState.column1.concat(this.props.images[index]),
-  //     hasMore: (index !== this.state.cap),
-  //   }))
-  // }
 
-  fetch() {
-    // if (this.state.hasMore === false) {
-    //   this.setState({ 
-    //     hasMore: false,
-    //   })
-    //   return; // end function
-    // } else {
-
+  firstFetch() {
       // Start chain reaction ONLY if there is at least one image
       if (this.state.cap > 0) {
         this.fetchNext();
-        // this.setState((prevState) => ({
-        //   column1: prevState.column1.concat(this.props.images[0]),
-        //   hasMore: (this.state.currentIndex !== this.props.images.length),
-        // }))
       }
-
-
-      // let a = 0;
-      // let b = 0;
-      // let c = 0;
-      // for (let i = this.state.currentIndex; i < this.props.images.length; i++) {
-      //   if (a <= b && a <= c) {
-      //     this.setState((prevState) => ({
-      //       column1: prevState.column1.concat(this.props.images[i]),
-      //       hasMore: (i !== this.props.images.length),
-      //       lengthA: this.state.lengthA + 1,
-      //     }))
-      //     a += 1;
-      //     console.log(`column A is now ${a}`);
-      //   } else if ( b <= a && b <= c ) {
-      //     this.setState((prevState) => ({
-      //       column2: prevState.column2.concat(this.props.images[i]),
-      //       hasMore: (i !== this.props.images.length),
-      //       lengthB: this.state.lengthB + 1,
-      //     }))
-      //     b += 1;
-      //     console.log(`column B is now ${b}`);
-      //   } else {
-      //     this.setState((prevState) => ({
-      //       column3: prevState.column3.concat(this.props.images[i]),
-      //       hasMore: (i !== this.props.images.length),
-      //       lengthC: this.state.lengthC + 1,
-      //     }))
-      //     c += 1;
-      //     console.log(`column C is now ${c}`);
-      //   }
-      // }
-    // }
-
   }
   
   fetchNext = () => {
-    console.log('fetching next');
-    console.log(`size col 1: ${this.state.lengthA}`);
-    console.log(`size col 2: ${this.state.lengthB}`);
-    console.log(`size col 3: ${this.state.lengthC}`);
+    // console.log('fetching next');
+    // console.log(`size col 1: ${this.state.lengthA}`);
+    // console.log(`size col 2: ${this.state.lengthB}`);
+    // console.log(`size col 3: ${this.state.lengthC}`);
     if (this.state.hasMore) {
       if (this.state.lengthA <= this.state.lengthB && this.state.lengthA <= this.state.lengthC) {
         this.setState((prevState) => ({
           column1: prevState.column1.concat(this.props.images[this.state.currentIndex]),
         }))
-        console.log('added to col a');
+        // console.log('added to col a');
       } else if ( this.state.lengthB <= this.state.lengthA && this.state.lengthB <= this.state.lengthC ) {
         this.setState((prevState) => ({
           column2: prevState.column2.concat(this.props.images[this.state.currentIndex]),
         }))
-        console.log('added to col b');
+        // console.log('added to col b');
       } else {
         this.setState((prevState) => ({
           column3: prevState.column3.concat(this.props.images[this.state.currentIndex]),
         }))
-        console.log('added to col c');
+        // console.log('added to col c');
       }
     }
   }
 
   handleImageLoad = (size, column) => {
-    console.error('LOADED WITHIN GALLERY');
-    console.error('current index');
-    console.error(this.state.currentIndex);
-    console.error('cap');
-    console.error(this.state.cap);
+    // console.error('LOADED WITHIN GALLERY');
+    // console.error('current index');
+    // console.error(this.state.currentIndex);
+    // console.error('cap');
+    // console.error(this.state.cap);
     if (column === 1) {
       this.setState({
         lengthA: this.state.lengthA + size,
@@ -323,7 +166,7 @@ class GalleryViewInner extends React.Component {
         hasMore: (this.state.currentIndex !== this.props.cap - 2 ? true : false),
       }, () => {
         if (this.props.images[this.state.currentIndex] !== undefined) {
-          console.log(this.state.hasMore);
+          // console.log(this.state.hasMore);
           this.fetchNext();
         }
       })
@@ -334,7 +177,7 @@ class GalleryViewInner extends React.Component {
         hasMore: (this.state.currentIndex !== this.props.cap - 2 ? true : false),
       }, () => {
         if (this.props.images[this.state.currentIndex] !== undefined) {
-          console.log(this.state.hasMore);
+          // console.log(this.state.hasMore);
           this.fetchNext();
         }
       })    
@@ -345,7 +188,7 @@ class GalleryViewInner extends React.Component {
         hasMore: (this.state.currentIndex !== this.state.cap - 2 ? true : false),
       }, () => {
         if (this.props.images[this.state.currentIndex] !== undefined) {
-          console.log(this.state.hasMore);
+          // console.log(this.state.hasMore);
           this.fetchNext();
         }
       })
@@ -360,17 +203,17 @@ class GalleryViewInner extends React.Component {
       <div style={{display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-evenly'}}>
         <div style={{width: 'calc(33vw - 11px)'}}>
           {this.state.column1.map((item) => (
-            <AtomicImage handleImageLoad={this.handleImageLoad} col={1} src={item.key} key={item.key}/>
+            <AtomicImage handleImageLoad={this.handleImageLoad} col={1} src={item.key} key={item.key} onSelect={this.props.onSelect}/>
           ))}
         </div>
         <div style={{width: 'calc(33vw - 11px)'}}>
           {this.state.column2.map((item) => (
-            <AtomicImage handleImageLoad={this.handleImageLoad} col={2} src={item.key} key={item.key}/>
+            <AtomicImage handleImageLoad={this.handleImageLoad} col={2} src={item.key} key={item.key} onSelect={this.props.onSelect}/>
           ))}
         </div>
         <div style={{width: 'calc(33vw - 11px)'}}>
           {this.state.column3.map((item) => (
-            <AtomicImage handleImageLoad={this.handleImageLoad} col={3} src={item.key} key={item.key}/>
+            <AtomicImage handleImageLoad={this.handleImageLoad} col={3} src={item.key} key={item.key} onSelect={this.props.onSelect}/>
           ))}
         </div>        
       </div>
@@ -378,67 +221,53 @@ class GalleryViewInner extends React.Component {
   }
 }
 
-// const GalleryView1 = ({ toggleLoading, handlePageChange, pageShown, galleryName, images }) => {
-//   let a = 0;
-//   let b = 0;
-//   let c = 0;
-//   for (let i = 0; i < images.length; i++) {
-//     if ( a < b < c) {
-//       a += getImageHeight(`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${images[i].key}`);
-//       console.log(`column A is now ${a}`);
-//     } else if ( b < a < c) {
-//       b += getImageHeight(`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${images[i].key}`);
-//       console.log(`column B is now ${a}`);
-//     } else {
-//       c += getImageHeight(`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${images[i].key}`);
-//       console.log(`column C is now ${a}`);
-//     }
-//   }
-
-//   return (
-//     <Div>
-//       <IconButton aria-label="back button" size="large" style={{ backdropFilter: 'blur(5px)', backgroundColor: theme.palette.background.overlay, position: 'fixed', left: '11px', top: '85px'}} onClick={() => {handlePageChange('gallery')}}>
-//         <WestIcon fontSize="inherit" style={{color: 'white', margin: '0px'}} />
-//       </IconButton>
-//       <Typography variant="h3">
-//         {galleryName} Gallery
-//       </Typography>
-      
-//       <div class="gal" id="gal">
-//         {images.map((item) => (
-//           <div class="gal-item"> 
-//             <img 
-//               src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${item.key}`} 
-//               alt='' 
-//               key={item.eTag}
-//             />
-//           </div>
-//       ))}
-//       </div>
-//     </Div>
-//   );
-  
-// }
-
 const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, images }) => {
+
+  const [lightbox, setLightbox] = useState(false);          // show lightbox (true / false)
+  const [lightboxImage, setLightboxImage] = useState(null); // image source (e.g. https://aws.s3...)
 
   // useEffect(() => {
   //   initLightboxJS("08E9-E32F-6E73-6368", "team");
   // });
 
+  const onSelect = (image) => {
+    console.log(`Selected ${image}`);
+    setLightbox(true);
+    setLightboxImage(image);
+  }
+
+  const onUnselect = () => {
+    setLightbox(false);
+    setLightboxImage(null);
+  }
+
+  const onDownload = () => {
+    
+  }
 
   return (
     <Div>
-      <IconButton aria-label="back button" size="large" style={{ backdropFilter: 'blur(5px)', backgroundColor: theme.palette.background.overlay, position: 'fixed', left: '11px', top: '85px', zIndex: 10}} onClick={() => {handlePageChange('gallery')}}>
+      {!lightbox && <IconButton aria-label="back button" size="large" style={{ backdropFilter: 'blur(5px)', backgroundColor: theme.palette.background.overlay, position: 'fixed', left: '11px', top: '85px', zIndex: 10}} onClick={() => {handlePageChange('gallery')}}>
         <WestIcon fontSize="inherit" style={{color: 'white', margin: '0px'}} />
-      </IconButton>
+      </IconButton>}
       <Typography variant="h2" style={{ padding: '23px 0px 26px 0px' }}>
         {galleryName}
       </Typography>
       
-      <GalleryViewInner images={[...images]}/>
-      {/* <SlideshowLightbox className="GalleryViewer"> */}
+      <GalleryViewInner images={[...images]} onSelect={onSelect} onUnselect={onUnselect}/>
 
+      {lightbox && <div style={{ backgroundColor: theme.palette.background.overlayGallery, backdropFilter: 'blur(5px)', position: 'fixed', width: '100vw', height: '100vh', left: '0', top: '0' }}>
+        
+        <IconButton aria-label="Download Image" onClick={onDownload} style={{ top: '70px', right: '75px', position: 'fixed' }}>
+          <DownloadIcon fontSize='large' color='primary' />
+        </IconButton>
+        <IconButton aria-label="Exit Preview" onClick={onUnselect} style={{ top: '70px', right: '15px', position: 'fixed' }}>
+          <CloseIcon fontSize='large' color='primary' />
+        </IconButton>
+        <img src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${lightboxImage}`} style={{ objectFit: 'cover', position: 'fixed', width: '80vw', height: '80vh', left: '10vw', top: '14vh' }} alt={lightboxImage}/>
+      </div>}
+      {/* <SlideshowLightbox className="GalleryViewer"> */}
+a
         {/* {images.map((item) => (
           <div className='gallery'>
             <img 
@@ -458,22 +287,22 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
 /*
  * This function will divide and sort an array, so instead of sorting vertically into columns, it can sort horizontally.
  */
-function resort(arr) {
-  let sortedArray = []
-  const size = arr.length;
-  const cols = 3;
-  for (let a = 0; a < cols; a++) {
-    for (let i = 0; i < size; i += cols) {
-      if (arr[a + i] !== undefined) {
-        sortedArray.push(arr[a + i]);
-      }
-    }
-  }
+// function resort(arr) {
+//   let sortedArray = []
+//   const size = arr.length;
+//   const cols = 3;
+//   for (let a = 0; a < cols; a++) {
+//     for (let i = 0; i < size; i += cols) {
+//       if (arr[a + i] !== undefined) {
+//         sortedArray.push(arr[a + i]);
+//       }
+//     }
+//   }
 
-  console.log(arr);
-  console.log(sortedArray);
-  return sortedArray;
-}
+//   console.log(arr);
+//   console.log(sortedArray);
+//   return sortedArray;
+// }
 
 class Gallery extends React.Component {
   constructor (props, classes) {

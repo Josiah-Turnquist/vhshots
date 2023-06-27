@@ -250,7 +250,7 @@ const NavigationBar = ({ classes }) => {
     // Web View
     <>
     <ScrollController>
-      <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{flexDirection: 'row', background: theme.palette.background.overlay, backdropFilter: 'blur(5px)'}}>
+      <AppBar position='sticky' component='nav' className={classes.navContainer} sx={{ flexDirection: 'row', background: theme.palette.background.overlay, backdropFilter: 'blur(5px)' }}>
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center'}}>
           <Box sx={{ bgcolor: 'transparent'}}>
             <StyledTabs

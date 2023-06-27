@@ -6,19 +6,17 @@ import { withStyles } from '@mui/styles';
 import styles from './styles';
 
 // Contact Me
-// import photographer from '../../assets/photographer.jpg'
+import photographer from '../../assets/photographer.jpg'
+// import { DataStore } from '@aws-amplify/datastore';
+import { SendGridEmail } from '../../models';
 
 import { Typography } from '@mui/material';
 import { IconButton } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import awsExports from '../../aws-exports';
 
-
-// using Twilio SendGrid's v3 Node.js Library
-// https://github.com/sendgrid/sendgrid-nodejs
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const msg = {
   to: 'josiahturnq@gmail.com', // Change to your recipient
@@ -33,16 +31,28 @@ const NavigationBar = ({ classes }) => {
   const handleContactMeButtonClick = () => {
     console.log('Tried to contact photographer.');
 
-    sgMail
-    .send(msg)
-    .then(() => {
-      console.log('Email sent')
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-    
-    // Complete this later.
+    // await DataStore.save(new SendGridEmail(modelFields));
+    //   if (onSuccess) {
+    //     onSuccess(modelFields);
+    //   }
+    //   if (clearOnSuccess) {
+    //     resetStateValues();
+    //   }
+
+    // DataStore.save(
+    //   new SendGridEmail({
+    //   "name": "Lorem ipsum dolor sit amet",
+    //   "email": "Josiahturnq@gmail.com",
+    //   "shootingLocation": "Lorem ipsum dolor sit amet",
+    //   "heardOfUs": "Lorem ipsum dolor sit amet"
+    // })
+    // .then(() => {
+    //   console.log('Email sent');
+    // })
+    // .catch((error) => {
+    //   console.error(error);
+    // })
+  // );
 };
 
   return (
@@ -50,7 +60,7 @@ const NavigationBar = ({ classes }) => {
       <div className={classes.profile}>
       </div>
 
-      <Typography className={classes.infoText} variant="h3">
+      <Typography className={classes.infoText} variant="h1" style={{ fontSize: '24px' }}>
         Contact Me
       </Typography>
 
