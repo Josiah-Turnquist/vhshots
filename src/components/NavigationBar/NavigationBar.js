@@ -220,12 +220,12 @@ const NavigationBar = ({ classes }) => {
                 </Fade>
 
                 <Fade in={true} timeout={{ enter: 1500, exit: 1000 }} style={{ transitionDelay:  '0ms'}}>
-                  <div style={{ display: 'flex', flexDirection: 'row', backgroundColor: '#2A2A2E', borderRadius: '32px', height: '58px', alignItems: 'center', padding: '0px 2px 0px 21px', margin: '3px 14px 0px 12px'}}>
+                  <div onClick={toggleDrawer()} style={{ display: 'flex', flexDirection: 'row', backgroundColor: '#2A2A2E', borderRadius: '32px', height: '58px', alignItems: 'center', padding: '0px 2px 0px 21px', margin: '3px 14px 0px 12px'}}>
                     <Typography variant="h1" style={{ padding: 0, letterSpacing: '2px' }}>
                       {getPageTitle(value)}
                     </Typography>
 
-                    <IconButton aria-label="profile" color="primary" onClick={toggleDrawer()} style={{ margin: '0px 8px' }}>
+                    <IconButton aria-label="profile" color="primary" style={{ margin: '0px 8px' }}>
                       <MenuIcon className={ classes.icons } fontSize="large" />
                       <Drawer
                         anchor={'top'}
