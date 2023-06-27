@@ -80,8 +80,8 @@ class AtomicImage extends React.Component {
       <img 
         className="image"
         style={{
-          width: '100%', paddingBottom: '5px',
-          backgroundColor: isLoaded ? 'transparent' : '#FFFFFF07',
+          width: '100%', 
+          paddingBottom: '5px',
           opacity: isLoaded ? 1 : 0
         }} 
         src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${src}`} 
