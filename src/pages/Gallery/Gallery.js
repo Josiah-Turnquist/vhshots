@@ -269,7 +269,6 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
         <img src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${lightboxImage}`} style={{ objectFit: 'cover', position: 'fixed', width: '80vw', height: (window.innerWidth >= 650 ? '80vh' : '75vh'), left: '10vw', top: '14vh' }} alt={lightboxImage}/>
       </div>}
       {/* <SlideshowLightbox className="GalleryViewer"> */}
-a
         {/* {images.map((item) => (
           <div className='gallery'>
             <img 
