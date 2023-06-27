@@ -82,7 +82,8 @@ class AtomicImage extends React.Component {
         style={{
           width: '100%', 
           paddingBottom: '5px',
-          opacity: isLoaded ? 1 : 0
+          opacity: isLoaded ? 1 : 0,
+          transition: 'opacity 2s ease-out',
         }} 
         src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${src}`} 
         alt='' 
@@ -268,6 +269,7 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
         </IconButton>
         <img src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${lightboxImage}`} style={{ objectFit: 'cover', position: 'fixed', width: '80vw', height: (window.innerWidth >= 650 ? '80vh' : '75vh'), left: '10vw', top: '14vh' }} alt={lightboxImage}/>
       </div>}
+
       {/* <SlideshowLightbox className="GalleryViewer"> */}
         {/* {images.map((item) => (
           <div className='gallery'>
