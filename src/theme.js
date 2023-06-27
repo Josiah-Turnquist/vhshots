@@ -123,8 +123,9 @@ let theme = createTheme({
         },
         background: {
           primary: 'rgb(04, 08, 16)', //'#040416', '#181c24',
-          default: '#1f1f25',//'#15161A',   IF YOU CHANGE THIS ALSO CHANGE INDEX.HTML
+          default: '#1f1f25', //'#15161A',   IF YOU CHANGE THIS ALSO CHANGE INDEX.HTML
           overlay: '#1f1f25C0',
+          overlayGallery: '#1f1f25E8',
           pressed: '#0101f23',
           paper: '#15161A',
           input: '#0E0E0E',

@@ -8,7 +8,7 @@ import styles from './styles';
 // Contact Me
 import photographer from '../../assets/photographer.jpg'
 // import { DataStore } from '@aws-amplify/datastore';
-import { SendGridEmail } from '../../models';
+// import { SendGridEmail } from '../../models';
 
 import { Typography } from '@mui/material';
 import { IconButton } from '@mui/material';
