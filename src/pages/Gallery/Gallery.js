@@ -82,6 +82,7 @@ class AtomicImage extends React.Component {
         style={{
           width: '100%', 
           paddingBottom: '5px',
+          opacity: isLoaded ? null : 0
           
         }} 
         src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${src}`} 
