@@ -82,8 +82,7 @@ class AtomicImage extends React.Component {
         style={{
           width: '100%', 
           paddingBottom: '5px',
-          opacity: isLoaded ? 1 : 0,
-          transition: 'opacity 2s ease-out',
+          
         }} 
         src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${src}`} 
         alt='' 
@@ -261,13 +260,13 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
 
       {lightbox && <div style={{ backgroundColor: theme.palette.background.overlayGallery, backdropFilter: 'blur(5px)', position: 'fixed', width: '100vw', height: '100vh', left: '0', top: '0' }}>
         
-        <IconButton aria-label="Download Image" onClick={onDownload} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '100px', position: 'fixed' }}>
+        <IconButton aria-label="Download Image" onClick={onDownload} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '90px', position: 'fixed' }}>
           <DownloadIcon fontSize='large' color='primary' />
         </IconButton>
-        <IconButton aria-label="Exit Preview" onClick={onUnselect} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '40px', position: 'fixed' }}>
+        <IconButton aria-label="Exit Preview" onClick={onUnselect} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '30px', position: 'fixed' }}>
           <CloseIcon fontSize='large' color='primary' />
         </IconButton>
-        <img src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${lightboxImage}`} style={{ objectFit: 'cover', position: 'fixed', width: '80vw', height: (window.innerWidth >= 650 ? '80vh' : '75vh'), left: '10vw', top: '14vh' }} alt={lightboxImage}/>
+        <img src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/${lightboxImage}`} style={{ objectFit: 'cover', position: 'fixed', maxWidth: '80vw', maxHeight: (window.innerWidth >= 650 ? '80vh' : '75vh'), left: '50%', top: (window.innerWidth >= 650 ? 'calc(50% + 35px)' : '50%'), transform: 'translate(-50%, -50%)' }} alt={lightboxImage}/>
       </div>}
 
       {/* <SlideshowLightbox className="GalleryViewer"> */}
