@@ -60,6 +60,9 @@ import Tab from '@mui/material/Tab';
 import { DataUsage } from '@mui/icons-material';
 import { sizeHeight } from '@mui/system';
 
+// Auth
+import { Auth } from 'aws-amplify';
+
 const StyledTabs = styled((props) => (
   <Tabs
     {...props}
@@ -128,6 +131,7 @@ const NavigationBar = ({ classes }) => {
   // Device Type
   const [width, setWidth] = useState(window.innerWidth);
 
+  // Menu Drawer (for mobile)
   const [drawer, setDrawer] = React.useState(false);
 
   function handleWindowSizeChange() {
@@ -142,6 +146,37 @@ const NavigationBar = ({ classes }) => {
   }, []);
 
   const isMobile = width <= 600;
+
+  if (user.username === null) {
+    try {
+      Auth.currentUserInfo().then((user) => {
+        if (user) {
+          console.log(`current user - ${user.attributes.email}`);
+          setUser(user);
+        }
+        else {
+          // this.setState({pageShown: 'login', loadingPage: false})
+        }
+      })
+    } catch (error) {
+      console.log('error getting user:', error);
+    }
+  }
+
+  const getUser = () => {
+    console.log(`getting user - ${user.username}`);
+    return user;
+  }
+
+  const changeUser = ( data ) => {
+    console.log(`setting new user - ${user.username}`);
+    setUser({
+      username: data.username,
+      attributes: {
+        email: data.attributes.email,
+      }
+    });
+  }
 
   const getPageTitle = (value) => {
     if (isMobile) {
@@ -241,9 +276,9 @@ const NavigationBar = ({ classes }) => {
         </AppBar>
       </ScrollController>
         {value === 0 && <Home />}
-        {value === 1 && <Gallery />}
-        {value === 3 && <Info />}
-        {value === 4 && <Profile />}
+        {value === 1 && <Gallery getUser={getUser} />}
+        {value === 3 && <Info getUser={getUser} />}
+        {value === 4 && <Profile userData={user} getUser={getUser} setUser={changeUser} />}
         </>
     );  
   } else return (
@@ -269,9 +304,9 @@ const NavigationBar = ({ classes }) => {
       </AppBar>
     </ScrollController>
     {value === 0 && <Home />}
-    {value === 1 && <Gallery />}
-    {value === 3 && <Info />}
-    {value === 4 && <Profile />}
+    {value === 1 && <Gallery getUser={getUser} />}
+    {value === 3 && <Info getUser={getUser} />}
+    {value === 4 && <Profile userData={user} getUser={getUser} setUser={changeUser} />}
     </>
   );
 }

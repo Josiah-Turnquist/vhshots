@@ -30,6 +30,7 @@ import { styled } from '@mui/material/styles';
 import 'lightbox.js-react/dist/index.css'
 import {SlideshowLightbox, initLightboxJS} from 'lightbox.js-react'
 import DownloadIcon from '@mui/icons-material/Download';
+import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
 
 const Div = styled('div')({
@@ -165,7 +166,7 @@ class GalleryViewInner extends React.Component {
       this.setState({
         lengthA: this.state.lengthA + size,
         currentIndex: this.state.currentIndex + 1,
-        hasMore: (this.state.currentIndex !== this.props.cap - 2 ? true : false),
+        hasMore: (this.state.currentIndex < this.state.cap - 1 ? true : false),
       }, () => {
         if (this.props.images[this.state.currentIndex] !== undefined) {
           // console.log(this.state.hasMore);
@@ -176,7 +177,7 @@ class GalleryViewInner extends React.Component {
       this.setState({
         lengthB: this.state.lengthB + size,
         currentIndex: this.state.currentIndex + 1,
-        hasMore: (this.state.currentIndex !== this.props.cap - 2 ? true : false),
+        hasMore: (this.state.currentIndex < this.state.cap - 1 ? true : false),
       }, () => {
         if (this.props.images[this.state.currentIndex] !== undefined) {
           // console.log(this.state.hasMore);
@@ -187,7 +188,7 @@ class GalleryViewInner extends React.Component {
       this.setState({
         lengthC: this.state.lengthC + size,
         currentIndex: this.state.currentIndex + 1,
-        hasMore: (this.state.currentIndex !== this.state.cap - 2 ? true : false),
+        hasMore: (this.state.currentIndex < this.state.cap - 1 ? true : false),
       }, () => {
         if (this.props.images[this.state.currentIndex] !== undefined) {
           // console.log(this.state.hasMore);
@@ -201,29 +202,35 @@ class GalleryViewInner extends React.Component {
   }
 
   render() {
+    console.log(this.state.hasMore);
     return (
-      <div style={{display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-evenly'}}>
-        <div style={{width: 'calc(33vw - 11px)'}}>
-          {this.state.column1.map((item) => (
-            <AtomicImage handleImageLoad={this.handleImageLoad} col={1} src={item.key} key={item.key} onSelect={this.props.onSelect}/>
-          ))}
+      <div style={{ width: '100%' }}>
+        <div style={{display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-evenly'}}>
+          <div style={{width: 'calc(33vw - 11px)'}}>
+            {this.state.column1.map((item) => (
+              <AtomicImage handleImageLoad={this.handleImageLoad} col={1} src={item.key} key={item.key} onSelect={this.props.onSelect}/>
+            ))}
+          </div>
+          <div style={{width: 'calc(33vw - 11px)'}}>
+            {this.state.column2.map((item) => (
+              <AtomicImage handleImageLoad={this.handleImageLoad} col={2} src={item.key} key={item.key} onSelect={this.props.onSelect}/>
+            ))}
+          </div>
+          <div style={{width: 'calc(33vw - 11px)'}}>
+            {this.state.column3.map((item) => (
+              <AtomicImage handleImageLoad={this.handleImageLoad} col={3} src={item.key} key={item.key} onSelect={this.props.onSelect}/>
+            ))}
+          </div>  
         </div>
-        <div style={{width: 'calc(33vw - 11px)'}}>
-          {this.state.column2.map((item) => (
-            <AtomicImage handleImageLoad={this.handleImageLoad} col={2} src={item.key} key={item.key} onSelect={this.props.onSelect}/>
-          ))}
-        </div>
-        <div style={{width: 'calc(33vw - 11px)'}}>
-          {this.state.column3.map((item) => (
-            <AtomicImage handleImageLoad={this.handleImageLoad} col={3} src={item.key} key={item.key} onSelect={this.props.onSelect}/>
-          ))}
-        </div>        
+        {this.state.hasMore && <Box sx={{display: 'flex', justifyContent: 'center', height: '150px'}}>
+          <CircularProgress size='40px' style={{ alignSelf: 'center' }} />
+        </Box>}
       </div>
     );
   }
 }
 
-const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, images }) => {
+const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, images, getUser }) => {
 
   const [lightbox, setLightbox] = useState(false);          // show lightbox (true / false)
   const [lightboxImage, setLightboxImage] = useState(null); // image source (e.g. https://aws.s3...)
@@ -261,9 +268,12 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
 
       {lightbox && <div style={{ backgroundColor: theme.palette.background.overlayGallery, backdropFilter: 'blur(5px)', position: 'fixed', width: '100vw', height: '100vh', left: '0', top: '0' }}>
         
-        <IconButton aria-label="Download Image" onClick={onDownload} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '90px', position: 'fixed' }}>
+      {getUser().attributes.email === 'will@vhshots.com' && <IconButton aria-label="Download Image" onClick={onDownload} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '90px', position: 'fixed' }}>
           <DownloadIcon fontSize='large' color='primary' />
-        </IconButton>
+        </IconButton>}
+        {getUser().attributes.email === 'will@vhshots.com' && <IconButton aria-label="Download Image" onClick={onDownload} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '150px', position: 'fixed' }}>
+          <DeleteIcon fontSize='large' color='primary' />
+        </IconButton>}
         <IconButton aria-label="Exit Preview" onClick={onUnselect} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '30px', position: 'fixed' }}>
           <CloseIcon fontSize='large' color='primary' />
         </IconButton>
@@ -511,29 +521,29 @@ class Gallery extends React.Component {
       return (
         <div >
           <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '30vh'}}>
-            <CircularProgress size='10vw'/>
+            <CircularProgress size='10vw' style={{ animation: '3s infinite alternate slidein' }}/>
           </Box>
         </div>
       );
     }
     else if (this.state.pageShown === 'gallery1') {
       return (
-        <GalleryView galleryName='Real Estate' toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery1}/>
+        <GalleryView galleryName='Real Estate' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery1}/>
       );
     }
     else if (this.state.pageShown === 'gallery2') {
       return (
-        <GalleryView galleryName='Portrait' toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery2}/>
+        <GalleryView galleryName='Portrait' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery2}/>
       );
     }
     else if (this.state.pageShown === 'gallery3') {
       return (
-        <GalleryView galleryName='Film' toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery3}/>
+        <GalleryView galleryName='Film' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery3}/>
       );
     }
     else if (this.state.pageShown === 'gallery4') {
       return (
-        <GalleryView galleryName='Other' toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery4}/>
+        <GalleryView galleryName='Other' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery4}/>
       );
     }
     else {

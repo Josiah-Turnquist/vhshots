@@ -558,9 +558,9 @@ class Profile extends React.Component {
 
     this.state = {
       user: {
-        username: null,
+        username: this.props.userData.username,
         attributes: {
-          email: null,
+          email: this.props.userData.email,
         }
       },
       classes: classes,
@@ -575,6 +575,7 @@ class Profile extends React.Component {
         if (user) {
           console.log(`current user - ${user.attributes.email}`);
           this.setState({user, pageShown: 'profile', loadingPage: false})
+          this.props.setUser(user);
         }
         else {
           this.setState({pageShown: 'login', loadingPage: false})
@@ -593,7 +594,8 @@ class Profile extends React.Component {
         Auth.currentUserInfo().then((user) => {
           if (user) {
             console.log(`current user - ${user.attributes.email}`);
-            this.setState({user, pageShown: 'profile', loadingPage: false})
+            this.setState({user, pageShown: 'profile', loadingPage: false});
+            this.props.setUser(user);
           }
           else {
             this.setState({user: {username: null}, pageShown: 'login', loadingPage: false})
