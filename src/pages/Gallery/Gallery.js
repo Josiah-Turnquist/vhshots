@@ -32,6 +32,7 @@ import {SlideshowLightbox, initLightboxJS} from 'lightbox.js-react'
 import DownloadIcon from '@mui/icons-material/Download';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
+import { light } from '@mui/material/styles/createPalette';
 
 const Div = styled('div')({
   display: 'flex',
@@ -250,6 +251,15 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
     setLightboxImage(null);
   }
 
+  const onRemove = () => {
+    // Remove Image Carousel 1
+    Storage.remove(lightboxImage)
+      .then(response => {
+        console.log(`removed image ${lightboxImage}`);
+      }
+    )
+  }
+
   const onDownload = () => {
     
   }
@@ -271,7 +281,7 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
       {getUser().attributes.email === 'will@vhshots.com' && <IconButton aria-label="Download Image" onClick={onDownload} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '90px', position: 'fixed' }}>
           <DownloadIcon fontSize='large' color='primary' />
         </IconButton>}
-        {getUser().attributes.email === 'will@vhshots.com' && <IconButton aria-label="Download Image" onClick={onDownload} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '150px', position: 'fixed' }}>
+        {getUser().attributes.email === 'will@vhshots.com' && <IconButton aria-label="Remove Image" onClick={onRemove} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '150px', position: 'fixed' }}>
           <DeleteIcon fontSize='large' color='primary' />
         </IconButton>}
         <IconButton aria-label="Exit Preview" onClick={onUnselect} style={{ top: (window.innerWidth >= 650 ? '70px' : null), bottom: (window.innerWidth >= 650 ? null : 16), right: '30px', position: 'fixed' }}>
