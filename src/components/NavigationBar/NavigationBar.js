@@ -60,8 +60,9 @@ import Tab from '@mui/material/Tab';
 import { DataUsage } from '@mui/icons-material';
 import { sizeHeight } from '@mui/system';
 
-// Auth
+// AWS & Auth 
 import { Auth } from 'aws-amplify';
+import { Storage } from "@aws-amplify/storage"
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -122,10 +123,147 @@ const NavigationBar = ({ classes }) => {
       email: null,
     }
   });
+  const [mounted, setMounted] = React.useState(false);
+  const [images, setImages] = React.useState({
+    estate: {
+      all: [],
+      carousel: [],
+      column1: [],
+      column2: [],
+      column3: [],
+      column1Length: 0,
+      column2Length: 0,
+      column3Length: 0,
+    },
+    portraits: {
+      all: [],
+      carousel: [],
+      column1: [],
+      column2: [],
+      column3: [],
+      column1Length: 0,
+      column2Length: 0,
+      column3Length: 0,    
+    },
+    film: {
+      all: [],
+      carousel: [],
+      column1: [],
+      column2: [],
+      column3: [],
+      column1Length: 0,
+      column2Length: 0,
+      column3Length: 0,
+    },
+    other: {
+      all: [],
+      carousel: [],
+      column1: [],
+      column2: [],
+      column3: [],
+      column1Length: 0,
+      column2Length: 0,
+      column3Length: 0,
+    }
+  })
+
+
+  const fetchAllCarousels = () => {
+    // Load Carousel 1
+    Storage.list('carousel1/', { pageSize : 'ALL' })
+    .then(response => {
+      images.estate.carousel = response.results;
+    })
+
+    // Load Carousel 2
+    Storage.list('carousel2/', { pageSize : 'ALL' })
+    .then(response => {
+      images.portraits.carousel = response.results;
+    })
+
+    // Load Carousel 3
+    Storage.list('carousel3/', { pageSize : 'ALL' })
+    .then(response => {
+      images.film.carousel = response.results;
+    })
+
+    // Load Carousel 4
+    Storage.list('carousel4/', { pageSize : 'ALL' })
+    .then(response => {
+      images.other.carousel = response.results;
+    })
+
+    // setImages({...images});
+  }
+
+  const fetchAllImages = () => {
+    // Load Gallery 1
+    try {
+      Storage.list('estate/', { pageSize : 'ALL' })
+      .then(response => {
+        response.results.sort(function(a,b){
+          return new Date(b.lastModified) - new Date(a.lastModified);
+        });
+        images.estate.all = response.results;
+      })
+    } catch (error) {
+      console.log('error loading gallery:', error);
+    }
+
+    // Load Gallery 2
+    try {
+      Storage.list('portraits/', { pageSize : 'ALL' })
+      .then(response => {
+        response.results.sort(function(a,b){
+          return new Date(b.lastModified) - new Date(a.lastModified);
+        });
+        images.portraits.all = response.results;
+      })
+    } catch (error) {
+      console.log('error loading gallery:', error);
+    }
+
+    // Load Gallery 3
+    try {
+      Storage.list('film/', { pageSize : 'ALL' })
+      .then(response => {
+        response.results.sort(function(a,b){
+          return new Date(b.lastModified) - new Date(a.lastModified);
+        });
+        images.film.all = response.results;
+      })
+    } catch (error) {
+      console.log('error loading gallery:', error);
+    }
+
+    // Load Gallery 4
+    try {
+      Storage.list('other/', { pageSize : 'ALL' })
+      .then(response => {
+        response.results.sort(function(a,b){
+          return new Date(b.lastModified) - new Date(a.lastModified);
+        });
+        images.other.all = response.results;
+      })
+    } catch (error) {
+      console.log('error loading gallery:', error);
+    }
+  }
+
+  // if not mounted, mount
+  if (!mounted) {
+    fetchAllCarousels()
+
+    fetchAllImages()
+
+    console.log('images');
+    console.log(images);
+    setMounted(true);
+  }
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-
   };
 
   // Device Type
@@ -178,6 +316,20 @@ const NavigationBar = ({ classes }) => {
     });
   }
 
+  const deleteImage = (image) => {
+    // TODO - Delete Image
+    console.log(`Deleting image ${image}`);
+
+    // delete from S3
+    // ...storage.remove...
+
+    // delete from 'all' 
+    
+    
+    // reorganize columns
+
+  }
+
   const getPageTitle = (value) => {
     if (isMobile) {
       if (value === 0) {
@@ -205,6 +357,12 @@ const NavigationBar = ({ classes }) => {
     }
 
     setDrawer(!drawer);
+
+    // fetchAllCarousels()
+    // .then(reponse => {
+    //   console.log('Fetched all slider images.');
+      console.log(images);
+    // })
   };
 
   const list = (anchor) => (
@@ -228,7 +386,7 @@ const NavigationBar = ({ classes }) => {
       </List>
       <Divider />
       <List>
-        {['Gallery', 'Info', 'Login'].map((text, index) => (
+        {['Gallery', 'Info', user.username != null ? 'Profile' : 'Login'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton onClick={() => {setValue(index === 0 ? index+1 : index + 2)}} sx={{ height: '50px', color: 'gray' }}>
               <ListItemIcon>
@@ -276,7 +434,7 @@ const NavigationBar = ({ classes }) => {
         </AppBar>
       </ScrollController>
         {value === 0 && <Home />}
-        {value === 1 && <Gallery getUser={getUser} />}
+        {value === 1 && <Gallery getUser={getUser} deleteImage={deleteImage} images={images}/>}
         {value === 3 && <Info getUser={getUser} />}
         {value === 4 && <Profile userData={user} getUser={getUser} setUser={changeUser} />}
         </>
@@ -304,7 +462,7 @@ const NavigationBar = ({ classes }) => {
       </AppBar>
     </ScrollController>
     {value === 0 && <Home />}
-    {value === 1 && <Gallery getUser={getUser} />}
+    {value === 1 && <Gallery getUser={getUser} deleteImage={deleteImage} images={images}/>}
     {value === 3 && <Info getUser={getUser} />}
     {value === 4 && <Profile userData={user} getUser={getUser} setUser={changeUser} />}
     </>
