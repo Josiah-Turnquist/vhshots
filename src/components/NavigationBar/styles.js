@@ -40,6 +40,7 @@ const styles = (theme) => ({
     },
     icons: {
         margin: '0px',
+
     },
   });
 

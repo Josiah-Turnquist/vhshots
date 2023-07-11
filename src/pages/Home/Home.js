@@ -25,6 +25,7 @@ import { styled } from '@mui/material/styles';
 const Home = ({ classes }) => {
   const Div = styled('div')``; // If you want to style a div
 
+
   const [loading, setLoading] = React.useState(1);
   const [images, setImages] = useState([]);
 
@@ -108,6 +109,7 @@ const Home = ({ classes }) => {
     <Footer />
   </div>
   );
+
 
 };
 

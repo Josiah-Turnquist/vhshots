@@ -5,6 +5,7 @@ const styles = (theme) => ({
         zIndex: 999,
         top: 16,
         right: 20,
+
         height: '40px',
         display: 'flex',
         flexDirection: 'row',
@@ -15,6 +16,7 @@ const styles = (theme) => ({
         borderColor: '#BFBFBF',
         width: '120px',
         height: '40px',
+
         color: '#BFBFBF',
         fontSize: 'large',
         fontFamily: 'Roboto',
@@ -41,6 +43,7 @@ const styles = (theme) => ({
         width: '80px',
         height: '80px',
       },
+
   });
 
 export default styles;

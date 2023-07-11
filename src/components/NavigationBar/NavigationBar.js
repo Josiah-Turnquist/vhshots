@@ -1,10 +1,20 @@
 // React
 import React, { useState, useEffect } from 'react';
 
+
 // Material UI & Styles
 import Button from '@mui/material/Button';
 import { withStyles } from '@mui/styles';
 import styles from './styles';
+
+// Icons
+import IconButton from '@mui/material/IconButton';
+import HomeIcon from '@mui/icons-material/Home';
+import AppsIcon from '@mui/icons-material/Apps';
+import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
+import MenuIcon from '@mui/icons-material/Menu';
+import ListIcon from '@mui/icons-material/List';
+import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 
 // Animation
 import { Fade } from '@mui/material';
@@ -466,6 +476,7 @@ const NavigationBar = ({ classes }) => {
     {value === 3 && <Info getUser={getUser} />}
     {value === 4 && <Profile userData={user} getUser={getUser} setUser={changeUser} />}
     </>
+
   );
 }
   
