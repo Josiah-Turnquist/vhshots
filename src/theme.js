@@ -142,6 +142,9 @@ let theme = createTheme({
             textPlaceholder: '#676767',
             textSelection: 'rgb(80 119 255 / 75%)', //#517894
         },
+        icons: {
+            noImage: '#676767'
+        },
         button: {
             // text: '#EFEFEF',
             background: '#E16B4C',

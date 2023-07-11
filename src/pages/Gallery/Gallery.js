@@ -34,6 +34,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
 import { light } from '@mui/material/styles/createPalette';
 
+// icons
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+
 const Div = styled('div')({
   display: 'flex',
   justifyContent: 'center',
@@ -104,19 +108,13 @@ class GalleryViewInner extends React.Component {
     this.state = {
       currentIndex: 0,
       hasMore: true,
-      cap: this.props.images.length,
-      lengthA: 0,
-      column1: [
-
-      ],
-      lengthB: 0,
-      column2: [
-
-      ],
-      lengthC: 0,
-      column3: [
-
-      ]
+      cap: this.props.images.all.length,
+      lengthA: this.props.images.column1Length,
+      column1: this.props.images.column1,
+      lengthB: this.props.images.column2Length,
+      column2: this.props.images.column2,
+      lengthC: this.props.images.column3Length,
+      column3: this.props.images.column3,
     };
   }
 
@@ -127,30 +125,35 @@ class GalleryViewInner extends React.Component {
 
   firstFetch() {
       // Start chain reaction ONLY if there is at least one image
+      console.error(this.props.images.all);
       if (this.state.cap > 0) {
         this.fetchNext();
+        console.error('fetching images');
+        console.error(this.state.cap);
+      } else {
+        this.state.hasMore = false;
       }
   }
   
   fetchNext = () => {
     // console.log('fetching next');
-    // console.log(`size col 1: ${this.state.lengthA}`);
-    // console.log(`size col 2: ${this.state.lengthB}`);
-    // console.log(`size col 3: ${this.state.lengthC}`);
+    console.log(`size col 1: ${this.state.lengthA}`);
+    console.log(`size col 2: ${this.state.lengthB}`);
+    console.log(`size col 3: ${this.state.lengthC}`);
     if (this.state.hasMore) {
       if (this.state.lengthA <= this.state.lengthB && this.state.lengthA <= this.state.lengthC) {
         this.setState((prevState) => ({
-          column1: prevState.column1.concat(this.props.images[this.state.currentIndex]),
+          column1: prevState.column1.concat(this.props.images.all[this.state.currentIndex]),
         }))
         // console.log('added to col a');
       } else if ( this.state.lengthB <= this.state.lengthA && this.state.lengthB <= this.state.lengthC ) {
         this.setState((prevState) => ({
-          column2: prevState.column2.concat(this.props.images[this.state.currentIndex]),
+          column2: prevState.column2.concat(this.props.images.all[this.state.currentIndex]),
         }))
         // console.log('added to col b');
       } else {
         this.setState((prevState) => ({
-          column3: prevState.column3.concat(this.props.images[this.state.currentIndex]),
+          column3: prevState.column3.concat(this.props.images.all[this.state.currentIndex]),
         }))
         // console.log('added to col c');
       }
@@ -169,7 +172,7 @@ class GalleryViewInner extends React.Component {
         currentIndex: this.state.currentIndex + 1,
         hasMore: (this.state.currentIndex < this.state.cap - 1 ? true : false),
       }, () => {
-        if (this.props.images[this.state.currentIndex] !== undefined) {
+        if (this.props.images.all[this.state.currentIndex] !== undefined) {
           // console.log(this.state.hasMore);
           this.fetchNext();
         }
@@ -180,7 +183,7 @@ class GalleryViewInner extends React.Component {
         currentIndex: this.state.currentIndex + 1,
         hasMore: (this.state.currentIndex < this.state.cap - 1 ? true : false),
       }, () => {
-        if (this.props.images[this.state.currentIndex] !== undefined) {
+        if (this.props.images.all[this.state.currentIndex] !== undefined) {
           // console.log(this.state.hasMore);
           this.fetchNext();
         }
@@ -191,7 +194,7 @@ class GalleryViewInner extends React.Component {
         currentIndex: this.state.currentIndex + 1,
         hasMore: (this.state.currentIndex < this.state.cap - 1 ? true : false),
       }, () => {
-        if (this.props.images[this.state.currentIndex] !== undefined) {
+        if (this.props.images.all[this.state.currentIndex] !== undefined) {
           // console.log(this.state.hasMore);
           this.fetchNext();
         }
@@ -204,6 +207,19 @@ class GalleryViewInner extends React.Component {
 
   render() {
     console.log(this.state.hasMore);
+
+    if (this.state.cap === 0) {
+      return (
+        <div style={{ width: '100%' }}>
+        <div style={{display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'space-evenly'}}>
+          <ImageNotSupportedIcon style={{ width: '100px', height: '100px', marginTop: '20vh', color: theme.palette.icons.noImage, alignSelf: 'center' }} />
+          <Typography variant="h2" style={{ padding: '23px 0px 26px 0px' }}>
+            No images found
+          </Typography>          
+        </div>
+      </div>
+      )
+    } 
     return (
       <div style={{ width: '100%' }}>
         <div style={{display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-evenly'}}>
@@ -274,7 +290,7 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
         {galleryName}
       </Typography>
       
-      <GalleryViewInner images={[...images]} onSelect={onSelect} onUnselect={onUnselect}/>
+      <GalleryViewInner images={images} onSelect={onSelect} onUnselect={onUnselect}/>
 
       {lightbox && <div style={{ backgroundColor: theme.palette.background.overlayGallery, backdropFilter: 'blur(5px)', position: 'fixed', width: '100vw', height: '100vh', left: '0', top: '0' }}>
         
@@ -330,58 +346,52 @@ const GalleryView = ({ toggleLoading, handlePageChange, pageShown, galleryName, 
 class Gallery extends React.Component {
   constructor (props, classes) {
     super(props);
+
+    // console.log(this.props.images.estate.carousel);
     this.state = {
-      carousel1: [
-      ],
-      carousel2: [
-      ],
-      carousel3: [
-      ],
-      carousel4: [
-      ],
-      gallery1: [
-      ],
-      gallery2: [
-      ],
-      gallery3: [
-      ],
-      gallery4: [
-      ],
+      carousel1: this.props.images.estate.carousel,
+      carousel2: this.props.images.portraits.carousel,
+      carousel3: this.props.images.film.carousel,
+      carousel4: this.props.images.other.carousel,
+      gallery1: this.props.images.estate.all,
+      gallery2: this.props.images.portraits.all,
+      gallery3: this.props.images.film.all,
+      gallery4: this.props.images.other.all,
       classes: classes,
       pageShown: '',
-      loadingPage: true,
+      loadingPage: false,
     };
 
     // this.handleClick = this.handleClick.bind(this); // Otherwise React can't find this.
   }
 
   componentDidMount() {
-    console.log('mounting gallery');
+    // console.log('mounting gallery');
 
-    // Load Carousel 1
-    Storage.list('carousel1/', { pageSize : 'ALL' })
-      .then(response => this.setState({ 
-        carousel1: response.results 
-      }))
+    // // Load Carousel 1
+    // Storage.list('carousel1/', { pageSize : 'ALL' })
+    //   .then(response => this.setState({ 
+    //     carousel1: response.results 
+    //   }))
 
-    // Load Carousel 2
-    Storage.list('carousel2/', { pageSize : 'ALL' })
-    .then(response => this.setState({ 
-      carousel2: response.results 
-    }))
+    // // Load Carousel 2
+    // Storage.list('carousel2/', { pageSize : 'ALL' })
+    // .then(response => this.setState({ 
+    //   carousel2: response.results 
+    // }))
 
-    // Load Carousel 3
-    Storage.list('carousel3/', { pageSize : 'ALL' })
-    .then(response => this.setState({ 
-      carousel3: response.results 
-    }))
+    // // Load Carousel 3
+    // Storage.list('carousel3/', { pageSize : 'ALL' })
+    // .then(response => this.setState({ 
+    //   carousel3: response.results 
+    // }))
 
-    // Load Carousel 4
-    Storage.list('carousel4/', { pageSize : 'ALL' })
-    .then(response => this.setState({ 
-      loadingPage: false,
-      carousel4: response.results 
-    }))
+    // // Load Carousel 4
+    // Storage.list('carousel4/', { pageSize : 'ALL' })
+    // .then(response => this.setState({ 
+    //   loadingPage: false,
+    //   carousel4: response.results 
+    // }))
   }
 
 
@@ -538,22 +548,22 @@ class Gallery extends React.Component {
     }
     else if (this.state.pageShown === 'gallery1') {
       return (
-        <GalleryView galleryName='Real Estate' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery1}/>
+        <GalleryView galleryName='Real Estate' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.props.images.estate}/>
       );
     }
     else if (this.state.pageShown === 'gallery2') {
       return (
-        <GalleryView galleryName='Portrait' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery2}/>
+        <GalleryView galleryName='Portrait' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.props.images.portraits}/>
       );
     }
     else if (this.state.pageShown === 'gallery3') {
       return (
-        <GalleryView galleryName='Film' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery3}/>
+        <GalleryView galleryName='Film' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.props.images.film}/>
       );
     }
     else if (this.state.pageShown === 'gallery4') {
       return (
-        <GalleryView galleryName='Other' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.state.gallery4}/>
+        <GalleryView galleryName='Other' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.props.images.other}/>
       );
     }
     else {
