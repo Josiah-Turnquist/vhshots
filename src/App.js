@@ -1,20 +1,22 @@
+import React from 'react';
 import './App.css';
 
-// Theme
-import { ThemeProvider } from '@material-ui/core/styles';
-import theme from './theme';
+// import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import { Amplify } from 'aws-amplify';
+import awsExports from './aws-exports';
+import NavigationBar from './components/NavigationBar/NavigationBar';
 
-// Pages
-import Home from './pages/Home';
+Amplify.configure(awsExports);
 
-function App() {
+
+function App({ signOut, user }) {
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <Home />
-      </ThemeProvider>
+      <NavigationBar />
     </div>
   );
 }
 
-export default App;
+// With Authenticator
+export default (App);

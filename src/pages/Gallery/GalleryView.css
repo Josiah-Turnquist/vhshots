@@ -1,0 +1,45 @@
+
+.GalleryViewer {
+    line-height: 0;
+    /* -webkit-column-count: 3;
+    -webkit-column-gap:   5px;
+    -moz-column-count:    5;
+    -moz-column-gap:      5px; */
+    column-count:         3;
+    column-gap:           8px;  
+    align-content: stretch;
+    list-style: none;
+    margin: 10px;
+}
+
+.galleryy {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: masonry;
+    grid-auto-flow: row; 
+}
+
+.image {
+    transition: all 0.5s ease-out;
+}
+
+.image:hover  {
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0.45;
+}
+
+.itemm {
+    /* grid-column: 1;
+    grid-row: 1 / 3; */
+    margin: 11px;
+    justify-self: center;
+    align-self: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .grid {
+      transition: all 1s;
+    }
+  }
+  

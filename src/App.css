@@ -1,5 +1,5 @@
 .App-header {
-  background-color: #282c34;
+  background-color: #282828; /*#282c34*/
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,4 +11,25 @@
 
 .App-link {
   color: #61dafb;
+}
+
+/* Scrollbar */
+body {
+  overflow: overlay;
+}
+::-webkit-scrollbar {
+  width: 7px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(125, 125, 125, 0.75);
+  border-radius: 12px;
+  transition: all 0.15s ease-in-out;
+
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(157, 157, 154, 1);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
 }
