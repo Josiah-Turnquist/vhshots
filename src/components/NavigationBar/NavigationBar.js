@@ -42,8 +42,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import { Typography } from '@mui/material';
 
 // Icons
-import IconButton from '@mui/material/IconButton';
-import HomeIcon from '@mui/icons-material/Home';
+
 import CollectionsIcon from '@mui/icons-material/Collections';
 import DataUsageIcon from '@mui/icons-material/DataUsage';
 import LoginIcon from '@mui/icons-material/Login';
@@ -51,7 +50,6 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 // import AppsIcon from '@mui/icons-material/Apps';
 // import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
-import MenuIcon from '@mui/icons-material/Menu';
 // import ListIcon from '@mui/icons-material/List';
 // import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 // import Menu from '@mui/icons-material/Menu';
@@ -60,6 +58,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 // import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak';
 // import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 // import InfoIcon from '@mui/icons-material/Info';
+
 // Logo
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 import PropTypes from 'prop-types';
