@@ -21,6 +21,27 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "API Gateway"
+    },
+    "vhshots": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
     }
   },
   "auth": {
@@ -81,6 +102,21 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "vhsContactFormFunction": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ],
+          "category": "api",
+          "resourceName": "vhshots"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -97,6 +133,38 @@
         {
           "category": "function",
           "resourceName": "AdminQueries947dcd66"
+        }
+      ]
+    },
+    "AMPLIFY_function_vhsContactFormFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "vhsContactFormFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_vhsContactFormFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "vhsContactFormFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_vhsContactForm_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "vhsContactForm"
+        }
+      ]
+    },
+    "AMPLIFY_function_vhsContactForm_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "vhsContactForm"
         }
       ]
     }

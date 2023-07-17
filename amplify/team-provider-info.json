@@ -23,10 +23,19 @@
         "AdminQueries947dcd66": {
           "deploymentBucketName": "amplify-vhshots-dev-02206-deployment",
           "s3Key": "amplify-builds/AdminQueries947dcd66-376e5a31524338744a38-build.zip"
+        },
+        "vhsContactForm": {
+          "deploymentBucketName": "amplify-vhshots-dev-02206-deployment",
+          "s3Key": "amplify-builds/vhsContactForm-6b64302b32545547702b-build.zip"
+        },
+        "vhsContactFormFunction": {
+          "deploymentBucketName": "amplify-vhshots-dev-02206-deployment",
+          "s3Key": "amplify-builds/vhsContactFormFunction-346d646f77786b336446-build.zip"
         }
       },
       "api": {
-        "AdminQueries": {}
+        "AdminQueries": {},
+        "vhshots": {}
       }
     }
   }

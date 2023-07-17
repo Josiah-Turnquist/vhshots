@@ -11,9 +11,10 @@ import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { ContactForm } from "../models";
 import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
-export default function ContactFormCreateForm(props) {
+export default function ContactFormUpdateForm(props) {
   const {
-    clearOnSuccess = true,
+    id: idProp,
+    contactForm,
     onSuccess,
     onError,
     onSubmit,
@@ -34,17 +35,31 @@ export default function ContactFormCreateForm(props) {
   const [Message, setMessage] = React.useState(initialValues.Message);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setName(initialValues.Name);
-    setEmail(initialValues.Email);
-    setSubject(initialValues.Subject);
-    setMessage(initialValues.Message);
+    const cleanValues = contactFormRecord
+      ? { ...initialValues, ...contactFormRecord }
+      : initialValues;
+    setName(cleanValues.Name);
+    setEmail(cleanValues.Email);
+    setSubject(cleanValues.Subject);
+    setMessage(cleanValues.Message);
     setErrors({});
   };
+  const [contactFormRecord, setContactFormRecord] = React.useState(contactForm);
+  React.useEffect(() => {
+    const queryData = async () => {
+      const record = idProp
+        ? await DataStore.query(ContactForm, idProp)
+        : contactForm;
+      setContactFormRecord(record);
+    };
+    queryData();
+  }, [idProp, contactForm]);
+  React.useEffect(resetStateValues, [contactFormRecord]);
   const validations = {
-    Name: [],
-    Email: [{ type: "Email" }],
-    Subject: [],
-    Message: [],
+    Name: [{ type: "Required" }],
+    Email: [{ type: "Required" }, { type: "Email" }],
+    Subject: [{ type: "Required" }],
+    Message: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -104,12 +119,13 @@ export default function ContactFormCreateForm(props) {
               modelFields[key] = undefined;
             }
           });
-          await DataStore.save(new ContactForm(modelFields));
+          await DataStore.save(
+            ContactForm.copyOf(contactFormRecord, (updated) => {
+              Object.assign(updated, modelFields);
+            })
+          );
           if (onSuccess) {
             onSuccess(modelFields);
-          }
-          if (clearOnSuccess) {
-            resetStateValues();
           }
         } catch (err) {
           if (onError) {
@@ -117,12 +133,12 @@ export default function ContactFormCreateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "ContactFormCreateForm")}
+      {...getOverrideProps(overrides, "ContactFormUpdateForm")}
       {...rest}
     >
       <TextField
         label="Name"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={Name}
         onChange={(e) => {
@@ -149,7 +165,7 @@ export default function ContactFormCreateForm(props) {
       ></TextField>
       <TextField
         label="Email"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={Email}
         onChange={(e) => {
@@ -176,7 +192,7 @@ export default function ContactFormCreateForm(props) {
       ></TextField>
       <TextField
         label="Subject"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={Subject}
         onChange={(e) => {
@@ -203,7 +219,7 @@ export default function ContactFormCreateForm(props) {
       ></TextField>
       <TextField
         label="Message"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={Message}
         onChange={(e) => {
@@ -233,13 +249,14 @@ export default function ContactFormCreateForm(props) {
         {...getOverrideProps(overrides, "CTAFlex")}
       >
         <Button
-          children="Clear"
+          children="Reset"
           type="reset"
           onClick={(event) => {
             event.preventDefault();
             resetStateValues();
           }}
-          {...getOverrideProps(overrides, "ClearButton")}
+          isDisabled={!(idProp || contactForm)}
+          {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
           gap="15px"
@@ -249,7 +266,10 @@ export default function ContactFormCreateForm(props) {
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={Object.values(errors).some((e) => e?.hasError)}
+            isDisabled={
+              !(idProp || contactForm) ||
+              Object.values(errors).some((e) => e?.hasError)
+            }
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

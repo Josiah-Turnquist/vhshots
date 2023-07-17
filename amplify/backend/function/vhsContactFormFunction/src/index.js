@@ -13,7 +13,7 @@ exports.handler = async event => {
 
     // create email message
     const msg = {
-        to: 'josiahturnq@gmail.com',
+        to: 'Will@vhshots.com',
         from: 'Will@vhshots.com',
         replyTo: record.dynamodb.NewImage.Email.S,
         subject: record.dynamodb.NewImage.Subject.S,

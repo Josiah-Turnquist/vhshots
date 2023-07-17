@@ -55,12 +55,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "vhsContactForm",
+            "vhsContactFormFunction",
             {
               "Fn::Join": [
                 "",
                 [
-                  "vhsContactForm",
+                  "vhsContactFormFunction",
                   "-",
                   {
                     "Ref": "env"
@@ -97,12 +97,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "vhshotsLambdaRole0136421e",
+            "vhshotsLambdaRole9968252b",
             {
               "Fn::Join": [
                 "",
                 [
-                  "vhshotsLambdaRole0136421e",
+                  "vhshotsLambdaRole9968252b",
                   "-",
                   {
                     "Ref": "env"
