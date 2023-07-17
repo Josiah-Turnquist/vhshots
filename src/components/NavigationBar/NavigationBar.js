@@ -376,7 +376,6 @@ const NavigationBar = ({ classes }) => {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: 'auto' }}
       role="presentation"
       // onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}

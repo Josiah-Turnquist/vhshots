@@ -7,27 +7,75 @@ import styles from './styles';
 
 // Contact Me
 import photographer from '../../assets/photographer.jpg'
-// import { DataStore } from '@aws-amplify/datastore';
-// import { SendGridEmail } from '../../models';
+import { DataStore } from '@aws-amplify/datastore';
+import { ContactForm } from '../../models';
 
 import { Typography } from '@mui/material';
 import { IconButton } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import awsExports from '../../aws-exports';
+// import awsExports from '../../aws-exports';
+import { 
+  ContactFormCreateForm 
+} from '../../ui-components';
+import awsTheme from '../../aws-theme';
+import { ThemeProvider } from '@aws-amplify/ui-react';
 
-
-const msg = {
-  to: 'josiahturnq@gmail.com', // Change to your recipient
-  from: 'will@vhshots.com', // Change to your verified sender
-  subject: 'Sending with SendGrid is Fun',
-  text: 'and easy to do anywhere, even with Node.js',
-  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-}
+// Custom Theme
+// const theme = {
+//   name: 'my-theme',
+//   tokens: {
+//     components: {
+//       button: {
+//         primary: {
+//           backgroundColor: '#E16B4C',
+//           _hover: { backgroundColor: '#D15B3C' },
+//           _active: { backgroundColor: '#F15B3C' },
+//           _disabled: { backgroundColor: '#F1cB3C' },
+//           _focus: { backgroundColor: '#912B0C', borderColor: '#912B0C', boxShadow: 'none' },
+//           // fontFamily: 'Helvetica',
+//           // fontSize: 'calc(1rem + 0.2vw)',
+//           // fontWeight: 500,
+//           // textTransform: 'uppercase',
+//           // letterSpacing: '2px', 
+//         },
+//         borderRadius: '32px',
+//         width: '100vw',
+//       },
+//     },
+//     colors: {
+//       font: {
+//         default: {
+//           variable: 'Helvetica',
+//           textTransform: 'uppercase',
+//         },
+//         primary: '#FFFFFF',
+//         secondary: '#FFFFFF'
+//       },
+//     },
+//   },
+// };
 
 // If we decide to make this more interactive then it should probably be a ReactComponent.
 const NavigationBar = ({ classes }) => {
+  const initialValues = {
+    Name: "Josiah",
+    Email: "josiahturnq@gmail.com",
+    Subject: "This is new",
+    Message: "Well this is weird.",
+  };
+  const [Name, setName] = React.useState(initialValues.Name);
+  const [Email, setEmail] = React.useState(initialValues.Email);
+  const [Subject, setSubject] = React.useState(initialValues.Subject);
+  const [Message, setMessage] = React.useState(initialValues.Message);
+  let modelFields = {
+    Name,
+    Email,
+    Subject,
+    Message,
+  };
+
   const handleContactMeButtonClick = () => {
     console.log('Tried to contact photographer.');
 
@@ -39,32 +87,26 @@ const NavigationBar = ({ classes }) => {
     //     resetStateValues();
     //   }
 
-    // DataStore.save(
-    //   new SendGridEmail({
-    //   "name": "Lorem ipsum dolor sit amet",
-    //   "email": "Josiahturnq@gmail.com",
-    //   "shootingLocation": "Lorem ipsum dolor sit amet",
-    //   "heardOfUs": "Lorem ipsum dolor sit amet"
-    // })
-    // .then(() => {
-    //   console.log('Email sent');
-    // })
-    // .catch((error) => {
-    //   console.error(error);
-    // })
-  // );
+    DataStore.save(new ContactForm(modelFields))
+    .then(() => {
+      console.log('Email sent');
+    })
+    .catch((error) => {
+      console.error(error);
+    })
 };
 
   return (
     <div className={classes.infoWrapper} style={{zIndex: 1000}}>
-      <div className={classes.profile}>
-      </div>
-
       <Typography className={classes.infoText} variant="h1" style={{ fontSize: '24px' }}>
         Contact Me
       </Typography>
 
-      <input className={classes.inputs} placeholder="Email" />
+      <ThemeProvider theme={awsTheme} width='75vw'>
+        <ContactFormCreateForm width='70vw' fontFamily="Helvetica" marginRight='38px'/>
+      </ThemeProvider>
+
+      {/* <input className={classes.inputs} placeholder="Email" />
       <input className={classes.inputs} placeholder="Name" />
       <input className={classes.inputs} placeholder="Where are you looking to shoot?" />
       <input className={classes.inputs} placeholder="How did you hear about us?" />
@@ -73,7 +115,7 @@ const NavigationBar = ({ classes }) => {
           <Typography variant="submissionButton" color='primary'>
             submit 
           </Typography>
-        </button>
+        </button> */}
 
 
       <Typography className={classes.infoText} variant="h5" color='primary'>

@@ -65,7 +65,7 @@ const styles = (theme) => ({
       },
     infoText: {
       textAlign: 'center',
-      padding: '10px',
+      padding: '20px',
     },
     profileImg: {
       position: 'relative',
