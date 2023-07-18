@@ -2958,7 +2958,7 @@ const awsTheme = {
         "value": 600
       },
       "bold": {
-        "value": 700
+        "value": 500
       },
       "extrabold": {
         "value": 800
