@@ -92,8 +92,9 @@ class Info extends React.Component {
           <Typography variant="h1">
             About Will Van Holten
           </Typography>
-
-          <div style={{background: 'linear-gradient(325deg, rgba(41, 41, 41, 0.48), rgba(41, 41, 41, 0))', maxWidth: '800px', top: '0px', height: 'calc(100% - 140px)', margin: '0px 55px 0px 55px', position: 'relative', display: 'flex'}}> {/*325 or 162 */ }
+          
+          {/* 325 degrees */}
+          <div style={{background: 'linear-gradient(205deg, rgba(41, 41, 41, 0.48), rgba(41, 41, 41, 0))', maxWidth: '800px', top: '0px', height: 'calc(100% - 140px)', margin: '0px 55px 0px 55px', position: 'relative', display: 'flex'}}> {/*325 or 162 */ }
             <div style={{width: '100%', margin: '0 0 5% 0', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
               <div style={{display: 'flex', justifyContent: 'flex-start', flexDirection: 'column'}}>
                 <Typography variant="h2" style={{maxWidth: '450px'}}>
