@@ -43,8 +43,8 @@ export default function ContactFormCreateForm(props) {
   const validations = {
     Name: [{ type: "Required" }],
     Email: [{ type: "Required" }, { type: "Email" }],
-    Subject: [{ type: "Required" }],
-    Message: [{ type: "Required" }],
+    Subject: [],
+    Message: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -121,9 +121,10 @@ export default function ContactFormCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="Name"
+        label=" "
         isRequired={true}
         isReadOnly={false}
+        placeholder="Full Name"
         value={Name}
         onChange={(e) => {
           let { value } = e.target;
@@ -148,9 +149,10 @@ export default function ContactFormCreateForm(props) {
         {...getOverrideProps(overrides, "Name")}
       ></TextField>
       <TextField
-        label="Email"
+        label=" "
         isRequired={true}
         isReadOnly={false}
+        placeholder="Email"
         value={Email}
         onChange={(e) => {
           let { value } = e.target;
@@ -175,9 +177,10 @@ export default function ContactFormCreateForm(props) {
         {...getOverrideProps(overrides, "Email")}
       ></TextField>
       <TextField
-        label="Subject"
-        isRequired={true}
+        label=" "
+        isRequired={false}
         isReadOnly={false}
+        placeholder="How did you hear about us?"
         value={Subject}
         onChange={(e) => {
           let { value } = e.target;
@@ -202,9 +205,11 @@ export default function ContactFormCreateForm(props) {
         {...getOverrideProps(overrides, "Subject")}
       ></TextField>
       <TextField
-        label="Message"
-        isRequired={true}
+        label=" "
+        descriptiveText=""
+        isRequired={false}
         isReadOnly={false}
+        placeholder="Where do you want to shoot?"
         value={Message}
         onChange={(e) => {
           let { value } = e.target;
@@ -238,6 +243,7 @@ export default function ContactFormCreateForm(props) {
         >
           <Button
             children="SUBMIT"
+            width="70vw"
             type="submit"
             variation="primary"
             isDisabled={Object.values(errors).some((e) => e?.hasError)}

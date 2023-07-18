@@ -21,6 +21,7 @@ import {
 } from '../../ui-components';
 import awsTheme from '../../aws-theme';
 import { ThemeProvider } from '@aws-amplify/ui-react';
+import { width } from "@mui/system";
 
 // Custom Theme
 // const theme = {
@@ -88,7 +89,7 @@ const NavigationBar = ({ classes }) => {
       </Typography>
 
       <ThemeProvider theme={awsTheme} width='75vw'>
-        <ContactFormCreateForm width='70vw' fontFamily="Helvetica"/>
+        <ContactFormCreateForm width='70vw' fontFamily="Helvetica" overrides={{ "amplify-button": {width: '70vw'} }}/>
       </ThemeProvider>
 
       {/* <input className={classes.inputs} placeholder="Email" />

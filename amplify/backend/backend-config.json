@@ -119,6 +119,56 @@
       "service": "Lambda"
     }
   },
+  "parameters": {
+    "AMPLIFY_function_AdminQueries947dcd66_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "AdminQueries947dcd66"
+        }
+      ]
+    },
+    "AMPLIFY_function_AdminQueries947dcd66_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "AdminQueries947dcd66"
+        }
+      ]
+    },
+    "AMPLIFY_function_vhsContactFormFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "vhsContactFormFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_vhsContactFormFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "vhsContactFormFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_vhsContactForm_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "vhsContactForm"
+        }
+      ]
+    },
+    "AMPLIFY_function_vhsContactForm_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "vhsContactForm"
+        }
+      ]
+    }
+  },
   "storage": {
     "s3vhshotsstorage4c3a7943admin": {
       "dependsOn": [],
