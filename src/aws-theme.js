@@ -1005,7 +1005,7 @@ const awsTheme = {
         },
         "textTransform": "uppercase", 
         "borderColor": {
-          "value": "{colors.neutral.60.value}"
+          "value": "{colors.neutral.70.value}"
         },
         "borderRadius": {
           "value": "{radii.small.value}"
@@ -2731,7 +2731,7 @@ const awsTheme = {
           "90": {
             "value": "hsl(12, 54%, 32%)"
           },
-          "100": {
+          "100": { // This color is for inputs that are in focus.
             "value": "hsl(12, 54%, 27%)"
           }
         },
@@ -2793,8 +2793,8 @@ const awsTheme = {
         "warning": {
           "value": "{colors.orange.90.value}"
         },
-        "error": {
-          "value": "{colors.red.90.value}"
+        "error": { // When the contact form has an error, this is the text color -- but not the input outlien color
+          "value": "{colors.red.60.value}"
         },
         "success": {
           "value": "{colors.green.90.value}"
@@ -2810,8 +2810,8 @@ const awsTheme = {
         "tertiary": {
           "value": "{colors.neutral.20.value}"
         },
-        "disabled": {
-          "value": "{colors.background.tertiary.value}"
+        "disabled": { // This is for buttons that are disabled
+          "value": "{colors.neutral.60.value}"
         },
         "info": {
           "value": "{colors.blue.20.value}"
@@ -2839,8 +2839,8 @@ const awsTheme = {
         "disabled": {
           "value": "{colors.border.tertiary.value}"
         },
-        "focus": {
-          "value": "{colors.brand.primary.100.value}"
+        "focus": { // This is for input borders that are in focus.
+          "value": "{colors.brand.primary.80.value}"
         },
         "error": {
           "value": "{colors.red.80.value}"
