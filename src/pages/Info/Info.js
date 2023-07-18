@@ -92,7 +92,7 @@ class Info extends React.Component {
           <Typography variant="h1">
             About Will Van Holten
           </Typography>
-          
+
           {/* 325 degrees */}
           <div style={{background: 'linear-gradient(205deg, rgba(41, 41, 41, 0.48), rgba(41, 41, 41, 0))', maxWidth: '800px', top: '0px', height: 'calc(100% - 140px)', margin: '0px 55px 0px 55px', position: 'relative', display: 'flex'}}> {/*325 or 162 */ }
             <div style={{width: '100%', margin: '0 0 5% 0', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
@@ -137,7 +137,7 @@ class Info extends React.Component {
               </div>
             </div>
             <img 
-              style={{position: 'relative', filter: 'drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.25))', width: '100%', maxWidth: '360px', alignSelf: 'center'}} 
+              style={{position: 'relative', filter: 'drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.25))', width: '100%', maxWidth: '360px', marginTop: '10px', alignSelf: 'center'}} 
               className="profile"
               src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/info/profile.jpg`} 
               alt='img of william' 
