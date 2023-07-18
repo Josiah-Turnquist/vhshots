@@ -84,7 +84,7 @@ const NavigationBar = ({ classes }) => {
 
   return (
     <div className={classes.infoWrapper} style={{zIndex: 1000}}>
-      <Typography className={classes.infoText} variant="h1" style={{ fontSize: '24px' }}>
+      <Typography className={classes.infoText} variant="h1" style={{ fontSize: '24px', paddingBottom: '6px' }}>
         Contact Me
       </Typography>
 
