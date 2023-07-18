@@ -149,6 +149,7 @@ export default function ContactFormCreateForm(props) {
         {...getOverrideProps(overrides, "Name")}
       ></TextField>
       <TextField
+        marginTop="-5px"
         label=" "
         isRequired={true}
         isReadOnly={false}
@@ -177,6 +178,7 @@ export default function ContactFormCreateForm(props) {
         {...getOverrideProps(overrides, "Email")}
       ></TextField>
       <TextField
+        marginTop="-5px"
         label=" "
         isRequired={false}
         isReadOnly={false}
@@ -205,10 +207,12 @@ export default function ContactFormCreateForm(props) {
         {...getOverrideProps(overrides, "Subject")}
       ></TextField>
       <TextField
+        marginTop="-5px"
         label=" "
         descriptiveText=""
         isRequired={false}
         isReadOnly={false}
+        padding="0px"
         placeholder="Where do you want to shoot?"
         value={Message}
         onChange={(e) => {
