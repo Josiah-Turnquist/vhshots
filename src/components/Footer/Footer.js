@@ -89,7 +89,7 @@ const NavigationBar = ({ classes }) => {
       </Typography>
 
       <ThemeProvider theme={awsTheme} width='75vw'>
-        <ContactFormCreateForm width='70vw' fontFamily="Helvetica" overrides={{ "amplify-button": {width: '70vw'} }}/>
+        <ContactFormCreateForm width='70vw' fontFamily="Helvetica" marginRight={'36px'}/>
       </ThemeProvider>
 
       {/* <input className={classes.inputs} placeholder="Email" />
