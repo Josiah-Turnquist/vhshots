@@ -17,7 +17,7 @@ exports.handler = async event => {
         from: 'Will@vhshots.com',
         replyTo: record.dynamodb.NewImage.Email.S,
         subject: record.dynamodb.NewImage.Subject.S,
-        text: record.dynamodb.NewImage.Message.S
+        text: `${record.dynamodb.NewImage.Message.S} \n\n - ${record.dynamodb.NewImage.Name.S}`
 
     };
 
