@@ -1004,8 +1004,8 @@ const awsTheme = {
           "value": "solid"
         },
         "textTransform": "uppercase", 
-        "borderColor": {
-          "value": "{colors.neutral.70.value}"
+        "borderColor": { // color of input borders
+          "value": "{colors.neutral.80.value}"
         },
         "borderRadius": {
           "value": "{radii.small.value}"
@@ -1028,8 +1028,8 @@ const awsTheme = {
         "fontSize": {
           "value": "{components.field.fontSize.value}"
         },
-        "lineHeight": {
-          "value": "{lineHeights.medium.value}"
+        "lineHeight": { // height of input fields
+          "value": "{lineHeights.xl.value}"
         },
         "transitionDuration": {
           "value": "{time.medium.value}"
@@ -2976,6 +2976,9 @@ const awsTheme = {
       },
       "large": {
         "value": "2"
+      },
+      "xl": {
+        "value": "2.5"
       }
     },
     "opacities": {

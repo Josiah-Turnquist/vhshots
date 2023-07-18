@@ -246,6 +246,7 @@ export default function ContactFormCreateForm(props) {
             width="70vw"
             type="submit"
             variation="primary"
+            marginTop="20px"
             isDisabled={Object.values(errors).some((e) => e?.hasError)}
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
