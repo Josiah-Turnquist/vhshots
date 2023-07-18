@@ -59,42 +59,27 @@ import { ThemeProvider } from '@aws-amplify/ui-react';
 
 // If we decide to make this more interactive then it should probably be a ReactComponent.
 const NavigationBar = ({ classes }) => {
-  const initialValues = {
-    Name: "Josiah",
-    Email: "josiahturnq@gmail.com",
-    Subject: "This is new",
-    Message: "Well this is weird.",
-  };
-  const [Name, setName] = React.useState(initialValues.Name);
-  const [Email, setEmail] = React.useState(initialValues.Email);
-  const [Subject, setSubject] = React.useState(initialValues.Subject);
-  const [Message, setMessage] = React.useState(initialValues.Message);
-  let modelFields = {
-    Name,
-    Email,
-    Subject,
-    Message,
-  };
 
-  const handleContactMeButtonClick = () => {
-    console.log('Tried to contact photographer.');
 
-    // await DataStore.save(new SendGridEmail(modelFields));
-    //   if (onSuccess) {
-    //     onSuccess(modelFields);
-    //   }
-    //   if (clearOnSuccess) {
-    //     resetStateValues();
-    //   }
+//   const handleContactMeButtonClick = () => {
+//     console.log('Tried to contact photographer.');
 
-    DataStore.save(new ContactForm(modelFields))
-    .then(() => {
-      console.log('Email sent');
-    })
-    .catch((error) => {
-      console.error(error);
-    })
-};
+//     // await DataStore.save(new SendGridEmail(modelFields));
+//     //   if (onSuccess) {
+//     //     onSuccess(modelFields);
+//     //   }
+//     //   if (clearOnSuccess) {
+//     //     resetStateValues();
+//     //   }
+
+//     DataStore.save(new ContactForm(modelFields))
+//     .then(() => {
+//       console.log('Email sent');
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     })
+// };
 
   return (
     <div className={classes.infoWrapper} style={{zIndex: 1000}}>
@@ -103,7 +88,7 @@ const NavigationBar = ({ classes }) => {
       </Typography>
 
       <ThemeProvider theme={awsTheme} width='75vw'>
-        <ContactFormCreateForm width='70vw' fontFamily="Helvetica" marginRight='38px'/>
+        <ContactFormCreateForm width='70vw' fontFamily="Helvetica"/>
       </ThemeProvider>
 
       {/* <input className={classes.inputs} placeholder="Email" />
