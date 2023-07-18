@@ -1020,7 +1020,7 @@ const awsTheme = {
           "value": "{space.xs.value}"
         },
         "paddingInlineStart": {
-          "value": "{space.medium.value}"
+          "value": "{space.ml.value}"
         },
         "paddingInlineEnd": {
           "value": "{space.medium.value}"
@@ -3105,6 +3105,9 @@ const awsTheme = {
       },
       "medium": {
         "value": "1rem"
+      },
+      "ml": {
+        "value": "1.25rem"
       },
       "large": {
         "value": "1.5rem"
