@@ -91,7 +91,7 @@ const NavigationBar = ({ classes }) => {
       <ThemeProvider theme={awsTheme} width='75vw'>
         <ContactFormCreateForm width='70vw' fontFamily="Helvetica" marginRight={'30px'}/>
       </ThemeProvider>
-
+      
       {/* <input className={classes.inputs} placeholder="Email" />
       <input className={classes.inputs} placeholder="Name" />
       <input className={classes.inputs} placeholder="Where are you looking to shoot?" />
@@ -102,7 +102,6 @@ const NavigationBar = ({ classes }) => {
             submit 
           </Typography>
         </button> */}
-
 
       <Typography className={classes.infoText} variant="h5" color='primary'>
         <IconButton aria-label="Instagram" href="https://www.instagram.com/wvhshots/?hl=en">
