@@ -108,13 +108,15 @@ class Info extends React.Component {
                 </Typography>
               </div>
             </div>
-            <img 
-              style={{height: '100%', position: 'relative', filter: 'drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.25))'}} 
-              className="profile"
-              src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/info/profile.jpg`} 
-              alt='img of william' 
-              key='profile image'
-            />
+            <div style={{ aspectRatio: 1, height: '100%'}}> 
+              <img 
+                style={{height: '100%', position: 'relative', filter: 'drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.25))'}} 
+                className="profile"
+                src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/info/profile.jpg`} 
+                alt='img of william' 
+                key='profile image'
+              />
+            </div>
           </div>
         </div>}
         {window.innerWidth <= 650 && <div style={{background: 'linear-gradient(180deg, #181818 10% 98%, rgb(32 32 37) 100% 73%)', textAlign: '-webkit-center', width: '100%', paddingBottom: '60px'}}>
@@ -126,7 +128,7 @@ class Info extends React.Component {
             <div style={{width: '100%', margin: '0 0 6% 0', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
               <div style={{display: 'flex', justifyContent: 'flex-start', flexDirection: 'column'}}>
                 <Typography variant="h2" style={{maxWidth: '450px'}}>
-                  Biography
+                  Bioraphy
                 </Typography>
                 <Typography variant="body2" style={{maxWidth: '450px'}}>
                 I'm passionate photographer who finds joy in collaborating with creative minds to capture extraordinary moments. 
@@ -136,13 +138,15 @@ class Info extends React.Component {
                 </Typography>
               </div>
             </div>
-            <img 
-              style={{position: 'relative', filter: 'drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.25))', width: '100%', maxWidth: '360px', marginTop: '10px', alignSelf: 'center'}} 
-              className="profile"
-              src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/info/profile.jpg`} 
-              alt='img of william' 
-              key='profile image'
-            />
+            <div key="some div to hold profile img" style={{ width: '100' }}> 
+              <img 
+                style={{position: 'relative', filter: 'drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.25))', width: '100%', maxWidth: '360px', marginTop: '10px', alignSelf: 'center'}} 
+                className="profile"
+                src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/info/profile.jpg`} 
+                alt='img of william' 
+                key='profile image'
+              />
+            </div>
           </div>
         </div>}
 
@@ -262,7 +266,7 @@ class Info extends React.Component {
             <img   
               style={{width: '350px', objectFit: 'cover', height: '250px', top: 0, right: 0, position: 'relative'}}
               src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/my-principles/banner3.jpg`}
-              alt='SOME PRINCIPLE'
+              alt='WE VALUE COMMITMENT'
               key='banner3 image'
             />
             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: '1%', height: '100%'}}>
@@ -279,7 +283,7 @@ class Info extends React.Component {
             <img   
               style={{width: '100%', objectFit: 'cover', height: '250px'}}
               src={`https://vhshots-storage-4c3a7943-admin02206-dev.s3.us-west-1.amazonaws.com/public/my-principles/banner3.jpg`}
-              alt='SOME PRINCIPLE'
+              alt='WE VALUE COMMITMENT'
               key='banner3 image'
             />
            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: '3%', width: '100%', top: '-30px', position: 'relative', height: '100%'}}>
