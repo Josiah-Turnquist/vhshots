@@ -7,6 +7,8 @@ import HighlightCarousel from '../../components/HighlightCarousel/HighlightCarou
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import theme from '../../theme';
+import Skeleton from '@mui/material/Skeleton';
+
 
 // Loader
 import CircularProgress from '@mui/material/CircularProgress';
@@ -28,14 +30,14 @@ import { styled } from '@mui/material/styles';
 
 // Lightbox
 import 'lightbox.js-react/dist/index.css'
-import {SlideshowLightbox, initLightboxJS} from 'lightbox.js-react'
+// import {SlideshowLightbox, initLightboxJS} from 'lightbox.js-react'
 import DownloadIcon from '@mui/icons-material/Download';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
 import { light } from '@mui/material/styles/createPalette';
 
 // icons
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+// import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 
 const Div = styled('div')({
@@ -83,6 +85,12 @@ class AtomicImage extends React.Component {
     const {isLoaded} = this.state;
 
     return (
+      // !isLoaded ? (
+      //   <Skeleton
+      //     sx={{ bgcolor: 'white.900' }}
+      //     variant="rectangular"
+      //   />
+      // ) : (
       <img 
         className="image"
         style={{
@@ -97,7 +105,7 @@ class AtomicImage extends React.Component {
         loading='lazy'
         onLoad={this.onImgLoad}
         onClick={() => {this.props.onSelect(src)}}
-      /> 
+      />
     );
   }
 }
@@ -563,7 +571,7 @@ class Gallery extends React.Component {
     }
     else if (this.state.pageShown === 'gallery4') {
       return (
-        <GalleryView galleryName='Other' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.props.images.other}/>
+        <GalleryView galleryName='Weddings' getUser={this.props.getUser} toggleLoading={this.toggleLoading} handlePageChange={this.handlePageChange} pageShown={this.state.pageShown} images={this.props.images.other}/>
       );
     }
     else {
@@ -578,7 +586,7 @@ class Gallery extends React.Component {
           <HighlightCarousel reel={this.state.carousel3} title='Film' speed={10000} onClick={() => {
             this.handlePageChange('gallery3');
           }}/>
-          <HighlightCarousel reel={this.state.carousel4} title='Other' speed={7000} onClick={() => {
+          <HighlightCarousel reel={this.state.carousel4} title='Weddings' speed={7000} onClick={() => {
             this.handlePageChange('gallery4');
           }}/>
         </div>
