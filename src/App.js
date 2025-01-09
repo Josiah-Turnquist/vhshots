@@ -19,7 +19,7 @@ function App({ signOut, user }) {
     <div className="App">
       <Helmet>
         <title>Van Holten Photography</title>
-        <meta name="description" content="Van Holten Shots (vhshots) is a stunning Bay Area and San Francisco based photographer. Specializing in real estate, family, couples, and grad photos, Will keeps himself at the top of the game." />
+        <meta name="description" content="Van Holten Shots (vhshots) is a talented Bay Area and San Francisco based photographer. Specializing in real estate, family, couples, and grad photos, Will keeps himself at the top of the game." />
         <meta name="keywords" content="photographer, photography, real estate, family photos, bay area, san francisco, memories" />
         <meta name="author" content="Will Van Holten" />
         <meta property="og:title" content="Van Holten Photography" />
